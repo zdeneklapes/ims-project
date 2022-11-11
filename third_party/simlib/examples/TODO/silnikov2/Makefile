@@ -17,4 +17,3 @@ clean:
 
 pack: clean
 	tar czvf silnikov.tar.gz *.cc *.sh Makefile *.plt
-

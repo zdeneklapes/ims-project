@@ -19,4 +19,3 @@ run: $(MODELS)
 # plot all results
 plot:
 	for i in *.plt; do gnuplot ./$$i; done
-

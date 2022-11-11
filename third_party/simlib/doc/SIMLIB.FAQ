@@ -56,4 +56,3 @@ A) You should do  tstat.Clear() after Init(t1,t2) and before Run(). Those
    the error message. See multiexp.cc in simlib/examples.
    Because Facility, Store, and Queue contain time statistics, you should
    Clear() all such objects you explicitly defined in a model.
-

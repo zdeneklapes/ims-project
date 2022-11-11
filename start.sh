@@ -1,15 +1,22 @@
 #!/bin/bash
-
 complete -c timedatectl -s h -l help -d 'Print a short help text and exit'
 
+################################################################################
+# GLOBAL VARIABLES
+################################################################################
+# Color
 RM="rm -rfd"
 RED='\033[0;31m'
 NC='\033[0m'
 GREEN='\033[0;32m'
-PROJECT_NAME="diagram-editor"
+
+# Project
+PROJECT_NAME="simulation"
 ZIP_NAME="xbinov00-xlapes02"
 
-##### FUNCTIONS
+################################################################################
+# FUNCTIONS
+################################################################################
 function usage() {
     echo "USAGE:"
     echo "
@@ -38,7 +45,7 @@ function build() {
 }
 
 function run() {
-    echo "TODO"
+    ./build/$PROJECT_NAME
 }
 
 function clean() {
@@ -67,7 +74,9 @@ function tags() {
 	cscope -Rb
 }
 
-##### PARSE CLI-ARGS
+################################################################################
+# MAIN
+################################################################################
 [[ "$#" -eq 0 ]] && usage && exit 0
 while [ "$#" -gt 0 ]; do
     case "$1" in

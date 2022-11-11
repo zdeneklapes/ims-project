@@ -25,5 +25,3 @@ plot [-1.6:1.6][-1.6:1.6] \
     "silnikov-rkf3.dat" using 2:3, \
     "silnikov-rkf5.dat" using 2:3, \
     "silnikov-rkf8.dat" using 2:3
-
-

@@ -11,7 +11,6 @@
 //  numerical integration: Euler's method
 //
 
-
 #include "simlib.h"
 
 namespace simlib3 {
@@ -20,20 +19,21 @@ namespace simlib3 {
 //  class representing the integration method
 //
 class EULER : public StatusMethod {
-private:
-  Memory si, di, A;  // auxiliary memories
-  StatusMemory xi;
-public:
-  EULER(const char* name) :  // registrate method and name it
-    StatusMethod(name)
-  { /*NOTHING*/ }
-  virtual ~EULER()  // destructor
-  { /*NOTHING*/ }
-  virtual void Integrate(void) override;  // integration method
-}; // class EULER
+   private:
+    Memory si, di, A;  // auxiliary memories
+    StatusMemory xi;
 
+   public:
+    EULER(const char* name)
+        :                      // registrate method and name it
+          StatusMethod(name) { /*NOTHING*/
+    }
+    virtual ~EULER()  // destructor
+    {                 /*NOTHING*/
+    }
+    virtual void Integrate(void) override;  // integration method
+};                                          // class EULER
 
-} // namespace
+}  // namespace simlib3
 
 // end of ni_euler.h
-

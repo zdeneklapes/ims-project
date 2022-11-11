@@ -12,7 +12,6 @@
 //  this is the default method (TODO: change to Dormand-Prince)
 //
 
-
 #include "simlib.h"
 
 namespace simlib3 {
@@ -21,20 +20,22 @@ namespace simlib3 {
 //  class representing the integration method
 //
 class RKE : public StatusMethod {
-private:
-  Memory A1, A2, A3, A4, A5, A6, A7;  // auxiliary memories
-  Memory si, di;
-  StatusMemory xi;
-public:
-  RKE(const char* name) :  // registrate method and name it
-    StatusMethod(name)
-  { /*NOTHING*/ }
-  virtual ~RKE()  // destructor
-  { /*NOTHING*/ }
-  virtual void Integrate(void) override;  // integration method
-}; // class RKE
+   private:
+    Memory A1, A2, A3, A4, A5, A6, A7;  // auxiliary memories
+    Memory si, di;
+    StatusMemory xi;
 
-}
+   public:
+    RKE(const char* name)
+        :                      // registrate method and name it
+          StatusMethod(name) { /*NOTHING*/
+    }
+    virtual ~RKE()  // destructor
+    {               /*NOTHING*/
+    }
+    virtual void Integrate(void) override;  // integration method
+};                                          // class RKE
+
+}  // namespace simlib3
 
 // end of ni_rke.h
-

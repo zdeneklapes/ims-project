@@ -9,7 +9,7 @@
 SOURCE="$1"                 # source file
 MODEL="${1%.cc}"            # executable name
 if [ -z "$SOURCE" -o ! -f "$SOURCE" -o "$MODEL" = "$SOURCE" ]; then
-  echo "Usage: " 
+  echo "Usage: "
   echo "         SIMLIB model.cc"
   exit 1
 fi
@@ -18,4 +18,3 @@ echo "### Creating model $MODEL"
 echo
 g++ -g -O2 -o "$MODEL" "$SOURCE" -lsimlib -lm
 echo
-

@@ -1,4 +1,3 @@
 
 citlivost na pp
 vliv numerickych chyb
-

@@ -1,5 +1,5 @@
 # Ball2 - bouncing ball model output
-# Time    y     v 
+# Time    y     v
 0.000000        10    0.0000
 0.050000     9.988   -0.4893
 0.100000     9.951   -0.9761

@@ -14,4 +14,3 @@ for i in *.out ; do
 done
 
 echo "Done."
-

@@ -23,7 +23,7 @@ set title "model netlumeneho kyvadla - fazova rovina"
 set xlabel "uhel";  set ylabel "uhlova rychlost"
 set data style lines
 set yrange [-3:3]
-plot "kyvadlo3.dat" using 2:3 
+plot "kyvadlo3.dat" using 2:3
 #ause -1 "Press Enter"
 
 #end

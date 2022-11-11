@@ -11,7 +11,6 @@
 //  numerical integration: Runge-Kutta-Fehlberg's method 8th order
 //
 
-
 #include "simlib.h"
 
 namespace simlib3 {
@@ -20,19 +19,21 @@ namespace simlib3 {
 //  class representing the integration method
 //
 class RKF8 : public SingleStepMethod {
-private:
-  Memory A1, A2, A3,  A4,  A5,  A6, A7;  // auxiliary memories
-  Memory A8, A9, A10, A11, A12, A13;
-public:
-  RKF8(const char* name) :  // registrate method and name it
-    SingleStepMethod(name)
-  { /*NOTHING*/ }
-  virtual ~RKF8()  // destructor
-  { /*NOTHING*/ }
-  virtual void Integrate(void) override;  // integration method
-}; // class RKF8
+   private:
+    Memory A1, A2, A3, A4, A5, A6, A7;  // auxiliary memories
+    Memory A8, A9, A10, A11, A12, A13;
 
-}
+   public:
+    RKF8(const char* name)
+        :                          // registrate method and name it
+          SingleStepMethod(name) { /*NOTHING*/
+    }
+    virtual ~RKF8()  // destructor
+    {                /*NOTHING*/
+    }
+    virtual void Integrate(void) override;  // integration method
+};                                          // class RKF8
+
+}  // namespace simlib3
 
 // end of ni_rkf8.h
-

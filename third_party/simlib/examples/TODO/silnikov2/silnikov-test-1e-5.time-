@@ -1,4 +1,4 @@
-$ sh silnikov-test-1e-5.sh 
+$ sh silnikov-test-1e-5.sh
 
 method: abm4, stepsize=1e-05
 
@@ -27,8 +27,7 @@ user    3m38.064s
 
 method: fw, stepsize=1e-05
 
- Integrator[1] 
- WARNING, Time=53.521 : Nelze zajistit zadanou pøesnost numerické integrace 
+ Integrator[1]
+ WARNING, Time=53.521 : Nelze zajistit zadanou pøesnost numerické integrace
 
 stop-^C
-

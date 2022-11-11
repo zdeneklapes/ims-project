@@ -2,7 +2,7 @@
 #  python: python3.9
 default_stages: [ commit, push ]
 files: ''
-exclude: ^$
+exclude: ^third_party/
 fail_fast: false
 minimum_pre_commit_version: '0'
 repos:
@@ -41,3 +41,7 @@ repos:
     rev: v0.5 # Ensure this is the latest tag, comparing to the Releases tab
     hooks:
       - id: circleci_validate
+  - repo: https://github.com/pocc/pre-commit-hooks
+    rev: master
+    hooks:
+      - id: clang-tidy

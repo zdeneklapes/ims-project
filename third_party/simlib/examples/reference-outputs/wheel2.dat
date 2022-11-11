@@ -1,7 +1,7 @@
 # wheel2 --- multiple experiments
 
-# mass = 2.5 kg   damping = 500   stiffness = 50000 
-# Time  y  v 
+# mass = 2.5 kg   damping = 500   stiffness = 50000
+# Time  y  v
  0.000 0 0
  0.001 1.87e-05 0.03613
  0.002 6.987e-05 0.06506
@@ -312,8 +312,8 @@
 #    MaxStep    = 0.001
 #
 
-# mass = 3 kg   damping = 500   stiffness = 50000 
-# Time  y  v 
+# mass = 3 kg   damping = 500   stiffness = 50000
+# Time  y  v
  0.000 0 0
  0.001 1.576e-05 0.03062
  0.002 5.951e-05 0.05607
@@ -624,8 +624,8 @@
 #    MaxStep    = 0.001
 #
 
-# mass = 3.6 kg   damping = 500   stiffness = 50000 
-# Time  y  v 
+# mass = 3.6 kg   damping = 500   stiffness = 50000
+# Time  y  v
  0.000 0 0
  0.001 1.325e-05 0.02588
  0.002 5.052e-05 0.04806
@@ -936,8 +936,8 @@
 #    MaxStep    = 0.001
 #
 
-# mass = 4.32 kg   damping = 500   stiffness = 50000 
-# Time  y  v 
+# mass = 4.32 kg   damping = 500   stiffness = 50000
+# Time  y  v
  0.000 0 0
  0.001 1.113e-05 0.02182
  0.002 4.276e-05 0.04101
@@ -1248,8 +1248,8 @@
 #    MaxStep    = 0.001
 #
 
-# mass = 5.184 kg   damping = 500   stiffness = 50000 
-# Time  y  v 
+# mass = 5.184 kg   damping = 500   stiffness = 50000
+# Time  y  v
  0.000 0 0
  0.001 9.335e-06 0.01836
  0.002 3.61e-05 0.03486
@@ -1560,8 +1560,8 @@
 #    MaxStep    = 0.001
 #
 
-# mass = 6.2208 kg   damping = 500   stiffness = 50000 
-# Time  y  v 
+# mass = 6.2208 kg   damping = 500   stiffness = 50000
+# Time  y  v
  0.000 0 0
  0.001 7.821e-06 0.01543
  0.002 3.041e-05 0.02954
@@ -1872,8 +1872,8 @@
 #    MaxStep    = 0.001
 #
 
-# mass = 7.46496 kg   damping = 500   stiffness = 50000 
-# Time  y  v 
+# mass = 7.46496 kg   damping = 500   stiffness = 50000
+# Time  y  v
  0.000 0 0
  0.001 6.547e-06 0.01294
  0.002 2.558e-05 0.02496
@@ -2184,8 +2184,8 @@
 #    MaxStep    = 0.001
 #
 
-# mass = 8.95795 kg   damping = 500   stiffness = 50000 
-# Time  y  v 
+# mass = 8.95795 kg   damping = 500   stiffness = 50000
+# Time  y  v
  0.000 0 0
  0.001 5.477e-06 0.01085
  0.002 2.148e-05 0.02105
@@ -2496,8 +2496,8 @@
 #    MaxStep    = 0.001
 #
 
-# mass = 10.7495 kg   damping = 500   stiffness = 50000 
-# Time  y  v 
+# mass = 10.7495 kg   damping = 500   stiffness = 50000
+# Time  y  v
  0.000 0 0
  0.001 4.578e-06 0.009083
  0.002 1.801e-05 0.01771
@@ -2808,8 +2808,8 @@
 #    MaxStep    = 0.001
 #
 
-# mass = 12.8995 kg   damping = 500   stiffness = 50000 
-# Time  y  v 
+# mass = 12.8995 kg   damping = 500   stiffness = 50000
+# Time  y  v
  0.000 0 0
  0.001 3.825e-06 0.007599
  0.002 1.509e-05 0.01488
@@ -3120,8 +3120,8 @@
 #    MaxStep    = 0.001
 #
 
-# mass = 15.4793 kg   damping = 500   stiffness = 50000 
-# Time  y  v 
+# mass = 15.4793 kg   damping = 500   stiffness = 50000
+# Time  y  v
  0.000 0 0
  0.001 3.195e-06 0.006354
  0.002 1.263e-05 0.01249
@@ -3432,8 +3432,8 @@
 #    MaxStep    = 0.001
 #
 
-# mass = 18.5752 kg   damping = 500   stiffness = 50000 
-# Time  y  v 
+# mass = 18.5752 kg   damping = 500   stiffness = 50000
+# Time  y  v
  0.000 0 0
  0.001 2.667e-06 0.005309
  0.002 1.057e-05 0.01046
@@ -3744,8 +3744,8 @@
 #    MaxStep    = 0.001
 #
 
-# mass = 22.2903 kg   damping = 500   stiffness = 50000 
-# Time  y  v 
+# mass = 22.2903 kg   damping = 500   stiffness = 50000
+# Time  y  v
  0.000 0 0
  0.001 2.226e-06 0.004435
  0.002 8.833e-06 0.008761

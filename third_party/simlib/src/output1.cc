@@ -15,11 +15,10 @@
 //  interface
 //
 
-#include "simlib.h"
+#include <cstdio>  // sprintf()
+
 #include "internal.h"
-
-#include <cstdio>    // sprintf()
-
+#include "simlib.h"
 
 ////////////////////////////////////////////////////////////////////////////
 //  implementation
@@ -32,17 +31,12 @@ SIMLIB_IMPLEMENTATION;
 ////////////////////////////////////////////////////////////////////////////
 //  Event::Output
 //
-void Event::Output() const
-{
-    Print(" EVENT %-48s \n", Name().c_str());
-}
-
+void Event::Output() const { Print(" EVENT %-48s \n", Name().c_str()); }
 
 ////////////////////////////////////////////////////////////////////////////
 //  List::Output
 //
-void List::Output() const
-{
+void List::Output() const {
     Print("+----------------------------------------------------------+\n");
     Print("| LIST %-51s |\n", Name().c_str());
     Print("+----------------------------------------------------------+\n");
@@ -60,20 +54,18 @@ void List::Output() const
 #endif
 }
 
-void SIMLIB_statistics_t::Output() const
-{
+void SIMLIB_statistics_t::Output() const {
     Print("#\n");
     Print("# SIMLIB run-time statistics:\n");
     Print("#    StartTime  = %g\n", StartTime);
     Print("#    EndTime    = %g\n", EndTime);
     Print("#    EventCount = %ld\n", EventCount);
     Print("#    StepCount  = %ld\n", StepCount);
-    if (StepCount>0) {
+    if (StepCount > 0) {
         Print("#    MinStep    = %g\n", MinStep);
         Print("#    MaxStep    = %g\n", MaxStep);
     }
     Print("#\n");
 }
 
-} // namespace
-
+}  // namespace simlib3

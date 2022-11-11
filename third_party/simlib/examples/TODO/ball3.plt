@@ -14,7 +14,7 @@ set xlabel "Time [s]"
 set ylabel "height [m],  speed [m/s^2]"
 pause 0 "Loading..."
 plot [19.3:19.4] [] "ball2.dat" using 1:2 with linespoints title "height"
-#plot [18:20] [] "ball2.dat" using 1:2 title "height"#, "ball2.dat" using 1:3 title "speed" 
+#plot [18:20] [] "ball2.dat" using 1:2 title "height"#, "ball2.dat" using 1:3 title "speed"
 pause -1
 
 set title "Bouncing ball - detection error"
@@ -30,7 +30,7 @@ set nokey
 set xlabel "height [m]"
 set ylabel "speed [m/s^2]"
 set ytics
-plot "ball2.dat" using 2:3 
+plot "ball2.dat" using 2:3
 pause -1
 
 #end

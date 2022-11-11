@@ -15,4 +15,3 @@ echo
 #static: g++ -static -I$PREFIX/include -o "$MODEL" "$SOURCE" $PREFIX/lib/simlib.a -lm
 g++ -g -I$PREFIX/include -o "$MODEL" "$SOURCE" $PREFIX/lib/simlib.so -lm
 echo
-

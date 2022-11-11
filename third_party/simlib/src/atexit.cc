@@ -11,45 +11,46 @@
 // registered functions AFTER all modules are cleaned
 //
 
-#include "simlib.h"
 #include "internal.h"
+#include "simlib.h"
 
 namespace simlib3 {
 
 SIMLIB_IMPLEMENTATION;
 
-static const int MAX_ATEXIT = 10; // for internal use it is enough
-static int counter = 0; // internal module counter
-static SIMLIB_atexit_function_t atexit_array[MAX_ATEXIT] = { 0, };
+static const int MAX_ATEXIT = 10;  // for internal use it is enough
+static int counter = 0;            // internal module counter
+static SIMLIB_atexit_function_t atexit_array[MAX_ATEXIT] = {
+    0,
+};
 
 // used in SIMLIB
 void SIMLIB_atexit(SIMLIB_atexit_function_t p) {
-    DEBUG(DBG_ATEXIT,("SIMLIB_atexit(%p)", p ));
+    DEBUG(DBG_ATEXIT, ("SIMLIB_atexit(%p)", p));
     int i;
-    for(i=0; i<MAX_ATEXIT; i++) {
-       if(atexit_array[i]==0) break;
+    for (i = 0; i < MAX_ATEXIT; i++) {
+        if (atexit_array[i] == 0) break;
     }
-    if(i<MAX_ATEXIT)
-       atexit_array[i]=p;
+    if (i < MAX_ATEXIT)
+        atexit_array[i] = p;
     else
-       SIMLIB_internal_error();
+        SIMLIB_internal_error();
 }
 
 // used here
 static void SIMLIB_atexit_call() {
-    DEBUG(DBG_ATEXIT,("ATEXIT:"));
-    for(int i=0; i<MAX_ATEXIT; i++)
-       if(atexit_array[i]) {
-           DEBUG(DBG_ATEXIT,("ATEXIT_CALL#%d: %p ", i, atexit_array[i]));
-           atexit_array[i]();
-    }
+    DEBUG(DBG_ATEXIT, ("ATEXIT:"));
+    for (int i = 0; i < MAX_ATEXIT; i++)
+        if (atexit_array[i]) {
+            DEBUG(DBG_ATEXIT, ("ATEXIT_CALL#%d: %p ", i, atexit_array[i]));
+            atexit_array[i]();
+        }
 }
 
 // constructor --- count module and initialize
-SIMLIB_module::SIMLIB_module():
-    string(0) {
+SIMLIB_module::SIMLIB_module() : string(0) {
     counter++;
-    DEBUG(DBG_MODULE,("MODULE#%d initialization",counter));
+    DEBUG(DBG_MODULE, ("MODULE#%d initialization", counter));
 }
 
 // set module id string
@@ -60,11 +61,10 @@ int SIMLIB_module::Init(const char *s) {
 
 // destructor --- last one calls atexit functions
 SIMLIB_module::~SIMLIB_module() {
-    DEBUG(DBG_MODULE,("MODULE#%d cleanup %s",counter, string?string:""));
-    if(--counter == 0)
-        SIMLIB_atexit_call();
+    DEBUG(DBG_MODULE, ("MODULE#%d cleanup %s", counter, string ? string : ""));
+    if (--counter == 0) SIMLIB_atexit_call();
 }
 
-}
+}  // namespace simlib3
 
 // end

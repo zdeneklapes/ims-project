@@ -16,7 +16,7 @@ LINKLIBS=$(SIMLIB_DIR)/simlib.so  -lm
 %.o : %.cc
 	$(CXX) $(CXXFLAGS) $(ILIBS) -c $<
 ###################################################################
-OBJS=fuzzy.o fuzzyio.o fuzzymf.o fuzzyrul.o ruletree.o rules.o 
+OBJS=fuzzy.o fuzzyio.o fuzzymf.o fuzzyrul.o ruletree.o rules.o
 
 # pøelo¾í v¹echny moduly
 all: $(OBJS)

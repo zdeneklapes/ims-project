@@ -19,8 +19,8 @@ set nokey
 set title "model kyvadla - fazova rovina"
 set xlabel "uhel";  set ylabel "uhlova rychlost"
 pause 0 "Loading..."
-###plot [4.5:5.5][-.5:.5] "kyvadlo.dat" using 2:3 
-plot "kyvadlo.dat" using 2:3 
+###plot [4.5:5.5][-.5:.5] "kyvadlo.dat" using 2:3
+plot "kyvadlo.dat" using 2:3
 
 pause -1 "konec"
 

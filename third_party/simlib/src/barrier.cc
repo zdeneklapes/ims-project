@@ -15,8 +15,8 @@
 //  interface
 //
 
-#include "simlib.h"
 #include "internal.h"
+#include "simlib.h"
 
 ////////////////////////////////////////////////////////////////////////////
 //  implementation
@@ -29,9 +29,7 @@ SIMLIB_IMPLEMENTATION;
 ////////////////////////////////////////////////////////////////////////////
 /// constructor
 //
-Barrier::Barrier(unsigned height):
-    waiting(0), n(0), maxn(height)
-{
+Barrier::Barrier(unsigned height) : waiting(0), n(0), maxn(height) {
     Dprintf(("Barrier::Barrier()"));
     Init();
 }
@@ -39,14 +37,11 @@ Barrier::Barrier(unsigned height):
 ////////////////////////////////////////////////////////////////////////////
 /// constructor with name parameter
 //
-Barrier::Barrier(const char *name, unsigned height):
-    waiting(0), n(0), maxn(height)
-{
+Barrier::Barrier(const char *name, unsigned height) : waiting(0), n(0), maxn(height) {
     Dprintf(("Barrier::Barrier(\"%s\")", name));
     SetName(name);
     Init();
 }
-
 
 ////////////////////////////////////////////////////////////////////////////
 /// destructor
@@ -59,15 +54,15 @@ Barrier::~Barrier() {
 ////////////////////////////////////////////////////////////////////////////
 /// enter the barrier
 //
-void Barrier::Enter(Entity * e) //TODO without parameter: use Current?
+void Barrier::Enter(Entity *e)  // TODO without parameter: use Current?
 {
     Dprintf(("Barrier\"%s\".Enter(%s)", Name().c_str(), e->Name().c_str()));
-    if (n < maxn - 1) {         // all waiting processes
+    if (n < maxn - 1) {  // all waiting processes
         waiting[n++] = e;
         e->Passivate();
-    } else {                    // last process which breaks barrier
+    } else {  // last process which breaks barrier
         Break();
-        Current->Activate();    // re-activation of last process - FIFO order
+        Current->Activate();  // re-activation of last process - FIFO order
     }
 }
 
@@ -75,16 +70,15 @@ void Barrier::Enter(Entity * e) //TODO without parameter: use Current?
 /// Wait or break the barrier
 /// returns: true for last process breaking the barrier, else false
 //
-bool Barrier::Wait()
-{
+bool Barrier::Wait() {
     Dprintf(("Barrier\"%s\".Wait() for %s", Name().c_str(), Current->Name().c_str()));
-    if (n < maxn - 1) {         // all waiting processes
+    if (n < maxn - 1) {  // all waiting processes
         waiting[n++] = Current;
         Current->Passivate();
         return false;
-    } else {                    // last process which breaks barrier
+    } else {  // last process which breaks barrier
         Break();
-        Current->Activate(Time);    // re-activation of last process - FIFO order
+        Current->Activate(Time);  // re-activation of last process - FIFO order
         return true;
     }
 }
@@ -96,9 +90,9 @@ bool Barrier::Wait()
 //
 int Barrier::Break() {
     int ret = n;
-    if (n == 0)         // nothing to do
+    if (n == 0)  // nothing to do
         return ret;
-    for (unsigned i = 0; i < n; i++)    // FIFO order of activation
+    for (unsigned i = 0; i < n; i++)  // FIFO order of activation
     {
         waiting[i]->Activate();
         waiting[i] = 0;
@@ -112,10 +106,9 @@ int Barrier::Break() {
 //
 void Barrier::Init() {
     Dprintf(("%s.Init()", Name().c_str()));
-    if (maxn < 1)
-        Error("Barrier size less than 1");
-    waiting = new Entity *[maxn];       // allocation   maxn-1 ???
-//  if(!waiting) SIMLIB_error(MemoryError);  // if without exceptions
+    if (maxn < 1) Error("Barrier size less than 1");
+    waiting = new Entity *[maxn];  // allocation   maxn-1 ???
+                                   //  if(!waiting) SIMLIB_error(MemoryError);  // if without exceptions
     Clear();
 }
 
@@ -124,16 +117,15 @@ void Barrier::Init() {
 //
 void Barrier::ChangeHeight(unsigned new_height) {
     Dprintf(("%s.ChangeHeight(%u)", Name().c_str(), new_height));
-    if (new_height < n || new_height < 1)
-        Error("Barrier height can not be changed");
+    if (new_height < n || new_height < 1) Error("Barrier height can not be changed");
     Entity **new_w = new Entity *[new_height];  // allocation
-//  if(!new_w) SIMLIB_error(MemoryError);  // if compiled without exceptions
-    for (unsigned i = 0; i < n; i++)    // copy
+    //  if(!new_w) SIMLIB_error(MemoryError);  // if compiled without exceptions
+    for (unsigned i = 0; i < n; i++)  // copy
         new_w[i] = waiting[i];
-    delete [] waiting;    // free old array
+    delete[] waiting;  // free old array
     waiting = new_w;
-    maxn = new_height;  // new size
-    for (unsigned i = n; i < maxn; i++) // zero all non-used items
+    maxn = new_height;                   // new size
+    for (unsigned i = n; i < maxn; i++)  // zero all non-used items
         new_w[i] = 0;
 }
 
@@ -143,8 +135,7 @@ void Barrier::ChangeHeight(unsigned new_height) {
 //
 void Barrier::Clear() {
     Dprintf(("%s.Clear()", Name().c_str()));
-    for (unsigned i = 0; i < maxn; i++)
-        waiting[i] = nullptr;
+    for (unsigned i = 0; i < maxn; i++) waiting[i] = nullptr;
     n = 0;
 }
 
@@ -161,5 +152,4 @@ void Barrier::Output() const {
     Print("\n");
 }
 
-} // namespace
-
+}  // namespace simlib3

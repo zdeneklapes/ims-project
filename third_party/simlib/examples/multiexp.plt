@@ -23,4 +23,3 @@ plot "multiexp.dat" using 1:2 title "t=500" lw 2, \
      "multiexp.dat" using 1:5 title "t=2000" lw 2, \
      10 title "service time" with lines lw 1
 pause 3
-

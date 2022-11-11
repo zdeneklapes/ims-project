@@ -14,9 +14,8 @@
 // interface
 //
 
-#include "simlib.h"
 #include "internal.h"
-
+#include "simlib.h"
 
 ////////////////////////////////////////////////////////////////////////////
 // implementation
@@ -29,43 +28,33 @@ SIMLIB_IMPLEMENTATION;
 ////////////////////////////////////////////////////////////////////////////
 //  Link constructors
 //
-Link::Link() :
-  pred(0), succ(0), head(0)
-{
-}
+Link::Link() : pred(0), succ(0), head(0) {}
 
-Link::Link(Link *p, Link *s, List *h) :
-  pred(p), succ(s), head(h)
-{
-}
+Link::Link(Link *p, Link *s, List *h) : pred(p), succ(s), head(h) {}
 
 ////////////////////////////////////////////////////////////////////////////
 //  Link destructor
 //
 Link::~Link() {
-  if (head)
-    SIMLIB_error(LinkDelError);   // remove non-linked item
+    if (head) SIMLIB_error(LinkDelError);  // remove non-linked item
 }
 
 ////////////////////////////////////////////////////////////////////////////
 //  Into - inserts item to the list end
 //
-void Link::Into(List *l)
-{
-  if (head)
-    Out();                   // if in list then remove
-  l->InsLast(this);          // insert at end of list
+void Link::Into(List *l) {
+    if (head) Out();   // if in list then remove
+    l->InsLast(this);  // insert at end of list
 }
 
 ////////////////////////////////////////////////////////////////////////////
 //  Out - takes item from list
 //
-void Link::Out()
-{
-  if (head)
-    head->Get(this);
-  else
-    SIMLIB_error(LinkOutError);      // not in list
+void Link::Out() {
+    if (head)
+        head->Get(this);
+    else
+        SIMLIB_error(LinkOutError);  // not in list
 }
 
 #if 0
@@ -92,5 +81,4 @@ void Link::Precede(Link *li)      // insert before li
 }
 #endif
 
-}
-
+}  // namespace simlib3

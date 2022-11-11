@@ -10,4 +10,3 @@ priklad-mech1r: priklad-mech1r.cc
 
 clean:
 	rm -f $(PROGS) *.eps *.dat
-

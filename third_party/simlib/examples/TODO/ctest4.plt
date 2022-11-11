@@ -20,7 +20,7 @@ pause -1
 
 set ylabel "delta"
 pause 0 "Loading..."
-plot "ctest4.dat" using 1:2 title "delta" 
+plot "ctest4.dat" using 1:2 title "delta"
 pause -1
 
 #end

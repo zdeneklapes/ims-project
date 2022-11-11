@@ -1,5 +1,5 @@
 
-List of known bugs in SIMLIB/C++            
+List of known bugs in SIMLIB/C++
 ================================
 
 Last modified: Tue Aug  5 17:41:52 CEST 2008
@@ -7,7 +7,7 @@ Last modified: Tue Aug  5 17:41:52 CEST 2008
 Warning: not complete!
 
 ==============================================================================
-key: 
+key:
 // solved
 ?  problem may be elsewhere
 ==============================================================================
@@ -31,7 +31,7 @@ typecasts --> *_cast<T>()
 
 SPARC: non-working process implementation (no plan to fix this)
 
-ContiBlock -- no 'garbage collecting' 
+ContiBlock -- no 'garbage collecting'
 missing: check of uninitialized block use
 
 
@@ -68,5 +68,3 @@ PORTABILITY
 ============================================================================
 
 * GNU C: multiple inheritance: 2SimObject => new/delete problem
-
-

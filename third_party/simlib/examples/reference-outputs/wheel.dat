@@ -1,5 +1,5 @@
 # wheel --- model of wheel+spring+damper
-# Time   y   v 
+# Time   y   v
  0.000 0 0
  0.001 4.916e-06 0.009746
  0.002 1.932e-05 0.01897

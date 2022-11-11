@@ -26,4 +26,3 @@ plot [-1.6:1.6][-1.6:1.6] \
     "silnikov-rkf8.dat" using 2:3
 
 pause -1
-

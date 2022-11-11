@@ -20,11 +20,14 @@ file(GLOB_RECURSE PROJECT_SOURCES
         ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h
         )
 
+
 # source: https://stackoverflow.com/a/57928919/14471542
 MACRO(HEADER_DIRECTORIES return_list)
     FILE(GLOB_RECURSE new_list
             ${CMAKE_CURRENT_SOURCE_DIR}/src/*.hpp
-            ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
+            ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h
+            ${CMAKE_CURRENT_SOURCE_DIR}/third_party/simlib/*.h
+            )
     SET(dir_list "")
     FOREACH (file_path ${new_list})
         GET_FILENAME_COMPONENT(dir_path ${file_path} PATH)

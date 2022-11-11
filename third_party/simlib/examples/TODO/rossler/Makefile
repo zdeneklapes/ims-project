@@ -29,4 +29,3 @@ pack: clean
 	(N=`basename $$(pwd)`; cd ..; \
 	tar czvf $$N-`date +"%Y%m%d"`.tar.gz $$N ; \
 	echo "Done.")
-

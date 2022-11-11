@@ -1,6 +1,6 @@
 //! \file version.cc SIMLIB version number
-#include "simlib.h"
 #include "internal.h"
+#include "simlib.h"
 
 namespace simlib3 {
 
@@ -15,5 +15,4 @@ const char *SIMLIB_version_string() {
     return s;
 }
 
-} // namespace
-
+}  // namespace simlib3

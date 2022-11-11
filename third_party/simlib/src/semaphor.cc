@@ -16,8 +16,8 @@
 //  interface
 //
 
-#include "simlib.h"
 #include "internal.h"
+#include "simlib.h"
 
 ////////////////////////////////////////////////////////////////////////////
 //  implementation
@@ -30,75 +30,60 @@ SIMLIB_IMPLEMENTATION;
 ////////////////////////////////////////////////////////////////////////////
 //  constructors
 //
-Semaphore::Semaphore()
-{
-  Dprintf(("Semaphore::Semaphore()"));
-  n = 1;
+Semaphore::Semaphore() {
+    Dprintf(("Semaphore::Semaphore()"));
+    n = 1;
 }
 
-Semaphore::Semaphore(const char *name)
-{
-  Dprintf(("Semaphore::Semaphore(\"%s\")",name));
-  SetName(name);
-  n = 1;
+Semaphore::Semaphore(const char *name) {
+    Dprintf(("Semaphore::Semaphore(\"%s\")", name));
+    SetName(name);
+    n = 1;
 }
-
 
 ////////////////////////////////////////////////////////////////////////////
 //  destructor
 //
-Semaphore::~Semaphore()
-{
-  Dprintf(("Semaphore::~Semaphore()  // \"%s\", %d ",
-           Name().c_str(), n));
-}
+Semaphore::~Semaphore() { Dprintf(("Semaphore::~Semaphore()  // \"%s\", %d ", Name().c_str(), n)); }
 
 ////////////////////////////////////////////////////////////////////////////
 //  initialization of state
 //
 void Semaphore::Clear() {
-  Dprintf(("%s.Clear()", Name().c_str()));
-  n = 1;
-  Q.Clear(); // queue initialization ###!!!
+    Dprintf(("%s.Clear()", Name().c_str()));
+    n = 1;
+    Q.Clear();  // queue initialization ###!!!
 }
-
 
 ////////////////////////////////////////////////////////////////////////////
 //  Output
 //
-void Semaphore::Output() const {
-  Print("Semaphore: %s [%d]\n", Name().c_str(), n);
-}
-
+void Semaphore::Output() const { Print("Semaphore: %s [%d]\n", Name().c_str(), n); }
 
 ////////////////////////////////////////////////////////////////////////////
 //
 //
-void Semaphore::P()
-{
-  Dprintf(("Semaphore'%s'.P()", Name().c_str()));
+void Semaphore::P() {
+    Dprintf(("Semaphore'%s'.P()", Name().c_str()));
 
-  while(n == 0) {
-    Q.Insert(Current);  // Current==this
-    Passivate(Current);
-    Q.Get(Current);
-  }
-  n--;
+    while (n == 0) {
+        Q.Insert(Current);  // Current==this
+        Passivate(Current);
+        Q.Get(Current);
+    }
+    n--;
 }
 
 ////////////////////////////////////////////////////////////////////////////
 //
 //
-void Semaphore::V()
-{
-  Dprintf(("%s.V()", Name().c_str()));
-  if(n>=1)
-    SIMLIB_error(SemaphoreError);
-  n++;
-  Entity *p = Q.front(); // first entity in queue
-  if(p) p->Activate();
+void Semaphore::V() {
+    Dprintf(("%s.V()", Name().c_str()));
+    if (n >= 1) SIMLIB_error(SemaphoreError);
+    n++;
+    Entity *p = Q.front();  // first entity in queue
+    if (p) p->Activate();
 }
 
-}
+}  // namespace simlib3
 // end
-
