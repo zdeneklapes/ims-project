@@ -15,27 +15,17 @@ PROJECT_NAME="simulation"
 ZIP_NAME="xbinov00-xlapes02"
 
 ################################################################################
-# FUNCTIONS
+# HELPER
 ################################################################################
-function usage() {
-    echo "USAGE:"
-    echo "
-    '-b' | '--build') build ;;
-    '-r' | '--run') run ;;
-    '-c' | '--clean') clean ;;
-    '-z' | '--zip') zip_project ;;
-    '-sz' | '--ssh-zdenek') ssh 'xlapes02';;
-    '-sa' | '--ssh-andrej') ssh 'xbinov00';;
-    '-h' | '--help' | *) usage ;;
-	"
-}
-
 function error_exit() {
     printf "${RED}ERROR: $1${NC}\n"
     usage
     exit 1
 }
 
+################################################################################
+# PROJECT
+################################################################################
 function build() {
     if [ ! -d "build/" ]; then mkdir build; fi
     cd build || error_exit "cd"
@@ -51,6 +41,8 @@ function run() {
 function clean() {
     ${RM} build
     ${RM} cmake-build-debug
+    ${RM} cmake-build-debug-docker
+    ${RM} cmake-build-debug-remote-host
     ${RM} .cache
     ${RM} *.zip
     ${RM} tags
@@ -61,18 +53,62 @@ function zip_project() {
     echo "TODO"
 }
 
-function ssh() {
-	scp "$(pwd)/${ZIP_NAME}.zip" $1@eva.fit.vutbr.cz:/homes/eva/xl/$1
+################################################################################
+# DOCKER
+################################################################################
+function rm_docker_images_volumes() {
+    docker stop $(docker ps -aq)
+    docker system prune -a -f
+    docker volume prune -f
+}
+
+function docker_stop() {
+    docker stop $(docker ps -q) && docker rm clion_remote_env
+}
+
+function docker_build() {
+    docker build -t clion/remote-cpp-env:0.5 -f Dockerfile .
+}
+
+function docker_run() {
+    docker run -d --cap-add sys_ptrace -p 127.0.0.1:2222:22 --name clion_remote_env clion/remote-cpp-env:0.5
+}
+
+################################################################################
+# OTHERS
+################################################################################
+function usage() {
+    echo "USAGE:
+    '-b' | '--build') build ;;
+    '-r' | '--run') run ;;
+    '-c' | '--clean') clean ;;
+    '-z' | '--zip') zip_project ;;
+        #
+    '--cloc') count_loc ;;
+    '--tags') tags ;;
+        #
+    '-dc' | '--docker-clean') rm_docker_images_volumes ;;
+    '-db' | '--docker-build') docker_build ;;
+    '-dr' | '--docker-run') docker_run ;;
+    '-ds' | '--docker-stop') docker_stop ;;
+        #
+    '-h' | '--help' | *) usage ;;
+"
 }
 
 function count_loc() {
-	cloc src/**/*.{cpp,hpp,h}
+    cloc src/**/*.{cpp,hpp,h}
 }
 
 function tags() {
-	ctags -R .
-	cscope -Rb
+    ctags -R .
+    cscope -Rb
 }
+
+function ssh() {
+    scp "$(pwd)/${ZIP_NAME}.zip" $1@eva.fit.vutbr.cz:/homes/eva/xl/$1
+}
+
 
 ################################################################################
 # MAIN
@@ -80,13 +116,20 @@ function tags() {
 [[ "$#" -eq 0 ]] && usage && exit 0
 while [ "$#" -gt 0 ]; do
     case "$1" in
-    '-b'  | '--build'		) build ;;
-    '-r'  | '--run'			) run ;;
-    '-c'  | '--clean'		) clean ;;
-    '-z'  | '--zip'			) zip_project ;;
-    '--cloc'              	) count_loc ;;
-    '--tags'              	) tags ;;
-    '-h'  | '--help' | *	) usage ;;
+    '-b' | '--build') build ;;
+    '-r' | '--run') run ;;
+    '-c' | '--clean') clean ;;
+    '-z' | '--zip') zip_project ;;
+        #
+    '--cloc') count_loc ;;
+    '--tags') tags ;;
+        #
+    '-dc' | '--docker-clean') rm_docker_images_volumes ;;
+    '-db' | '--docker-build') docker_build ;;
+    '-dr' | '--docker-run') docker_run ;;
+    '-ds' | '--docker-stop') docker_stop ;;
+        #
+    '-h' | '--help' | *) usage ;;
     esac
     shift
 done
