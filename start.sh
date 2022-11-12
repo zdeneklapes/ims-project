@@ -113,6 +113,11 @@ function ssh() {
     scp "$(pwd)/${ZIP_NAME}.zip" $1@eva.fit.vutbr.cz:/homes/eva/xl/$1
 }
 
+function ssh() {
+    scp "$(pwd)/${ZIP_NAME}.zip" $1@eva.fit.vutbr.cz:/homes/eva/xl/$1
+}
+
+
 ################################################################################
 # MAIN
 ################################################################################
