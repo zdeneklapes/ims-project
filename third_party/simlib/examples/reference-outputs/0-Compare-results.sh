@@ -15,3 +15,4 @@ for i in *.out *.dat ; do
 done
 echo "Results stored in: $OF"
 echo "Done."
+

@@ -2,7 +2,7 @@
 # Model: RC
 #
 
-#reset
+#reset 
 
 #set output "rc.png"; set term png
 #set output "rc.ps"; set term postscript landscape color
@@ -16,7 +16,7 @@ set key
 set xlabel "Time [s]"
 set ylabel "U [V]"
 plot [][0:6] "rc.dat" using 1:2 title "Uin", \
-             "rc.dat" using 1:3 title "Uout"
+             "rc.dat" using 1:3 title "Uout" 
 
 pause 1
 

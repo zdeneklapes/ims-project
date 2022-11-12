@@ -1,0 +1,14 @@
+[
+    {
+        "directory": "/tmp/tmp.o78tPXk42R/cmake-build-debug-remote-host",
+        "command":
+            "/usr/bin/c++   -I/tmp/tmp.o78tPXk42R/cmake-build-debug-remote-host -I/tmp/tmp.o78tPXk42R -I/tmp/tmp.o78tPXk42R/src -I/tmp/tmp.o78tPXk42R/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.o78tPXk42R/third_party/simlib/fuzzy -I/tmp/tmp.o78tPXk42R/third_party/simlib/src   -g -Wall -Wextra -Werror -pedantic -g   -std=gnu++2a -o CMakeFiles/simulation.dir/src/main.cpp.o -c /tmp/tmp.o78tPXk42R/src/main.cpp",
+        "file": "/tmp/tmp.o78tPXk42R/src/main.cpp"
+    },
+    {
+        "directory": "/tmp/tmp.o78tPXk42R/cmake-build-debug-remote-host",
+        "command":
+            "/usr/bin/c++   -I/tmp/tmp.o78tPXk42R/cmake-build-debug-remote-host -I/tmp/tmp.o78tPXk42R -I/tmp/tmp.o78tPXk42R/src -I/tmp/tmp.o78tPXk42R/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.o78tPXk42R/third_party/simlib/fuzzy -I/tmp/tmp.o78tPXk42R/third_party/simlib/src   -g -Wall -Wextra -Werror -pedantic -g   -std=gnu++2a -o CMakeFiles/simulation.dir/src/simulation.cpp.o -c /tmp/tmp.o78tPXk42R/src/simulation.cpp",
+        "file": "/tmp/tmp.o78tPXk42R/src/simulation.cpp"
+    }
+]

@@ -3,7 +3,7 @@
 #
 #set output "3d-test.ps";  set term postscript
 #set output "druzice.eps"
-#set term corel
+#set term corel 
 #set output "druzice.obj"
 #set term  tgif [2,2]
 set grid
@@ -15,8 +15,8 @@ set zlabel "z [1000 km]"
 set style data lines
 #set data style dots
 pause 0 "Loading..."
-plot "3d-test.out" using 2:3, "" using 5:6
+plot "3d-test.out" using 2:3, "" using 5:6 
 pause -1 "enter"
-splot "3d-test.out" using 2:3:4, "" using 5:6:7
+splot "3d-test.out" using 2:3:4, "" using 5:6:7 
 pause -1 "enter"
 pause 0 "Hotovo."

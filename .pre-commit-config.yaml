@@ -41,7 +41,3 @@ repos:
     rev: v0.5 # Ensure this is the latest tag, comparing to the Releases tab
     hooks:
       - id: circleci_validate
-  - repo: https://github.com/pocc/pre-commit-hooks
-    rev: master
-    hooks:
-      - id: clang-tidy

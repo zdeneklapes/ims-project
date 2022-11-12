@@ -11,6 +11,7 @@
 //  numerical integration: Runge-Kutta-Fehlberg's method 3rd order
 //
 
+
 #include "simlib.h"
 
 namespace simlib3 {
@@ -19,19 +20,18 @@ namespace simlib3 {
 //  class representing the integration method
 //
 class RKF3 : public SingleStepMethod {
-   private:
-    Memory A1, A2, A3;  // auxiliary memories
-   public:
-    RKF3(const char* name)
-        :                          // registrate method and name it
-          SingleStepMethod(name) { /*NOTHING*/
-    }
-    virtual ~RKF3()  // destructor
-    {                /*NOTHING*/
-    }
-    virtual void Integrate(void) override;  // integration method
-};                                          // class RKF3
+private:
+  Memory A1, A2, A3;  // auxiliary memories
+public:
+  RKF3(const char* name) :  // registrate method and name it
+    SingleStepMethod(name)
+  { /*NOTHING*/ }
+  virtual ~RKF3()  // destructor
+  { /*NOTHING*/ }
+  virtual void Integrate(void) override;  // integration method
+}; // class RKF3
 
-}  // namespace simlib3
+}
 
 // end of ni_rkf3.h
+

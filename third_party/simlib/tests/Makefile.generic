@@ -13,7 +13,7 @@ SIMLIB_DEPEND = $(SIMLIB_DIR)/simlib.h \
 		$(SIMLIB_DIR)/zdelay.h \
 		$(SIMLIB_DIR)/simlib2D.h \
 		$(SIMLIB_DIR)/simlib3D.h \
-		$(SIMLIB_DIR)/simlib.so
+		$(SIMLIB_DIR)/simlib.so 
 
 # Implicit Rule to compile test models
 % : %.cc  $(SIMLIB_DEPEND)
@@ -51,7 +51,7 @@ run: all
 #############################################################################
 # cleaning, backup, etc
 
-clean:
+clean: 
 	rm -f $(ALL_TEST_MODELS) *.o *~
 
 clean-all: clean

@@ -4,37 +4,41 @@
 // podivna rovnice !!!!!
 //
 
+#include "simlib.h"
 #include <graphics.h>
 #include <math.h>
 
-#include "simlib.h"
-
-const double Mi = 0.012277471;
+const double Mi  = 0.012277471;
 const double MiC = 1 - Mi;
 
 // parametry zobrazen°:
-const double STREDX = 320;
-const double STREDY = 240;
-const double ZVET = 100;
+  const double STREDX = 320;
+  const double STREDY = 240;
+  const double ZVET   = 100;
 
 class Rovnice {
-    Input d1, d2;
-
-   public:
-    Integrator x1, x;
-    Integrator y1, y;
-    Rovnice()
-        : d1(Sqrt((x + Mi) * (x + Mi) + y * y)),
-          d2(Sqrt((x - MiC) * (x - MiC) + y * y)),
-          x1(x + 2 * y1 - MiC / (d1 * d1 * d1) * (x + Mi) - Mi / (d2 * d2 * d2) * (x - MiC),
-             0  // poü. podm°nka
-             ),
-          y1(y - 2 * x1 - MiC * y / (d1 * d1 * d1) - Mi * y / (d2 * d2 * d2),
-             //       -2.00158510637908255224053786224 // poü. podm°nka
-             -2.0317326295573368357302057924  // poü. podm°nka
-             ),
-          x(x1, 0.994),
-          y(y1)
+  Input d1,d2;
+ public:
+  Integrator x1,x;
+  Integrator y1,y;
+  Rovnice() :
+    d1( Sqrt((x+Mi)*(x+Mi) + y*y) ),
+    d2( Sqrt((x-MiC)*(x-MiC) +y*y) ),
+    x1 ( x
+       + 2*y1
+       - MiC / (d1*d1*d1) * (x+Mi)
+       - Mi / (d2*d2*d2) * (x-MiC),
+       0 // poü. podm°nka
+       ),
+    y1(  y
+       -2*x1
+       -MiC*y / (d1*d1*d1)
+       -Mi*y / (d2*d2*d2),
+//       -2.00158510637908255224053786224 // poü. podm°nka
+       -2.0317326295573368357302057924 // poü. podm°nka
+     ),
+    x(x1,0.994),
+    y(y1)
 
     {}
 
@@ -43,38 +47,44 @@ class Rovnice {
 ////////////////////////////////////////////////////////////////////////////
 // grafika
 //
-void Plot(double x, double y, int what = 0) {
-    int px = STREDX + (ZVET * x);
-    int py = STREDY + (ZVET * -y);
-    if (what) {
-        putpixel(px, py, EGA_RED);
-        putpixel(px, py + 1, EGA_RED);
-        putpixel(px, py - 1, EGA_RED);
-        putpixel(px + 1, py, EGA_RED);
-        putpixel(px - 1, py, EGA_RED);
-    } else
-        putpixel(px, py, EGA_WHITE);
+void Plot(double x, double y, int what=0)
+{
+  int px = STREDX + (ZVET * x);
+  int py = STREDY + (ZVET * -y);
+  if(what)
+  {
+    putpixel(px,py, EGA_RED);
+    putpixel(px,py+1, EGA_RED);
+    putpixel(px,py-1, EGA_RED);
+    putpixel(px+1,py, EGA_RED);
+    putpixel(px-1,py, EGA_RED);
+  }
+  else
+    putpixel(px,py, EGA_WHITE);
 }
 
 void InitGraphics() {
-    int gdriver = VGA, gmode = VGAHI, errorcode;
-    initgraph(&gdriver, &gmode, "");
-    errorcode = graphresult();
-    if (errorcode != grOk) Error("Graphics error: %s\n", grapherrormsg(errorcode));
+   int gdriver = VGA, gmode=VGAHI, errorcode;
+   initgraph(&gdriver, &gmode, "");
+   errorcode = graphresult();
+   if (errorcode != grOk)
+      Error("Graphics error: %s\n", grapherrormsg(errorcode));
 }
 
-void DoneGraphics() { closegraph(); }
+void DoneGraphics() {
+  closegraph();
+}
 
 ////////////////////////////////////////////////////////////////////////////
 // sledov†n° stavu modelu ...
 //
 void Sample();
-Sampler s(Sample, 0.01);
+Sampler s(Sample,0.01);
 void Sample() {
-    double x = r.x.Value();
-    double y = r.y.Value();
-    Print("%g %g %g \n", Time, x, y);
-    Plot(x, y);
+  double x = r.x.Value();
+  double y = r.y.Value();
+  Print("%g %g %g \n", Time, x, y);
+  Plot(x,y);
 }
 
 /*
@@ -85,19 +95,21 @@ void Sample() {
 
 */
 
+
 ////////////////////////////////////////////////////////////////////////////
 // popis experimentu ...
 //
-main() {
-    SetOutput("3telesa.dat");
-    _Print("# Model obÿhu drußice kolem soustavy dvou tÿles v C++/SIMLIB \n");
-    Init(0, 300);  // inicializace experimentu
-    InitGraphics();
-    SetStep(1e-12, 0.01);
-    SetAccuracy(1e-14);  // je nutn† vysok† p˝esnost
-    Run();               // simulace
-    DoneGraphics();
-    return 0;
+main()
+{
+  SetOutput("3telesa.dat");
+  _Print("# Model obÿhu drußice kolem soustavy dvou tÿles v C++/SIMLIB \n");
+  Init(0, 300);                   // inicializace experimentu
+  InitGraphics();
+  SetStep(1e-12,0.01);
+  SetAccuracy(1e-14);             // je nutn† vysok† p˝esnost
+  Run();                          // simulace
+  DoneGraphics();
+  return 0;
 }
 
 ////////////////////////////////////////////////////////////////////////////

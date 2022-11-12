@@ -30,3 +30,4 @@ set xlabel "y [m]"
 set ylabel "v [m/s]"
 plot "wheel2.dat" using 2:3 with lines
 pause 1
+

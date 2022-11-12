@@ -2,7 +2,7 @@
 # Model: RLC
 #
 
-reset
+reset 
 
 #set output "rlc.png"; set term png
 #set output "rlc.ps"; set term postscript landscape color
@@ -15,7 +15,7 @@ set title "RLC circuit"
 set key
 set xlabel "Time [s]"
 set ylabel "U [V]"
-plot [][] "rlc.dat" using 1:2 title "Uout"
+plot [][] "rlc.dat" using 1:2 title "Uout" 
 pause 1
 
 set title "RLC circuit - phase space"

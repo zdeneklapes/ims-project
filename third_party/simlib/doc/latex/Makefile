@@ -11,3 +11,4 @@ clean:
 
 clean-all: clean
 	rm -f $(NAME).pdf
+

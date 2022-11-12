@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # rename to SIMLIB
-# script for compilation of SIMLIB/C++ model
+# script for compilation of SIMLIB/C++ model 
 # Only if the library is not installed system-wide
 # (for Linux/bash)
 #
@@ -11,7 +11,7 @@ SIMLIB="$HOME/WORK/SIMLIB/src"  # EDIT: home of SIMLIB library and header files
 SOURCE="$1"                 # source file
 MODEL="${1%.cc}"            # executable name
 if [ -z "$SOURCE" -o ! -f "$SOURCE" -o "$MODEL" = "$SOURCE" ]; then
-  echo "Usage: "
+  echo "Usage: " 
   echo "         $0 model.cc"
   exit 1
 fi
@@ -21,3 +21,4 @@ echo
 #static: g++ -static -I$SIMLIB -o "$MODEL" "$SOURCE" $SIMLIB/simlib.a -lm
 g++ -g -I$SIMLIB -o "$MODEL" "$SOURCE" $SIMLIB/simlib.so -lm
 echo
+

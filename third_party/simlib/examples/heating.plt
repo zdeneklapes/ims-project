@@ -18,3 +18,4 @@ set ylabel "t"
 plot "heating.dat" using 1:2 title "Temperature", "" using 1:3 title "Relay" with steps lw 2 lt 1
 
 pause 1
+

@@ -10,8 +10,8 @@
 // Warning: this is EXPERIMENTAL code, interfaces can be changed
 //
 // General data extraction subsystem for SIMLIB
-// version 0.6 --- We apr 4 10:33:52 CEST 2001
-//
+// version 0.6 --- We apr 4 10:33:52 CEST 2001 
+// 
 /////////////////////////////////////////////////////////////////////////////
 // A general interface for external data analysis. It can be used not only for
 // XML analysis.
@@ -24,8 +24,9 @@
  * Abstraktni trida. Jeji potomci obsahuji analyzovana data.
  * @ingroup xml
  */
-class AnalyzedData {
-   public:
+class AnalyzedData
+{
+  public:
     /**
      * It returns true, if data are complete.<br>
      * Vrací true, kdy¾ jsou data kompletní.
@@ -36,10 +37,9 @@ class AnalyzedData {
      * Pokud je nastaveno true, budou se pøi destrukci objektu dealokovat i v¹echny datové èleny.
      */
     void setReleasable(bool release) { releasable = release; }
-
-   protected:
+  protected:
     bool releasable; /**< Data will be dealocated or not. */
-   private:
+  private:
 };
 
 /**
@@ -47,18 +47,19 @@ class AnalyzedData {
  * Tøída Anaylser je abstraktní tøída, která slou¾í jako rozhraní pro analýzu externích dat.
  * @ingroup xml
  */
-class Analyzer {
-   public:
+class Analyzer
+{
+  public:
     Analyzer() { analyzeTime = 0; }
     virtual ~Analyzer() {}
     /**
      * It realizes the analysis.<br>Provede analýzu zadaného souboru.
      */
-    virtual void analyze(char* fileName) = 0;
+    virtual void analyze(char * fileName) = 0;
     /**
-     * It gets analyzed data.<br>Vrátí data získaná analýzou.
+     * It gets analyzed data.<br>Vrátí data získaná analýzou. 
      */
-    virtual AnalyzedData* getAnalyzedData() = 0;
+    virtual AnalyzedData * getAnalyzedData() = 0;
     /**
      * It returns time in miliseconds which is needed for analysis.<br>
      * Vrací èas v milisekundách spotøebovaný analýzou dat.
@@ -76,10 +77,9 @@ class Analyzer {
      * It returns number of indicated warnings.<br> Vrací poèet indikovaných varování.
      */
     virtual int getNumWarnings() = 0;
-
-   protected:
+  protected:
     unsigned long analyzeTime; /**< Time needed for analysis.<br>Doba spotøebovaná na analýzu dat. */
-   private:
+  private:
 };
 
 #endif

@@ -3,7 +3,7 @@
 # Author: David Martinek
 # Date:   4.4.2001
 
-#TODO: change directory structure
+#TODO: change directory structure 
 
 FUZZY_SRC=.
 XERCES_DIR=$(FUZZY_SRC)/xerces

@@ -10,13 +10,14 @@
 // debugging facilities
 //
 
+
 ////////////////////////////////////////////////////////////////////////////
 //
 // interface
 //
 
-#include "internal.h"
 #include "simlib.h"
+#include "internal.h"
 
 namespace simlib3 {
 
@@ -28,17 +29,24 @@ namespace simlib3 {
 SIMLIB_IMPLEMENTATION;
 
 #ifndef NDEBUG
-unsigned long SIMLIB_debug_flag = 0UL;  // default = no debugging
+unsigned long SIMLIB_debug_flag = 0UL; // default = no debugging
 #endif
 
 // start debugging
-void DebugON() { Debug(~0UL); }
+void DebugON()
+{
+    Debug(~0UL);
+}
 
 // stop debugging
-void DebugOFF() { Debug(0UL); }
+void DebugOFF()
+{
+    Debug(0UL);
+}
 
 // set debug mode flag
-unsigned long Debug(unsigned long mode) {
+unsigned long Debug(unsigned long mode)
+{
 #ifdef NDEBUG
     SIMLIB_warning(NoDebugErr);
     return 0;
@@ -49,5 +57,6 @@ unsigned long Debug(unsigned long mode) {
 #endif
 }
 
-}  // namespace simlib3
+}
 // end
+

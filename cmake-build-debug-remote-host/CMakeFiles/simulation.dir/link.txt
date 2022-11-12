@@ -1,0 +1,1 @@
+/usr/bin/c++   -g -Wall -Wextra -Werror -pedantic -g   CMakeFiles/simulation.dir/src/main.cpp.o CMakeFiles/simulation.dir/src/simulation.cpp.o  -o simulation   -L/Users/zlapik/my-drive-zdenda-lapes/0-todo/ims-project/lib  -L/usr/local/lib  -Wl,-rpath,/Users/zlapik/my-drive-zdenda-lapes/0-todo/ims-project/lib:/usr/local/lib -lsimlib -lsimlib
