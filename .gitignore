@@ -89,10 +89,6 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-# Django migrations
-#**/migrations/*
-#!**/migrations/__init__.py
-
 # Distribution / packaging
 .Python
 build/

@@ -26,10 +26,14 @@ function error_exit() {
 ################################################################################
 # PROJECT
 ################################################################################
-function build() {
+function build_cmake() {
     if [ ! -d "build/" ]; then mkdir build; fi
-    cd build || error_exit "cd"
     eval "cmake .."
+    cd .. || error_exit "cd"
+}
+
+function build_make() {
+    cd build || error_exit "cd"
     eval "make -j"
     cd .. || error_exit "cd"
 }
@@ -109,14 +113,14 @@ function ssh() {
     scp "$(pwd)/${ZIP_NAME}.zip" $1@eva.fit.vutbr.cz:/homes/eva/xl/$1
 }
 
-
 ################################################################################
 # MAIN
 ################################################################################
 [[ "$#" -eq 0 ]] && usage && exit 0
 while [ "$#" -gt 0 ]; do
     case "$1" in
-    '-b' | '--build') build ;;
+    '-bc' | '--build-cmake') build ;;
+    '-bs' | '--build-make') build ;;
     '-r' | '--run') run ;;
     '-c' | '--clean') clean ;;
     '-z' | '--zip') zip_project ;;
