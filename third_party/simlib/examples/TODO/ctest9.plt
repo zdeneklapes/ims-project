@@ -5,8 +5,8 @@
 #set output "ctest9.prn"
 #set term epson_60dpi
 
-#set term emtex
-#set term latex
+#set term emtex 
+#set term latex 
 #set output "x.t"
 #set size 1.1,1.1
 

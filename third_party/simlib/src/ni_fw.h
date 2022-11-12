@@ -11,6 +11,7 @@
 //  numerical integration: Fowler-Warten's method
 //
 
+
 #include "simlib.h"
 
 namespace simlib3 {
@@ -19,24 +20,23 @@ namespace simlib3 {
 //  class representing the integration method
 //
 class FW : public SingleStepMethod {
-   private:
-    bool FW_First;   // is method called for first time?
-    Memory Y1, ERR;  // auxiliary memories
-   protected:
-    static const double prec;  // near zero number
-   public:
-    FW(const char* name)
-        :  // registrate method and name it
-          SingleStepMethod(name),
-          FW_First(true) { /*NOTHING*/
-    }
-    virtual ~FW()  // destructor
-    {              /*NOTHING*/
-    }
-    virtual bool PrepareStep(void) override;  // prepare object for integration step
-    virtual void Integrate(void) override;    // integration method
-};                                            // class FW
+private:
+  bool FW_First;  // is method called for first time?
+  Memory Y1, ERR;  // auxiliary memories
+protected:
+  static const double prec; // near zero number
+public:
+  FW(const char* name) :  // registrate method and name it
+    SingleStepMethod(name),
+    FW_First(true)
+  { /*NOTHING*/ }
+  virtual ~FW()  // destructor
+  { /*NOTHING*/ }
+  virtual bool PrepareStep(void) override;  // prepare object for integration step
+  virtual void Integrate(void) override;  // integration method
+}; // class FW
 
-}  // namespace simlib3
+}
 
 // end of ni_fw.h
+

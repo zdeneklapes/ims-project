@@ -14,7 +14,7 @@
 %\usepackage{czech}                 % Česká sazba
 \usepackage{epsfig}                % obrázky
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{document}
+\begin{document} 
 
 \begin{titlepage}
 \hrule
@@ -41,12 +41,12 @@
 
 \section{Úvod}
 
-Simulační knihovna SIMLIB/C++ je vyvíjena od roku 1990 na VUT v Brně.
+Simulační knihovna SIMLIB/C++ je vyvíjena od roku 1990 na VUT v Brně. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 SIMLIB poskytuje základní prostředky pro popis spojitých, diskrétních i
 kombinovaných modelů a prostředky pro řízení simulace. Při tvorbě simulačních
-modelů a experimentování s nimi lze použít různá integrovaná prostředí, která
-umožňují interaktivní tvorbu a ladění modelů.
+modelů a experimentování s nimi lze použít různá integrovaná prostředí, která 
+umožňují interaktivní tvorbu a ladění modelů. 
 Knihovna byla implementována na počítačích třídy PC pod MS-DOS (překladače
 Borland C++ nebo GNU C++), nyní je vyvíjena v operačním systému Linux (GNU
 C++). Knihovna je přenositelná i na jiné platformy, vyžaduje však úpravu v
@@ -325,24 +325,24 @@ výstup), musí se při vytváření objektů některých tříd uvést
 jejich textové pojmenování:
 
 \begin{description}
-\item[globální objekty:]
+\item[globální objekty:] 
 \begin{verbatim}
-
+  
   Facility  F1("Zařízení 1");
   Store     S1("Sklad 1", Kapacita);
   Histogram H("Četnost hodnot x",Od,Krok,10);
 \end{verbatim}
 
-\item[dynamicky vytvořené objekty:]
+\item[dynamicky vytvořené objekty:] 
 \begin{verbatim}
-
+  
   Store *ptr;
   ptr = new Store("Sklad X",10000);
 \end{verbatim}
 
-\item[objekty vnořené ve třídě:]
+\item[objekty vnořené ve třídě:] 
 \begin{verbatim}
-
+  
   class X {
     Facility F;
   public:
@@ -425,7 +425,7 @@ výstup. Funkce \verb|SetOutput| umožňuje přesměrování
 tohoto výstupu do souboru se zadaným jménem.
 
 Prohlížení a tisk výsledků (především spojité) simulace  v různých formátech
-je možné programem GNUplot.
+je možné programem GNUplot. 
 
 
 %%%%%%%%%%%%%%%%%% update1
@@ -537,7 +537,7 @@ Rovnoměrné rozložení na intervalu $<L,H)$.
 \subsection{Události}
 
 Pro popis jednorázových dějů, které se mohou periodicky
-opakovat, je určena abstraktní třída \verb|Event|. Odvozené třídy
+opakovat, je určena abstraktní třída \verb|Event|. Odvozené třídy 
 musí definovat chování události v metodě
 \verb|Behavior|, podobně jako u procesů. Na rozdíl od procesů však
 popis události není přerušitelný. Pro naplánování události na
@@ -581,7 +581,7 @@ přenositelná.}. Po aktivaci objektu se začne provádět posloupnost operací 
 metodě \verb|Behavior| stejně, jako při provádění obvyklé procedury. V okamžiku, kdy
 se narazí v tomto popisu činnosti objektu na příkaz, který představuje
 čekání, je provádění příkazů pozastaveno. Pokud proces čeká, mohou běžet
-ostatní procesy.
+ostatní procesy. 
 
 Příkaz \verb|Wait| použitý v popisu chování objektu provádí potlačení
 činnosti objektu na určitou dobu (tato činnost odpovídá čekání
@@ -601,7 +601,7 @@ procesu.
 
 Příští kritický okamžik je skrytým atributem každého objektu.
 Čas příštího kritického okamžiku je stanoven buď explicitně
-příkazem \verb|Wait(d)| (pak je roven \verb|Time + d|,
+příkazem \verb|Wait(d)| (pak je roven \verb|Time + d|, 
 kde \verb|Time| je
 aktuální hodnota modelového času), nebo implicitně příkazem
 \verb|WaitUntil(B)| (pak je roven nejbližší hodnotě modelového času,
@@ -706,12 +706,12 @@ jako druhý parametr Seize, je sémantika této operace
 jednoduchá: je-li zařízení volné, pak se obsadí, je-li zařízení
 obsazeno, pak se proces pozastaví a zařadí do vstupní fronty
 u zařízení. Uvolnění zařízení může provést pouze ten proces,
-který je obsadil. V případě, že vstupní fronta je neprázdná,
+který je obsadil. V případě, že vstupní fronta je neprázdná, 
 zařízení je uvolnění znovu obsazeno prvním objektem (procesem)
 z fronty.
 
-\bigskip
-\noindent
+\bigskip 
+\noindent 
 {\bf Poznámka:} Současná implementace zařízení není
 aktivní, tj. vstoupí-li nějaký proces přímo do fronty a zařízení je volné,
 nedojde k jeho obsazení (k tomu dochází jen při provádění operace \verb|Seize|,
@@ -737,14 +737,14 @@ obsluhy $o_2$, pak mohou nastat dva případy:
 
 \begin{description}
 
-\item{$o_1 < o_2$}
+\item{$o_1 < o_2$}  
          způsobí přerušení obsluhy procesu $p_1$ a zařízení je
          přiděleno procesu $p_2$. Po skončení pokračuje obsluha
          $p_1$, pokud nedošlo k dalšímu přerušení.
 
-\item{$o_1 >= o_2$}
+\item{$o_1 >= o_2$}   
          proces $p_2$ se zařadí do vstupní fronty zařízení Z
-
+         
 \end{description}
 
 Z toho plyne existence další fronty u zařízení --- fronty
@@ -940,7 +940,7 @@ Objekty třídy  \verb|Stat|  uchovávají tyto hodnoty:
 \item minimální vstupní hodnotu
 \item maximální vstupní hodnotu
 \item počet zaznamenaných hodnot
-\end{itemize}
+\end{itemize} 
 
 Metoda \verb|Output| vytiskne tyto hodnoty a navíc průměrnou hodnotu
 a směrodatnou odchylku.
@@ -1250,7 +1250,7 @@ Objekty třídy  \verb|Hyst|  mají charakteristiku podle obrázku \ref{o6}.
 Konstruktor
 
 \begin{verbatim}
-  Hyst(Input x, double p1, double p2,
+  Hyst(Input x, double p1, double p2, 
                 double y1, double y2, double tga);
 \end{verbatim}
 
@@ -1314,11 +1314,11 @@ tlumené kmitání kola:
 kde
 
  $v$      je rychlost pohybu kola,
-
+ 
  $y$      je výchylka kola z klidové polohy,
-
+ 
  $F(t)$   je vstupní budicí funkce (např. jednotkový skok) a
-
+ 
  $k,D,M$  jsou konstantní parametry systému kola
 
 \noindent
@@ -1412,7 +1412,7 @@ chování objektů - bloků citlivých na změnu vstupu. Vstupem
 takového bloku může být blokový výraz porovnávaný s hodnotou 0
 (vstup>=0).
  Pro zjištění času
-změny vstupní hodnoty takových podmínek lze použít
+změny vstupní hodnoty takových podmínek lze použít 
 metodu půlení intervalu, tj. zkracování kroku integrace na
 polovinu. Existují i jiné metody, například metoda
 Regula-Falsi.
@@ -1443,7 +1443,7 @@ podmínky se integrační krok zkracuje tak dlouho, až dosáhne své
 minimální povolené hodnoty (proměnná MinStep). Tím zajistíme
 ''dokročení'' v čase, který se nejvíce blíží skutečnému okamžiku
 změny podmínky. Teprve potom nastane reakce na tuto změnu
-vyvoláním metody \texttt{Action}.
+vyvoláním metody \texttt{Action}. 
 
 \subsubsection*{Příklad:}
 
@@ -1521,7 +1521,7 @@ Integrátor y integruje rychlost a jeho hodnota představuje výšku
 míčku nad zemí.
 
 Pro detekci okamžiku dopadu míčku na zem ($y=0$) je použito stavové podmínky
-\verb|y.Value()<0|.
+\verb|y.Value()<0|. 
 Při každém kroku numerické integracei se v případě změny hodnoty
 podmínky krok zkracuje tak, abychom okamžik dopadu míčku určili s
 maximální přesností (přesnost určení doby dopadu je dána minimální délkou
@@ -1550,10 +1550,10 @@ hmotného bodu v gravitačním poli je možné popsat rovnicí:
    $$ \ddot{\vec{r}} = \frac{\vec{F}}{m} $$
 
 kde:
-   $\vec{r}$ je vektor --- pozice bodu
-
-   $\vec{F}$ je vektor síly působící na hmotný bod
-
+   $\vec{r}$ je vektor --- pozice bodu 
+   
+   $\vec{F}$ je vektor síly působící na hmotný bod 
+   
    $m$ je hmotnost bodu
 
 SIMLIB dovoluje popis tohoto systému jak skalárními prostředky, tak vektorově.
@@ -1590,14 +1590,14 @@ aBlock
   aContiBlock3D       - bázová třída
     Constant3D        - konstanta
     Expression3D      - blokový výraz
-    Integrator3D      - vektorový integrátor
+    Integrator3D      - vektorový integrátor 
     Function3D        - obecná vektorová funkce
        _Add3D, _Mul3D - (skryté) třídy pro operátory
     Parameter3D       - parametr modelu
-
+                 
 Value3D               - hodnota
 Input3D               - odkaz na blok
-
+    
 \end{verbatim}
 
 Třída \verb|Value3D| definuje vektorovou hodnotu a má tři složky (x,y,z) typu
@@ -1621,7 +1621,7 @@ jejich skalární ekvivalenty.
 
 Operace $ + - * /$ jsou implementovány jako operátory, které dynamicky vytvoří
 příslušný objekt a zapojí jeho vstupy. Situace je stejná jako u běžných
-skalárních operátorů.
+skalárních operátorů. 
 
 Přehled definovaných operátorů:
 
@@ -1668,7 +1668,7 @@ pozici a rychlost. Takový systém můžeme popsat takto:
 {
 \small
 \begin{verbatim}
-// druzice.cc -- model Země--Měsíc--družice
+// druzice.cc -- model Země--Měsíc--družice 
 #include "simlib.h"
 #include "simlib3D.h"
 
@@ -1691,9 +1691,9 @@ struct MassPoint {
   Integrator3D v;        // rychlost
   Integrator3D p;        // pozice
   MassPoint(const double mass, Position p0, Speed v0=Speed(0,0,0)) :
-    m(mass),
+    m(mass), 
     inforce(Zero),
-    v(inforce/m, v0),
+    v(inforce/m, v0), 
     p(v,p0) {}
    void SetInput(Input3D i) { inforce.SetInput(i); }
 };
@@ -1712,17 +1712,17 @@ class GravityForce : public aContiBlock3D {
   MassPoint *p;
   MyWorld *w;
  public:
-  GravityForce(MassPoint *_p, MyWorld *_w) : p(_p), w(_w) {}
+  GravityForce(MassPoint *_p, MyWorld *_w) : p(_p), w(_w) {} 
   Force Value() {
     Force f(0,0,0);  // gravitační síla
     for(int i=0; i < w->n; i++) {
       MassPoint *m = w->m[i];
       if (m == p) continue;
-      Value3D distance = m->p.Value() - p->p.Value();
+      Value3D distance = m->p.Value() - p->p.Value(); 
       double d = abs(distance);  // vzdálenost
-      f = f + (distance * gravity_constant * p->m * m->m / (d*d*d)) ;
+      f = f + (distance * gravity_constant * p->m * m->m / (d*d*d)) ; 
     }
-    return f; // součet všech gravitačních sil
+    return f; // součet všech gravitačních sil 
   }
 };
 
@@ -1806,7 +1806,7 @@ Peringer, P.:{\it
 Peringer, P.:{\it Tools for continuous Simulation in 3D space},
   Proceedings of ASIS 1997, September, 1997,
   Krnov, Czech Republic, p.327-330
-
+ 
 \end{thebibliography}
 
 

@@ -22,15 +22,17 @@
 //  930825 added Rline
 //  2007-12-11 add Name() methods -- good for debugging
 
+
 ////////////////////////////////////////////////////////////////////////////
 // interface
 //
 
+#include "simlib.h"
+#include "internal.h"
+
 #include <cmath>
 #include <cstring>
 
-#include "internal.h"
-#include "simlib.h"
 
 ////////////////////////////////////////////////////////////////////////////
 // implementation
@@ -42,20 +44,29 @@ SIMLIB_IMPLEMENTATION;
 ////////////////////////////////////////////////////////////////////////////
 /// constructor of limitation block
 //
-Lim::Lim(Input in, double l, double h, double tga) : aContiBlock1(in), low(l), high(h), tgalpha(tga) {
-    if (l >= h) SIMLIB_error(LowGreaterHigh);
+Lim::Lim(Input in, double l, double h, double tga)
+  : aContiBlock1(in), low(l), high(h), tgalpha(tga)
+{
+    if (l >= h)
+        SIMLIB_error(LowGreaterHigh);
     Dprintf(("Lim::Lim(in,l=%g,h=%g,tga=%g)", l, h, tga));
 }
 
-void Lim::_Eval(){};
+void Lim::_Eval()
+{
+};
 
-double Lim::Value() {
+double Lim::Value()
+{
     AlgLoopDetector _(this);
     double x = InputValue();
-    if (x > high) return high * tgalpha;
-    if (x < low) return low * tgalpha;
+    if (x > high)
+        return high * tgalpha;
+    if (x < low)
+        return low * tgalpha;
     return x * tgalpha;
 }
+
 
 #if 0
 const char *Lim::Name() const
@@ -70,18 +81,25 @@ const char *Lim::Name() const
 ////////////////////////////////////////////////////////////////////////////
 /// dead space
 Insv::Insv(Input in, double l, double h, double tga, double tgb)
-    : aContiBlock1(in), low(l), high(h), tgalpha(tga), tgbeta(tgb) {
-    if (l >= h) SIMLIB_error(LowGreaterHigh);
+  : aContiBlock1(in), low(l), high(h), tgalpha(tga), tgbeta(tgb)
+{
+    if (l >= h)
+        SIMLIB_error(LowGreaterHigh);
     Dprintf(("Insv::Insv(in,l=%g,h=%g,tga=%g,tgb=%g)", l, h, tga, tgb));
 }
 
-void Insv::_Eval(){};
+void Insv::_Eval()
+{
+};
 
-double Insv::Value() {
+double Insv::Value()
+{
     AlgLoopDetector _(this);
     double x = InputValue();
-    if (x > high) return ((x - high) * tgalpha);
-    if (x < low) return ((x - low) * tgbeta);
+    if (x > high)
+        return ((x - high) * tgalpha);
+    if (x < low)
+        return ((x - low) * tgbeta);
     return (0);
 }
 
@@ -97,15 +115,20 @@ const char *Insv::Name() const
 
 ////////////////////////////////////////////////////////////////////////////
 /// quantizer constructor
-Qntzr::Qntzr(Input in, double p)  // p = quantiz. step
-    : aContiBlock1(in), step(p) {
-    if (p <= 0) SIMLIB_error(BadQntzrStep);
+Qntzr::Qntzr(Input in, double p) // p = quantiz. step
+   : aContiBlock1(in), step(p)
+{
+    if (p <= 0)
+        SIMLIB_error(BadQntzrStep);
     Dprintf(("Qntzr::Qntzr(in,step=%g)", p));
 }
 
-void Qntzr::_Eval(){};
+void Qntzr::_Eval()
+{
+};
 
-double Qntzr::Value() {
+double Qntzr::Value()
+{
     AlgLoopDetector _(this);
     double x = InputValue();
     double zn = (x > 0) ? 1 : ((x < 0) ? -1 : 0);
@@ -125,18 +148,26 @@ const char *Qntzr::Name() const
 
 ////////////////////////////////////////////////////////////////////////////
 /// friction constructor
-Frict::Frict(Input in, double l, double h, double tga) : aContiBlock1(in), low(l), high(h), tgalpha(tga) {
-    if (l >= h) SIMLIB_error(LowGreaterHigh);
+Frict::Frict(Input in, double l, double h, double tga)
+  : aContiBlock1(in), low(l), high(h), tgalpha(tga)
+{
+    if (l >= h)
+        SIMLIB_error(LowGreaterHigh);
     Dprintf(("Frict::Frict(in,l=%g,h=%g,tga=%g)", l, h, tga));
 }
 
-void Frict::_Eval(){};
+void Frict::_Eval()
+{
+};
 
-double Frict::Value() {
+double Frict::Value()
+{
     AlgLoopDetector _(this);
     double x = InputValue();
-    if (x < 0) return (low + x * tgalpha);
-    if (x > 0) return (high + x * tgalpha);
+    if (x < 0)
+        return (low + x * tgalpha);
+    if (x > 0)
+        return (high + x * tgalpha);
     return (0);
 }
 
@@ -153,21 +184,25 @@ const char *Frict::Name() const
 ////////////////////////////////////////////////////////////////////////////
 /// hysteresis constructor
 Hyst::Hyst(Input i, double _p1, double _p2, double _y1, double _y2, double _tga)
-    : Status(i), p1(_p1), p2(_p2), y1(_y1), y2(_y2), tga(_tga) {
+  : Status(i), p1(_p1), p2(_p2), y1(_y1), y2(_y2), tga(_tga)
+{
     Dprintf(("Hyst::Hyst(in,%g,%g,%g,%g,tga=%g)", p1, p2, y1, y2, tga));
 }
 
-void Hyst::Eval() {
+void Hyst::Eval()
+{
     double x = InputValue();
     double ys = stl;
-    ys = max(ys, y1);  // in the case of bad initialization (out of range)
-    ys = min(ys, y2);  // can be leaved out if correct init
+    ys = max(ys, y1);           // in the case of bad initialization (out of range)
+    ys = min(ys, y2);           // can be leaved out if correct init
     double yn2 = (x - p2) * tga;
     double yn1 = (x - p1) * tga;
     double y = ys;
-    if (ys <= yn2) y = min(yn2, y2);
-    if (ys >= yn1) y = max(yn1, y1);
-    st = y;  // new status
+    if (ys <= yn2)
+        y = min(yn2, y2);
+    if (ys >= yn1)
+        y = max(yn1, y1);
+    st = y;                     // new status
     ValueOK = true;
 }
 
@@ -184,12 +219,15 @@ const char *Hyst::Name() const
 ////////////////////////////////////////////////////////////////////////////
 /// relay constructor
 Relay::Relay(Input i, double _p1, double _p2, double _p3, double _p4, double _y1, double _y2)
-    : Status(i), p1(_p1), p2(_p2), p3(_p3), p4(_p4), y1(_y1), y2(_y2) {
+  : Status(i), p1(_p1), p2(_p2), p3(_p3), p4(_p4), y1(_y1), y2(_y2)
+{
     // TODO: check
-    Dprintf(("Relay::Relay(in,%g,%g,%g,%g,y1=%g,y2=%g)", p1, p2, p3, p4, y1, y2));
+    Dprintf(("Relay::Relay(in,%g,%g,%g,%g,y1=%g,y2=%g)",
+                              p1, p2, p3, p4, y1, y2));
 }
 
-void Relay::Eval() {
+void Relay::Eval()
+{
     double x = InputValue();
     double y;
 
@@ -203,7 +241,8 @@ void Relay::Eval() {
         y = stl;
     else
         y = y2;
-    if (y != stl) ContractStep();  // forces step shortening
+    if (y != stl)
+        ContractStep();         // forces step shortening
     st = y;
     ValueOK = true;
 }
@@ -220,11 +259,14 @@ const char *Relay::Name() const
 
 ////////////////////////////////////////////////////////////////////////////
 /// blash constructor
-Blash::Blash(Input i, double _p1, double _p2, double _tga) : Status(i), p1(_p1), p2(_p2), tga(_tga) {
+Blash::Blash(Input i, double _p1, double _p2, double _tga)
+  : Status(i), p1(_p1), p2(_p2), tga(_tga)
+{
     Dprintf(("Blash::Blash(in,%g,%g,tga=%g)", p1, p2, tga));
 }
 
-void Blash::Eval() {
+void Blash::Eval()
+{
     // TODO: CHECK !!!
     double x = InputValue();
     double ys = stl;
@@ -252,46 +294,56 @@ const char *Blash::Name() const
 // TODO: variants
 //       - use data directly? (no new and copy),
 //       - read from input file
-Rline::Rline(Input in, int num, double *X, double *Y) : aContiBlock1(in), n(num) {
+Rline::Rline(Input in, int num, double *X, double *Y)
+  : aContiBlock1(in), n(num)
+{
     Dprintf(("Rline::Rline(in,%i,X[],Y[])", n));
-    if (n < 2) SIMLIB_error(RlineErr1);  // Rline: n<2
+    if (n < 2)
+        SIMLIB_error(RlineErr1);        // Rline: n<2
     //
     // TODO: use vectors of (x,y) pairs
     //
     tableX = new double[n];
-    //    if (!tableX)
-    //        SIMLIB_error(MemoryError);
+//    if (!tableX)
+//        SIMLIB_error(MemoryError);
     tableY = new double[n];
-    //    if (!tableY)
-    //        SIMLIB_error(MemoryError);
+//    if (!tableY)
+//        SIMLIB_error(MemoryError);
     memcpy(tableX, X, n * sizeof(double));
     memcpy(tableY, Y, n * sizeof(double));
     for (int i = 1; i < n; i++)
-        if (tableX[i] < tableX[i - 1]) SIMLIB_error(RlineErr2);  // Rline: tableX not ordered
+        if (tableX[i] < tableX[i - 1])
+            SIMLIB_error(RlineErr2);    // Rline: tableX not ordered
     //
     // OPTIMIZE:
     //  count (tableY[i]-tableY[i-1]) / (tableX[i]-tableX[i-1])
     //  save: division, 4 -, 3 index; price: array[n]
 }
 
-Rline::~Rline() {
+Rline::~Rline()
+{
     Dprintf(("Rline::~Rline()", n));
     delete tableX;
     delete tableY;
 }
 
-void Rline::_Eval() {}
+void Rline::_Eval()
+{
+}
 
-double Rline::Value() {
+double Rline::Value()
+{
     AlgLoopDetector _(this);
     // TODO: add step change detection => Status!
     double x = InputValue();
     int i;
-    if (x >= tableX[n - 1]) return tableY[n - 1];
-    if (x <= tableX[0]) return tableY[0];
-    for (i = 1; x > tableX[i]; i++) { /*empty*/
-    }                                 // linear search
-    return (tableY[i] - tableY[i - 1]) / (tableX[i] - tableX[i - 1]) * (x - tableX[i - 1]) + tableY[i - 1];
+    if (x >= tableX[n - 1])
+        return tableY[n - 1];
+    if (x <= tableX[0])
+        return tableY[0];
+    for (i = 1; x > tableX[i]; i++) { /*empty*/ } // linear search
+    return (tableY[i] - tableY[i - 1]) / (tableX[i] - tableX[i - 1])
+        * (x - tableX[i - 1]) + tableY[i - 1];
 }
 
 #if 0
@@ -304,4 +356,4 @@ const char *Rline::Name() const
 }
 #endif
 
-}  // namespace simlib3
+} // namespace

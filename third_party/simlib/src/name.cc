@@ -18,19 +18,20 @@
 //  const char *GetName(SimObject &o)
 //
 
+
 ////////////////////////////////////////////////////////////////////////////
 //  interface
 //
 
-#include "internal.h"
 #include "simlib.h"
+#include "internal.h"
 
 ////////////////////////////////////////////////////////////////////////////
 //  implementation
 //
 
-#include <cstdarg>  // ...
-#include <cstdio>   // vsprintf()
+#include <cstdarg> // ...
+#include <cstdio>  // vsprintf()
 
 namespace simlib3 {
 
@@ -38,27 +39,46 @@ SIMLIB_IMPLEMENTATION;
 
 /////////////////////////////////////////////////////////////////////////////
 /// assign name to object
-void SetName(SimObject &o, const std::string &name) { o.SetName(name); }
+void SetName(SimObject & o, const std::string &name)
+{
+    o.SetName(name);
+}
 
 /// assign name to object
-void SetName(SimObject *o, const std::string &name) { o->SetName(name); }
+void SetName(SimObject * o, const std::string &name)
+{
+    o->SetName(name);
+}
 
 /// remove name
-void RemoveName(SimObject &o) { o.SetName(0); }
+void RemoveName(SimObject & o)
+{
+    o.SetName(0);
+}
 
 /// remove name
-void RemoveName(SimObject *o) { o->SetName(0); }
+void RemoveName(SimObject * o)
+{
+    o->SetName(0);
+}
 
 /// get name of object
-std::string GetName(SimObject &o) { return o.Name(); }
+std::string GetName(SimObject & o)
+{
+    return o.Name();
+}
 
 /// get name of object
-std::string GetName(SimObject *o) { return o->Name(); }
+std::string GetName(SimObject * o)
+{
+    return o->Name();
+}
 
 /// printf-like function to create temporary name
 /// (the length of temporary names is limited)
 /// <br> used only for printing
-std::string SIMLIB_create_tmp_name(const char *fmt, ...) {
+std::string SIMLIB_create_tmp_name(const char *fmt, ...)
+{
     static char s[256];
     va_list va;
     va_start(va, fmt);
@@ -67,4 +87,5 @@ std::string SIMLIB_create_tmp_name(const char *fmt, ...) {
     return s;
 }
 
-}  // namespace simlib3
+} // namespace
+

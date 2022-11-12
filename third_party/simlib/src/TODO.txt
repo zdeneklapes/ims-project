@@ -201,16 +201,16 @@ add RCS
 
 DOC: nespolehat na okamzik ruseni procesu atd..
 
-ADD: NO_WAITUNTIL, NO_PROCESS,
-     DISCRETE_ONLY, CONTINUOUS_ONLY
+ADD: NO_WAITUNTIL, NO_PROCESS, 
+     DISCRETE_ONLY, CONTINUOUS_ONLY 
 
 clean-up code, remove 'magic' comments ###!!!???
 -----
 ADD statistics for simulation run:
   model time: start-stop-length [model-time-units]
   ??? real time: start[date:time]-stop-length [seconds]
-  continuous step length: len-min len-max len-avg
-  # of conti. steps
+  continuous step length: len-min len-max len-avg  
+  # of conti. steps  
      #of shortened (calls to ContractStep) #of widened (+1%max)
   # of event activations (Run)
   # of WaitUntil activations (WAU)
@@ -222,7 +222,7 @@ ADD model statistics: at end of Run
   # of process and events (created,now?)
   # of contiblocks (Integrators, Delay, ...) created
   # of Queues, Facilities, Stores, ... created
-
+  
 CHANGE Process implementation void*
 
 CZECH only section:
@@ -276,7 +276,7 @@ VSE prelozit do anglictiny!!!
 trida PeriodicEvent, + parametr AutoStart/kdy? !!!!
 
 -------------------------------------------------------------------------
-JAK zpracovat rozdil blok/funkce?
+JAK zpracovat rozdil blok/funkce? 
    Limit l;... l(x,lo,hi)   NEBO/A    (a + Limit(x,lo,hi))
 co s tim???? NELZE pojmenovat stejne!!!??
 Envelope: Limit     Letter: SIMLIB_Limit
@@ -285,7 +285,7 @@ ve vyrazu jen zprostredkuje propojeni !!!!!!
 FUNGUJE - je treba zkoumat dusledky!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 -------------------------------------------------------------------------
 
-doplnit bloky podle
+doplnit bloky podle 
 
 4.4.96
 ------
@@ -299,12 +299,12 @@ soustavy!1!
 
 port+outstream+sampler pro vzorkovani vystupu !!!!!!
 
-WaitUntilList:
+WaitUntilList: 
 KONTROLA: - prochazi cyklicky dokud nejsou _vsechny_ FALSE
             (problem: zacykleni!!!???)
 
 
-zmìna struktury
+zmìna struktury 
  List   <->   ListItem   <->   SimObjectLink?
           základ 3 ukazatele   ukazatele Link a Where (nejen fronta)
 
@@ -323,7 +323,7 @@ REGISTRACE: vsechny instance aBlock pri vzniku => mozne testy a GC !!!
             (seznam - slozitost: in=const, out=N)
 
 
-zjistit proc je Sin s velkym S ???? (asi byly problemy, ale mozna
+zjistit proc je Sin s velkym S ???? (asi byly problemy, ale mozna 
  jen ve starych prekladacich !!!!)
 
 
@@ -337,12 +337,12 @@ class History: zaznamenat stav objektu
 metoda Activate u bloku - provede akci pri stavove podmince???????
 
 
-POZOR: SetInput se neprojevi v pripade zadratovani
+POZOR: SetInput se neprojevi v pripade zadratovani 
        struktury --> pouzit novou tridu InputRef:aContiBlock???
 
-       class X {
-          Input i;
-        public:
+       class X { 
+          Input i; 
+        public: 
           X() : i(Sin(i)) {} // chyba - neinicializovany odkaz
        };
 
@@ -361,7 +361,7 @@ OUTPUT - rozdelit!
 !!! instalovatelne akce:
     - stepchange     dovoli efektivne sledovat zmeny delky kroku
     - Start/Stop     doplnky
-    - everyStep
+    - everyStep      
  implementace = kontejnery ^funkci
 ------
 
@@ -435,8 +435,8 @@ FUN.CPP: reimplementovat! bloky fun1 fun2, v konstruktoru parametry a funkce
 (a u debug-verze i textova identifikace "Sin"|"Cos"...)
 moznost uzivatelske definice (zverejnit bazovy blok)
 +++nove bloky:
-Tan, ArcTan, Abs, Sqrt, Sgn,
-Step, Ramp, Pulse(s),
+Tan, ArcTan, Abs, Sqrt, Sgn, 
+Step, Ramp, Pulse(s), 
 Deriv, Delay, Hold?=Status
 
 ==== zvazit implementaci front a kalendare ====
@@ -509,7 +509,7 @@ templates!!!!!!!!!!!
 moduly Random a Stat - oddìlit
 i/o, NumIntMethods - oddìlit
 
-doplnit #pragma -b -p -u -f -k -ml -d -rd
+doplnit #pragma -b -p -u -f -k -ml -d -rd 
 zru¹it -Vo a generovat ruzne verze SIMLIB pro ruzne  prekladace!!!
 na konci simlib.h obnovit!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -679,8 +679,8 @@ DOPLNIT:
       {
         C(xxxx);
         C1(x>3);
-        C2(y<2);
-      }
+        C2(y<2); 
+      } 
       Dynamic { .... }
 
 	class ev1:event {

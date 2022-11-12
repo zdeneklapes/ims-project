@@ -61,9 +61,9 @@ DEBUG: T=0          MODULE#33 initialization
 DEBUG: T=0          MODULE#34 initialization
 DEBUG: T=0          MODULE#35 initialization
 DEBUG: T=0          MODULE#36 initialization
-Model _TEST_ --- test model for SIMLIB/C++
-DEBUG: T=0
-	 ************************* Init(0,5) #1
+Model _TEST_ --- test model for SIMLIB/C++ 
+DEBUG: T=0          
+	 ************************* Init(0,5) #1 
 
 DEBUG: T=0          CalendarList::create()
 DEBUG: T=0          CalendarList::CalendarList()
@@ -74,14 +74,14 @@ DEBUG: T=0          StatusContainer::InitAll)
 DEBUG: T=0          StatusContainer::EvaluateAll)
 DEBUG: T=0          StatusContainer::EvaluateAll)
 DEBUG: T=0          IntegratorContainer::EvaluateAll)
-DEBUG: T=0          SetStep: StepSize = 0.1 .. 1
-DEBUG: T=0          SetAccuracy: maxerror = 1e-05 + 0.01 * X
+DEBUG: T=0          SetStep: StepSize = 0.1 .. 1 
+DEBUG: T=0          SetAccuracy: maxerror = 1e-05 + 0.01 * X 
 DEBUG: T=0          Entity#2{PTR}::Entity(0)
 DEBUG: T=0          Process::Process(0)
 DEBUG: T=0          Process#2.Activate(0)
 DEBUG: T=0          Process#0.Activate(0)
-DEBUG: T=0
-	 ********** Run() --- START
+DEBUG: T=0          
+	 ********** Run() --- START 
 
 DEBUG: T=0          IntegratorContainer::InitAll)
 DEBUG: T=0          StatusContainer::InitAll)
@@ -90,12 +90,12 @@ DEBUG: T=0          StatusContainer::EvaluateAll)
 DEBUG: T=0          IntegratorContainer::EvaluateAll)
 DEBUG: T=0          Event#1.Activate(0)
 DEBUG: T=0          PTR===Process#2._Run() status=PREPARED
-DEBUG: T=0          | --- Process::Behavior() START
+DEBUG: T=0          | --- Process::Behavior() START 
 DEBUG: T=0          Process#2.Wait(1)
 DEBUG: T=0          | --- Process::Behavior() INTERRUPT PTR.context=PTR, size=116
 DEBUG: T=0          PTR===Process#2._Run() RETURN status=INTERRUPTED
 DEBUG: T=0          PTR===Process#0._Run() status=PREPARED
-DEBUG: T=0          | --- Process::Behavior() START
+DEBUG: T=0          | --- Process::Behavior() START 
 DEBUG: T=0          Process#0.Wait(1)
 DEBUG: T=0          | --- Process::Behavior() INTERRUPT PTR.context=PTR, size=116
 DEBUG: T=0          PTR===Process#0._Run() RETURN status=INTERRUPTED
@@ -135,7 +135,7 @@ DEBUG: T=0          ##### reallocation to mem_size=256
 DEBUG: T=0          StatusMethod::StatusResize(1)
 DEBUG: T=0          IntegrationMethod::Memory::Resize(1)
 DEBUG: T=0          ##### reallocation to mem_size=256
-DEBUG: T=0           RKE integration step
+DEBUG: T=0           RKE integration step 
 DEBUG: T=0           Time = 0, optimal step = 1
 DEBUG: T=0          IntegratorContainer::Instance()(PTR)
 DEBUG: T=0          IntegratorContainer::Instance()(PTR)
@@ -185,15 +185,15 @@ DEBUG: T=1          IntegrationMethod::StateCond()
 DEBUG: T=1          IntegrationMethod::Summarize()
 DEBUG: T=1          IntegratorContainer::NtoL()
 DEBUG: T=1          StatusContainer::NtoL()
-DEBUG: T=1           Step length = 1
+DEBUG: T=1           Step length = 1 
 DEBUG: T=1          ==================== continuous step END 1
 DEBUG: T=1          PTR===Process#2._Run() status=INTERRUPTED
-DEBUG: T=1          | --- Process::Behavior() CONTINUE
+DEBUG: T=1          | --- Process::Behavior() CONTINUE 
 DEBUG: T=1          Process#2.Wait(1)
 DEBUG: T=1          | --- Process::Behavior() INTERRUPT PTR.context=PTR, size=116
 DEBUG: T=1          PTR===Process#2._Run() RETURN status=INTERRUPTED
 DEBUG: T=1          PTR===Process#0._Run() status=INTERRUPTED
-DEBUG: T=1          | --- Process::Behavior() CONTINUE
+DEBUG: T=1          | --- Process::Behavior() CONTINUE 
 DEBUG: T=1          Process#0.Wait(1)
 DEBUG: T=1          | --- Process::Behavior() INTERRUPT PTR.context=PTR, size=116
 DEBUG: T=1          PTR===Process#0._Run() RETURN status=INTERRUPTED
@@ -211,7 +211,7 @@ DEBUG: T=1          IntegratorContainer::NtoL()
 DEBUG: T=1          StatusContainer::NtoL()
 DEBUG: T=1          StatusMethod::PrepareStep()
 DEBUG: T=1          IntegrationMethod::PrepareStep()
-DEBUG: T=1           RKE integration step
+DEBUG: T=1           RKE integration step 
 DEBUG: T=1           Time = 1, optimal step = 1
 DEBUG: T=1          IntegratorContainer::Instance()(PTR)
 DEBUG: T=1          IntegratorContainer::Instance()(PTR)
@@ -261,10 +261,10 @@ DEBUG: T=2          IntegrationMethod::StateCond()
 DEBUG: T=2          IntegrationMethod::Summarize()
 DEBUG: T=2          IntegratorContainer::NtoL()
 DEBUG: T=2          StatusContainer::NtoL()
-DEBUG: T=2           Step length = 1
+DEBUG: T=2           Step length = 1 
 DEBUG: T=2          ==================== continuous step END 2
 DEBUG: T=2          PTR===Process#2._Run() status=INTERRUPTED
-DEBUG: T=2          | --- Process::Behavior() CONTINUE
+DEBUG: T=2          | --- Process::Behavior() CONTINUE 
 DEBUG: T=2          Process#2._WaitUntil(false)
 DEBUG: T=2          WaitUntilList.Insert(Process#2)
 DEBUG: T=2          WaitUntilList::WaitUntilList()
@@ -274,14 +274,14 @@ DEBUG: T=2          | --- Process::Behavior() INTERRUPT PTR.context=PTR, size=13
 DEBUG: T=2          PTR===Process#2._Run() RETURN status=INTERRUPTED
 DEBUG: T=2          WaitUntilList::WU_hook
 DEBUG: T=2          PTR===Process#2._Run() status=INTERRUPTED
-DEBUG: T=2          | --- Process::Behavior() CONTINUE
+DEBUG: T=2          | --- Process::Behavior() CONTINUE 
 DEBUG: T=2          Process#2._WaitUntil(false)
 DEBUG: T=2          Process#2.Passivate()
 DEBUG: T=2          | --- Process::Behavior() INTERRUPT PTR.context=PTR, size=132
 DEBUG: T=2          PTR===Process#2._Run() RETURN status=INTERRUPTED
 DEBUG: T=2          WaitUntilList::WU_hook
 DEBUG: T=2          PTR===Process#0._Run() status=INTERRUPTED
-DEBUG: T=2          | --- Process::Behavior() CONTINUE
+DEBUG: T=2          | --- Process::Behavior() CONTINUE 
 DEBUG: T=2          Process#0._WaitUntil(false)
 DEBUG: T=2          WaitUntilList.Insert(Process#0)
 DEBUG: T=2          Process#0.Passivate()
@@ -289,14 +289,14 @@ DEBUG: T=2          | --- Process::Behavior() INTERRUPT PTR.context=PTR, size=13
 DEBUG: T=2          PTR===Process#0._Run() RETURN status=INTERRUPTED
 DEBUG: T=2          WaitUntilList::WU_hook
 DEBUG: T=2          PTR===Process#2._Run() status=INTERRUPTED
-DEBUG: T=2          | --- Process::Behavior() CONTINUE
+DEBUG: T=2          | --- Process::Behavior() CONTINUE 
 DEBUG: T=2          Process#2._WaitUntil(false)
 DEBUG: T=2          Process#2.Passivate()
 DEBUG: T=2          | --- Process::Behavior() INTERRUPT PTR.context=PTR, size=132
 DEBUG: T=2          PTR===Process#2._Run() RETURN status=INTERRUPTED
 DEBUG: T=2          WaitUntilList::WU_hook
 DEBUG: T=2          PTR===Process#0._Run() status=INTERRUPTED
-DEBUG: T=2          | --- Process::Behavior() CONTINUE
+DEBUG: T=2          | --- Process::Behavior() CONTINUE 
 DEBUG: T=2          Process#0._WaitUntil(false)
 DEBUG: T=2          Process#0.Passivate()
 DEBUG: T=2          | --- Process::Behavior() INTERRUPT PTR.context=PTR, size=132
@@ -307,14 +307,14 @@ DEBUG: T=2          Sampler::Behavior()
 DEBUG: T=2          Event#1.Activate(3)
 DEBUG: T=2          WaitUntilList::WU_hook
 DEBUG: T=2          PTR===Process#2._Run() status=INTERRUPTED
-DEBUG: T=2          | --- Process::Behavior() CONTINUE
+DEBUG: T=2          | --- Process::Behavior() CONTINUE 
 DEBUG: T=2          Process#2._WaitUntil(false)
 DEBUG: T=2          Process#2.Passivate()
 DEBUG: T=2          | --- Process::Behavior() INTERRUPT PTR.context=PTR, size=132
 DEBUG: T=2          PTR===Process#2._Run() RETURN status=INTERRUPTED
 DEBUG: T=2          WaitUntilList::WU_hook
 DEBUG: T=2          PTR===Process#0._Run() status=INTERRUPTED
-DEBUG: T=2          | --- Process::Behavior() CONTINUE
+DEBUG: T=2          | --- Process::Behavior() CONTINUE 
 DEBUG: T=2          Process#0._WaitUntil(false)
 DEBUG: T=2          Process#0.Passivate()
 DEBUG: T=2          | --- Process::Behavior() INTERRUPT PTR.context=PTR, size=132
@@ -331,7 +331,7 @@ DEBUG: T=2          IntegratorContainer::NtoL()
 DEBUG: T=2          StatusContainer::NtoL()
 DEBUG: T=2          StatusMethod::PrepareStep()
 DEBUG: T=2          IntegrationMethod::PrepareStep()
-DEBUG: T=2           RKE integration step
+DEBUG: T=2           RKE integration step 
 DEBUG: T=2           Time = 2, optimal step = 1
 DEBUG: T=2          IntegratorContainer::Instance()(PTR)
 DEBUG: T=2          IntegratorContainer::Instance()(PTR)
@@ -381,21 +381,21 @@ DEBUG: T=3          IntegrationMethod::StateCond()
 DEBUG: T=3          IntegrationMethod::Summarize()
 DEBUG: T=3          IntegratorContainer::NtoL()
 DEBUG: T=3          StatusContainer::NtoL()
-DEBUG: T=3           Step length = 1
+DEBUG: T=3           Step length = 1 
 DEBUG: T=3          ==================== continuous step END 3
 DEBUG: T=3          Sampler::Behavior()
 3.000000  1.000000  2.490036
 DEBUG: T=3          Event#1.Activate(4)
 DEBUG: T=3          WaitUntilList::WU_hook
 DEBUG: T=3          PTR===Process#2._Run() status=INTERRUPTED
-DEBUG: T=3          | --- Process::Behavior() CONTINUE
+DEBUG: T=3          | --- Process::Behavior() CONTINUE 
 DEBUG: T=3          Process#2._WaitUntil(false)
 DEBUG: T=3          Process#2.Passivate()
 DEBUG: T=3          | --- Process::Behavior() INTERRUPT PTR.context=PTR, size=132
 DEBUG: T=3          PTR===Process#2._Run() RETURN status=INTERRUPTED
 DEBUG: T=3          WaitUntilList::WU_hook
 DEBUG: T=3          PTR===Process#0._Run() status=INTERRUPTED
-DEBUG: T=3          | --- Process::Behavior() CONTINUE
+DEBUG: T=3          | --- Process::Behavior() CONTINUE 
 DEBUG: T=3          Process#0._WaitUntil(false)
 DEBUG: T=3          Process#0.Passivate()
 DEBUG: T=3          | --- Process::Behavior() INTERRUPT PTR.context=PTR, size=132
@@ -412,7 +412,7 @@ DEBUG: T=3          IntegratorContainer::NtoL()
 DEBUG: T=3          StatusContainer::NtoL()
 DEBUG: T=3          StatusMethod::PrepareStep()
 DEBUG: T=3          IntegrationMethod::PrepareStep()
-DEBUG: T=3           RKE integration step
+DEBUG: T=3           RKE integration step 
 DEBUG: T=3           Time = 3, optimal step = 1
 DEBUG: T=3          IntegratorContainer::Instance()(PTR)
 DEBUG: T=3          IntegratorContainer::Instance()(PTR)
@@ -462,25 +462,25 @@ DEBUG: T=4          IntegrationMethod::StateCond()
 DEBUG: T=4          IntegrationMethod::Summarize()
 DEBUG: T=4          IntegratorContainer::NtoL()
 DEBUG: T=4          StatusContainer::NtoL()
-DEBUG: T=4           Step length = 1
+DEBUG: T=4           Step length = 1 
 DEBUG: T=4          ==================== continuous step END 4
 DEBUG: T=4          Sampler::Behavior()
 4.000000  1.000000  2.153680
 DEBUG: T=4          Event#1.Activate(5)
 DEBUG: T=4          WaitUntilList::WU_hook
 DEBUG: T=4          PTR===Process#2._Run() status=INTERRUPTED
-DEBUG: T=4          | --- Process::Behavior() CONTINUE
+DEBUG: T=4          | --- Process::Behavior() CONTINUE 
 DEBUG: T=4          Process#2._WaitUntil(true)
-DEBUG: T=4          WaitUntilList.Get(); // "Process#2"
+DEBUG: T=4          WaitUntilList.Get(); // "Process#2" 
 DEBUG: T=4          Process#2._WaitUntil(true)
 DEBUG: T=4          Process#2.Wait(5)
 DEBUG: T=4          | --- Process::Behavior() INTERRUPT PTR.context=PTR, size=84
 DEBUG: T=4          PTR===Process#2._Run() RETURN status=INTERRUPTED
 DEBUG: T=4          WaitUntilList::WU_hook
 DEBUG: T=4          PTR===Process#0._Run() status=INTERRUPTED
-DEBUG: T=4          | --- Process::Behavior() CONTINUE
+DEBUG: T=4          | --- Process::Behavior() CONTINUE 
 DEBUG: T=4          Process#0._WaitUntil(true)
-DEBUG: T=4          WaitUntilList.Get(); // "Process#0"
+DEBUG: T=4          WaitUntilList.Get(); // "Process#0" 
 DEBUG: T=4          Process#0._WaitUntil(true)
 DEBUG: T=4          Process#0.Wait(5)
 DEBUG: T=4          | --- Process::Behavior() INTERRUPT PTR.context=PTR, size=84
@@ -496,7 +496,7 @@ DEBUG: T=4          IntegratorContainer::NtoL()
 DEBUG: T=4          StatusContainer::NtoL()
 DEBUG: T=4          StatusMethod::PrepareStep()
 DEBUG: T=4          IntegrationMethod::PrepareStep()
-DEBUG: T=4           RKE integration step
+DEBUG: T=4           RKE integration step 
 DEBUG: T=4           Time = 4, optimal step = 1
 DEBUG: T=4          IntegratorContainer::Instance()(PTR)
 DEBUG: T=4          IntegratorContainer::Instance()(PTR)
@@ -546,7 +546,7 @@ DEBUG: T=5          IntegrationMethod::StateCond()
 DEBUG: T=5          IntegrationMethod::Summarize()
 DEBUG: T=5          IntegratorContainer::NtoL()
 DEBUG: T=5          StatusContainer::NtoL()
-DEBUG: T=5           Step length = 1
+DEBUG: T=5           Step length = 1 
 DEBUG: T=5          ==================== continuous step END 5
 DEBUG: T=5          Sampler::Behavior()
 5.000000  1.000000  1.216353
@@ -568,8 +568,8 @@ DEBUG: T=5          IntegrationMethod::Memory::Resize(0)
 DEBUG: T=5          CalendarList::clear(destroy=true)
 DEBUG: T=5          Process::~Process()
 DEBUG: T=5          Entity#2{PTR}::~Entity()
-DEBUG: T=5
-	 ********** Run() --- END
+DEBUG: T=5          
+	 ********** Run() --- END 
 
 # end of test t=5
 DEBUG: T=5          MODULE#36 cleanup (queue.cc, SIMLIB-3.09/debug, Linux/GNU C++, Nov  8 2022 17:22:35)
@@ -617,13 +617,13 @@ DEBUG: T=5          MODULE#3 cleanup (link.cc, SIMLIB-3.09/debug, Linux/GNU C++,
 DEBUG: T=5          MODULE#2 cleanup (entity.cc, SIMLIB-3.09/debug, Linux/GNU C++, Nov  8 2022 17:22:31)
 DEBUG: T=5          MODULE#1 cleanup (debug.cc, SIMLIB-3.09/debug, Linux/GNU C++, Nov  8 2022 17:22:31)
 DEBUG: T=5          ATEXIT:
-DEBUG: T=5          ATEXIT_CALL#0: PTR
+DEBUG: T=5          ATEXIT_CALL#0: PTR 
 DEBUG: T=5          Calendar::delete_instance()
 DEBUG: T=5          CalendarList::~CalendarList()
 DEBUG: T=5          CalendarList::clear(destroy=true)
-DEBUG: T=5          ATEXIT_CALL#1: PTR
+DEBUG: T=5          ATEXIT_CALL#1: PTR 
 DEBUG: T=5          WaitUntilList::~WaitUntilList()
-DEBUG: T=5          Sampler::~Sampler() // "PTR"
+DEBUG: T=5          Sampler::~Sampler() // "PTR" 
 DEBUG: T=5          Event::~Event()
 DEBUG: T=5          Entity#1{PTR}::~Entity()
 DEBUG: T=5          Process::~Process()

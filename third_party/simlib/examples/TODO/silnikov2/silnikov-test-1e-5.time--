@@ -34,3 +34,4 @@ method: rkf8, stepsize=1e-05
 method: fw, stepsize=1e-05
 8.07user 0.00system 0:08.08elapsed 99%CPU (0avgtext+0avgdata 4112maxresident)k
 0inputs+328outputs (0major+164minor)pagefaults 0swaps
+

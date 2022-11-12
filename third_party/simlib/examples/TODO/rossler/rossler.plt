@@ -14,7 +14,7 @@ set xlabel "t [s]"
 set ylabel "x,y,z"
 plot [][] "rossler.dat" using 1:2 lw 1.0 title "x" \
           , "" using 1:3 lw 1.2 title "y"         \
-          , "" using 1:4 lw 1.0 title "z"
+          , "" using 1:4 lw 1.0 title "z"   
 
 set title "Rossler equation (phase plane)"
 set xlabel "x"
@@ -27,3 +27,4 @@ set xlabel "x"
 set ylabel "y"
 set zlabel "z"
 splot "rossler.dat" using 2:3:4 lw 0.8
+

@@ -28,12 +28,13 @@
 // ZMENA! pouzit jen pro pojmenovani a registraci vystupu!
 // spec proces bude vzorkovat? (Sampler) + output stream
 
+
 ////////////////////////////////////////////////////////////////////////////
 // interface
 //
 
-#include "internal.h"
 #include "simlib.h"
+#include "internal.h"
 
 #ifdef hdsfjfhsaj
 #include <cstdio>
@@ -49,93 +50,111 @@ SIMLIB_IMPLEMENTATION;
 ////////////////////////////////////////////////////////////////////////////
 // Sample - output event
 //
-void Graph::Sample() {
-    // prozatimni
-    double value = in.Value();
-    Print("Graph'%s': %g \n", Name().c_str(), value);
+void Graph::Sample()
+{
+  // prozatimni
+  double value = in.Value();
+  Print("Graph'%s': %g \n", Name().c_str(), value);
 }
+
 
 ////////////////////////////////////////////////////////////////////////////
 //  graph constructors
 //
 Graph *Graph::First = 0;
 
-void Graph::CtrInit(char *name)  // common initialization
+void Graph::CtrInit(char *name) // common initialization
 {
-    Next = First;
-    First = this;
-    SetName(name);
+  Next = First;
+  First = this;
+  SetName(name);
 }
 
 ////////////////////////////////////////////////////////////////////////////
 //  constructor
 //
-Graph::Graph(char *_name, Input i, double dTime) : in(i), TimeStep(dTime) {
-    CtrInit(_name);
-    StartSampling();  // default
-    Dprintf(("Graph::Graph(\"%s\")", _name));
+Graph::Graph(char *_name, Input i, double dTime) : in(i), TimeStep(dTime)
+{
+  CtrInit(_name);
+  StartSampling(); // default
+  Dprintf(("Graph::Graph(\"%s\")",_name));
 }
 
 ////////////////////////////////////////////////////////////////////////////
 // destructor
 //
-Graph::~Graph() {
-    Dprintf(("Graph::~Graph() // \"%s\" ", Name().c_str()));
-    if (this == First)
-        First = Next;
-    else {
-        Graph *i;
-        for (i = First; i && i->Next != this; i = i->Next)
-            ;
-        if (i) i->Next = Next;
-    }
+Graph::~Graph()
+{
+  Dprintf(("Graph::~Graph() // \"%s\" ", Name().c_str()));
+  if(this==First)
+    First = Next;
+  else
+  {
+    Graph *i;
+    for(i=First; i && i->Next!=this; i=i->Next);
+    if(i) i->Next = Next;
+  }
 }
 
 ////////////////////////////////////////////////////////////////////////////
 //  Graph::Behavior
 //
-void Graph::Behavior() {
-    Sample();
+void Graph::Behavior()
+{
+  Sample();
 
-    if (TimeStep <= 0) TimeStep = (double(EndTime) - double(StartTime)) / 100;
+  if(TimeStep<=0)
+    TimeStep = (double(EndTime)-double(StartTime))/100;
 
-    Activate(double(Time) + double(TimeStep));
+  Activate(double(Time)+double(TimeStep));
 }
+
 
 ////////////////////////////////////////////////////////////////////////////
 //  Graph::StartSampling
 //
-void Graph::StartSampling() {
-    if (Phase != SIMULATION && Phase != INITIALIZATION) return;
-    // Behavior()
-    Sample();
+void Graph::StartSampling()
+{
+  if( Phase!=SIMULATION && Phase!=INITIALIZATION ) return;
+  //Behavior()
+  Sample();
 
-    if (TimeStep <= 0) TimeStep = (double(EndTime) - double(StartTime)) / 100;
+  if(TimeStep<=0)
+    TimeStep = (double(EndTime)-double(StartTime))/100;
 
-    Activate(double(Time) + double(TimeStep));
+  Activate(double(Time)+double(TimeStep));
 }
 
 ////////////////////////////////////////////////////////////////////////////
 //  Graph::StopSampling
 //
-void Graph::StopSampling() {
-    Sample();
-    Passivate();
+void Graph::StopSampling()
+{
+  Sample();
+  Passivate();
 }
+
 
 ////////////////////////////////////////////////////////////////////////////
 //  Graph::Initialize
 //
-void Graph::Initialize() {
-    Graph *p;
-    for (p = First; p; p = p->Next) p->StartSampling();
+void Graph::Initialize()
+{
+  Graph *p;
+  for(p=First; p; p=p->Next)
+    p->StartSampling();
 }
 
-void _GraphInit() { Graph::Initialize(); }
 
-}  // namespace simlib3
+void _GraphInit()
+{
+  Graph::Initialize();
+}
+
+}
 #endif
 
 ////////////////////////////////////////////////////////////////////////////
 // end of GRAPH.CPP
 ////////////////////////////////////////////////////////////////////////////
+

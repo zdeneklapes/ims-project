@@ -40,3 +40,17 @@ HEADER_DIRECTORIES(header_dirs)
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC ${header_dirs})
+target_link_libraries(${PROJECT_NAME} PUBLIC /usr/local/lib/libsimlib.so)
+
+#include(ExternalProject)
+#ExternalProject_Add(lua-jit
+#        SOURCE_DIR /    # This is not likely to be CMAKE_CURRENT_LIST_DIR
+#        INSTALL_DIR ${CMAKE_CURRENT_BINARY_DIR}/install   # Just an example
+#        CONFIGURE_COMMAND ""
+#        BUILD_COMMAND ${CMAKE_COMMAND} -E env
+#        HOST_CC=...   # See below
+#        CC=${CMAKE_C_COMPILER}
+#        make -C <SOURCE_DIR>
+#        BUILD_IN_SOURCE TRUE
+#        INSTALL_COMMAND make DESTDIR=<INSTALL_DIR> install
+#        )

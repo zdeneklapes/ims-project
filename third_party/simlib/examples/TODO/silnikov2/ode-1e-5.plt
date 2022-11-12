@@ -14,3 +14,4 @@ set title "Silnikov equation, various methods, step = 1e-5"
 plot [-1.6:1.6][-1.6:1.6] \
     "ode-rk.dat" using 2:3, \
     "ode-am.dat" using 2:3
+

@@ -20,3 +20,5 @@ set xlabel "x1"
 set ylabel "x2"
 set terminal postscript; set output "silnikov2b.ps"
 plot "silnikov2.dat"  using 2:3
+
+

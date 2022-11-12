@@ -46,7 +46,7 @@ SIMLIB ChangeLog:
 
 2009-11-29
  - version 3.01
- - problem with new GCC 4.4.1 optimizations (on Ubuntu 9.10)
+ - problem with new GCC 4.4.1 optimizations (on Ubuntu 9.10) 
    Message: "process switching canary2 died"
    Solved by adding volatile to all global variables in process switching code
  - added CXXFLAGS += -Wextra to makefile (and minor corrections of code)
@@ -65,7 +65,7 @@ SIMLIB ChangeLog:
 
 2008-12-17
  - prepare version number 2.99
- - Event::Terminate(): copy from Entity, remove delete this -- it caused
+ - Event::Terminate(): copy from Entity, remove delete this -- it caused 
    crash if called by Cancel()
    //BUG: Event:   Cancel(); Activate(....); -> segfault
    //     if not scheduled  delete after Behavior() ends
@@ -118,14 +118,14 @@ SIMLIB ChangeLog:
  - version 2.20
  - Process switching code reimplemented to use local variable pointers
    This fixed the bug appearing with 32bit code and -O2 optimization in
-   examples/procesor.cc.
+   examples/procesor.cc. 
  - Added some "canary" checking using the variables
  - Some details better commented in the code.
 
  - Added namespace simlib3 and all SIMLIB code moved to it
 
  - Makefile contains switch to special makefiles based on uname command
-   example:
+   example: 
      make    compile on current platform
      make 32 compile 32bit version on 64bit platform
      make 64 ...
@@ -191,7 +191,7 @@ SIMLIB ChangeLog:
 
 20.1.2000
  - corrected the behavior of Facility:: Seize/Release
- - removed Process::Wait(Queue)
+ - removed Process::Wait(Queue) 
  - changed examples
 
 8.10.1999
@@ -222,7 +222,7 @@ SIMLIB ChangeLog:
 
 4-12.8.1998
  - verze 2.14  ---------------------------------------
- - novy modul delay.cc a samostatne rozhrani delay.h
+ - novy modul delay.cc a samostatne rozhrani delay.h 
  - run.cc --- instalace funkci na ukazatel (HOOKS)
  - new macros: CALL_HOOK(x), DEFINE_HOOK(x), INSTALL_HOOK(x,f)
  - simlib.h --- typ bool, t{Event|Service}Priority, drobne zmeny
@@ -259,7 +259,7 @@ SIMLIB ChangeLog:
 
 16.4.96
 - barrier - oprava Break!!!
-- Stat, TStat, Histo + nove metody, zapouzdreni (n je problem!!)
+- Stat, TStat, Histo + nove metody, zapouzdreni (n je problem!!) 
 
 13.4.96
 - doplnìna tøída Expression (blok s 1 vstupem -- identita)
@@ -273,7 +273,7 @@ SIMLIB ChangeLog:
 - dprintf2
 
 27.3.96
-- oprava modulu WaitUntil:
+- oprava modulu WaitUntil: 
     problem pri WaitUntil(TRUE) - vyjme z WUList a tim zrusi aktivitu!
     (opraveno nastavenim na First -- testuje znova ostatni = OK)
     (mo¾ný problém: zacyklení !!!???)
@@ -360,7 +360,7 @@ xx.06.94
 - PROBLÉM: #pragma option -Vo  |  problémy s konzistencí !!!!!!!!!!!!
 
 19.4.94
-- oprava v modulu STORE.CPP  Store::Leave
+- oprava v modulu STORE.CPP  Store::Leave    
      p->Out() zru¹í aktivitu ==> chyba!   (thanks to Mr. Gráf)
 
 25.3.94
@@ -408,7 +408,7 @@ xx.06.94
        toté¾ v Store::Clear() - opraveno: nuluje jen vlastní fronty.
  chyba nalezena: chybí pøetypování  delete (EventNotice*)e->_Ev;
                  nevyvolal se destruktor...
-
+ 
 24.11.93
  chyba pøi provádìní procesu - Wait ?????!!!! hledání neúspì¹né...
  EXTVARS.H pøejmenováno na INTERNAL.H + doplnìny prototypy funkcí
@@ -489,7 +489,7 @@ OLD:
 
 20.11
 -----
- - doplneno Histogram::operator [] (unsigned i)
+ - doplneno Histogram::operator [] (unsigned i) 
  - prejmenovani List::Card() na List::Length()
 
 25.11

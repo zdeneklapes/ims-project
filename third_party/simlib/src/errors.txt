@@ -3,10 +3,10 @@
 //
 //  (c) PerPet 1991-2007
 //
-//  This file contains SIMLIB error messages
+//  This file contains SIMLIB error messages 
 //  You can translate it and then recompile SIMLIB
 //
-//  english source for GENERR program (it creates errors.h and errors.cc)
+//  english source for GENERR program (it creates errors.h and errors.cc) 
 //
 ////////////////////////////////////////////////////////////////////////////
 
@@ -107,7 +107,7 @@ CantCloseOutFile        Can't close output file
 AlgLoopDetected         Algebraic loop detected
 LowGreaterHigh          Parameter low>=high
 BadQntzrStep            Parameter of quantizer <= 0
-InconsistentHeader      Library and header (simlib.h) version mismatch
+InconsistentHeader      Library and header (simlib.h) version mismatch 
 
 ////////////////////////////////////////////////////////////////////////////
 SemaphoreError          Semaphore::V() -- bad call

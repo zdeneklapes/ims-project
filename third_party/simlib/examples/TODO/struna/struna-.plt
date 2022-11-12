@@ -1,4 +1,4 @@
-#
+#    
 #set terminal postscript eps color; set output "struna.eps"
 set terminal postscript eps ; set output "struna.eps"
 unset key
