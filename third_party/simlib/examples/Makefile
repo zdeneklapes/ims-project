@@ -6,7 +6,7 @@
 # C++ compiler flags
 CXXFLAGS = -Wall
 CXXFLAGS += -std=c++11
-CXXFLAGS += -O2 # add optimization level
+CXXFLAGS += -O0 # add optimization level
 CXXFLAGS += -g  # add debug info
 #CXXFLAGS += -pg # add profiling support
 #CXXFLAGS += -Weffc++ # add extra checking of source code

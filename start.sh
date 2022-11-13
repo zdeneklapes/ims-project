@@ -28,6 +28,7 @@ function error_exit() {
 ################################################################################
 function build_cmake() {
     if [ ! -d "build/" ]; then mkdir build; fi
+    cd build || error_exit "cd"
     eval "cmake .."
     cd .. || error_exit "cd"
 }
@@ -124,8 +125,8 @@ function ssh() {
 [[ "$#" -eq 0 ]] && usage && exit 0
 while [ "$#" -gt 0 ]; do
     case "$1" in
-    '-bc' | '--build-cmake') build ;;
-    '-bs' | '--build-make') build ;;
+    '-bc' | '--build-cmake') build_cmake ;;
+    '-bm' | '--build-make') build_make ;;
     '-r' | '--run') run ;;
     '-c' | '--clean') clean ;;
     '-z' | '--zip') zip_project ;;

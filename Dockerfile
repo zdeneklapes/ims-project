@@ -34,11 +34,12 @@ RUN apt-get update \
       rsync \
       tar \
       python \
+      fish \
     && apt-get clean \
     && ln -s /usr/bin/make /usr/bin/gmake
 
 
-COPY . .
+#COPY . .
 RUN make -C ./third_party/simlib install \
     && ( \
     echo 'LogLevel DEBUG2'; \
@@ -49,7 +50,8 @@ RUN make -C ./third_party/simlib install \
     && mkdir /run/sshd \
     && useradd -m user \
     && yes password | passwd user \
-    && usermod -s /bin/bash user
+    && usermod -s /bin/bash user \
+    && yes root | passwd root
 
 CMD ["/usr/sbin/sshd", "-D", "-e", "-f", "/etc/ssh/sshd_config_test_clion"]
 
