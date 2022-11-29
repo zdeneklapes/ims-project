@@ -1,5 +1,6 @@
 #!/bin/bash
 complete -c timedatectl -s h -l help -d 'Print a short help text and exit'
+set -x
 
 ################################################################################
 # GLOBAL VARIABLES
@@ -27,8 +28,12 @@ function error_exit() {
 # PROJECT
 ################################################################################
 function build_cmake() {
-    if [ ! -d "build/" ]; then mkdir build; fi
-    cd build || error_exit "cd"
+    DIR_BUILD="build"
+    if [ -d ${DIR_BUILD} ]; then
+        rm ${DIR_BUILD}
+    fi
+    mkdir ${DIR_BUILD}
+    cd ${DIR_BUILD} || error_exit "cd"
     eval "cmake .."
     cd .. || error_exit "cd"
 }
@@ -54,6 +59,19 @@ function clean() {
     ${RM} cscope.out
 }
 
+function download_third_party() {
+    DIR_LIBS="third_party"
+    if [ -d "${DIR_LIBS}" ]; then
+        ${RM} third_party
+    fi
+    mkdir ${DIR_LIBS}
+    cd ${DIR_LIBS} || error_exit "cd"
+    wget http://www.fit.vutbr.cz/~peringer/SIMLIB/source/simlib-3.09-20221108.tar.gz
+    tar xvzf simlib-3.09-20221108.tar.gz
+    rm simlib-3.09-20221108.tar.gz
+    cd - || error_exit "cd"
+}
+
 function zip_project() {
     echo "TODO"
 }
@@ -61,22 +79,26 @@ function zip_project() {
 ################################################################################
 # DOCKER
 ################################################################################
+DOCKER_CONTAINER_VERSION="0.5"
+DOCKER_NAME="clion/remote-cpp-env"
+DOCKER_CONATINER_NAME="clion_remote_env"
+
 function rm_docker_images_volumes() {
     docker stop $(docker ps -aq)
     docker system prune -a -f
     docker volume prune -f
 }
 
-function docker_stop() {
+function docker_stop_remove() {
     docker stop $(docker ps -q) && docker rm clion_remote_env
 }
 
 function docker_build() {
-    docker build -t clion/remote-cpp-env:0.5 -f Dockerfile .
+    docker build -t "${DOCKER_NAME}:${DOCKER_CONTAINER_VERSION}" -f Dockerfile .
 }
 
 function docker_run() {
-    docker run -d --cap-add sys_ptrace -p 127.0.0.1:2222:22 --name clion_remote_env clion/remote-cpp-env:0.5
+    docker run -d --cap-add sys_ptrace -p 127.0.0.1:2222:22 --name ${DOCKER_CONATINER_NAME} "${DOCKER_NAME}:${DOCKER_CONTAINER_VERSION}"
 }
 
 ################################################################################
@@ -118,7 +140,6 @@ function ssh() {
     scp "$(pwd)/${ZIP_NAME}.zip" $1@eva.fit.vutbr.cz:/homes/eva/xl/$1
 }
 
-
 ################################################################################
 # MAIN
 ################################################################################
@@ -130,6 +151,7 @@ while [ "$#" -gt 0 ]; do
     '-r' | '--run') run ;;
     '-c' | '--clean') clean ;;
     '-z' | '--zip') zip_project ;;
+    '--download-third-party') download_third_party ;;
         #
     '--cloc') count_loc ;;
     '--tags') tags ;;
@@ -137,7 +159,7 @@ while [ "$#" -gt 0 ]; do
     '-dc' | '--docker-clean') rm_docker_images_volumes ;;
     '-db' | '--docker-build') docker_build ;;
     '-dr' | '--docker-run') docker_run ;;
-    '-ds' | '--docker-stop') docker_stop ;;
+    '-dsr' | '--docker-stop-remove-container') docker_stop_remove ;;
         #
     '-h' | '--help' | *) usage ;;
     esac

@@ -24,47 +24,9 @@ tags
 *.o
 *.dSYM
 
+
 # Third-party
-third_party/simlib/examples/ball
-third_party/simlib/examples/ball2
-third_party/simlib/examples/bessel
-third_party/simlib/examples/ctest
-third_party/simlib/examples/heating
-third_party/simlib/examples/lorenz
-third_party/simlib/examples/model2
-third_party/simlib/examples/model2-timeout
-third_party/simlib/examples/model3
-third_party/simlib/examples/model4
-third_party/simlib/examples/model5
-third_party/simlib/examples/multiexp
-third_party/simlib/examples/network
-third_party/simlib/examples/pbx
-third_party/simlib/examples/procesor
-third_party/simlib/examples/rc
-third_party/simlib/examples/rlc
-third_party/simlib/examples/test3D
-third_party/simlib/examples/wheel
-third_party/simlib/examples/wheel2
-third_party/simlib/src/simlib.a
-third_party/simlib/src/simlib.nm
-third_party/simlib/src/simlib.so
-third_party/simlib/tests/3d-test
-third_party/simlib/tests/barrier-test1
-third_party/simlib/tests/barrier-test2
-third_party/simlib/tests/delay-test
-third_party/simlib/tests/delay-test2
-third_party/simlib/tests/process-test
-third_party/simlib/tests/random-test
-third_party/simlib/tests/sizeof-all
-third_party/simlib/tests/test-calendar
-third_party/simlib/tests/test-reactivate
-third_party/simlib/tests/test1
-third_party/simlib/tests/test2
-third_party/simlib/tests/test3
-third_party/simlib/tests/test4
-third_party/simlib/tests/test5
-third_party/simlib/tests/waituntil-test
-third_party/simlib/tests/zdelay-test
+third_party/
 
 # Docs
 manual.pdf

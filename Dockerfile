@@ -39,7 +39,7 @@ RUN apt-get update \
     && ln -s /usr/bin/make /usr/bin/gmake
 
 
-#COPY . .
+COPY . .
 RUN make -C ./third_party/simlib install \
     && ( \
     echo 'LogLevel DEBUG2'; \
