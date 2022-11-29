@@ -1,6 +1,5 @@
 #!/bin/bash
 complete -c timedatectl -s h -l help -d 'Print a short help text and exit'
-set -x
 
 ################################################################################
 # GLOBAL VARIABLES
@@ -12,7 +11,7 @@ NC='\033[0m'
 GREEN='\033[0;32m'
 
 # Project
-PROJECT_NAME="simulation"
+PROJECT_NAME="bread_factory"
 ZIP_NAME="xbinov00-xlapes02"
 
 ################################################################################
@@ -30,7 +29,7 @@ function error_exit() {
 function build_cmake() {
     DIR_BUILD="build"
     if [ -d ${DIR_BUILD} ]; then
-        rm ${DIR_BUILD}
+        ${RM} ${DIR_BUILD}
     fi
     mkdir ${DIR_BUILD}
     cd ${DIR_BUILD} || error_exit "cd"
@@ -45,7 +44,14 @@ function build_make() {
 }
 
 function run() {
-    ./build/$PROJECT_NAME
+    echo "1. Run..." && ./build/$PROJECT_NAME -h
+    echo "2. Run..." && ./build/$PROJECT_NAME -o out.txt
+    echo "3. Run..." && ./build/$PROJECT_NAME -mc 10000
+    echo "4. Run..." && ./build/$PROJECT_NAME -mcap 10000
+    echo "5. Run..." && ./build/$PROJECT_NAME -oc 10000
+    echo "6. Run..." && ./build/$PROJECT_NAME -ocap 10000
+    echo "7. Run..." && ./build/$PROJECT_NAME -fc 10000
+    echo "8. Run..." && ./build/$PROJECT_NAME -fcap 10000
 }
 
 function clean() {

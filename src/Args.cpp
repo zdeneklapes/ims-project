@@ -1,37 +1,53 @@
 #include "Args.h"
 
 Args::Args(int argc, char *argv[]) {
+    // TODO: handle ExitCodes_BAD_ARGUMENTS like e.q. not a number
+
+    using namespace std;  // NOLINT
+
     for (int i = 0; i < argc; ++i) {
-        if (strcmp(argv[i], "--help") == 0 || strcmp(argv[i], "-h") == 0) {
-            print_help_exit();
-        }
-        if (strcmp(argv[i], "--outfile") == 0 || strcmp(argv[i], "-o") == 0) {
+        if (string(argv[i]) == string("-h") || string(argv[i]) == string("--help")) {
+            print_help_exit(ExitCodes_OK);
+        } else if (string(argv[i]) == string("-o") || string(argv[i]) == string("--outfile")) {
             CHECK_NEXT_ARG(argc, i);
             outfile = argv[++i];
-        }
-        if (strcmp(argv[i], "--mixers") == 0 || strcmp(argv[i], "-mc") == 0) {
+        } else if (string(argv[i]) == string("-mc") || string(argv[i]) == string("--mixers")) {
             CHECK_NEXT_ARG(argc, i);
             std::stringstream(argv[++i]) >> mixers;
-        }
-        if (strcmp(argv[i], "--mixer-capacity") == 0 || strcmp(argv[i], "-mc") == 0) {
+        } else if (string(argv[i]) == string("-mcap") || string(argv[i]) == string("--mixer-capacity")) {
             CHECK_NEXT_ARG(argc, i);
-            std::stringstream(argv[++i]) >> mixers;
-        }
-        if (strcmp(argv[i], "--ovens") == 0 || strcmp(argv[i], "-oc") == 0) {
+            std::stringstream(argv[++i]) >> mixer_capacity;
+        } else if (string(argv[i]) == string("-oc") || string(argv[i]) == string("--ovens")) {
             CHECK_NEXT_ARG(argc, i);
             std::stringstream(argv[++i]) >> ovens;
-        }
-        if (strcmp(argv[i], "--oven-space") == 0 || strcmp(argv[i], "-os") == 0) {
+        } else if (string(argv[i]) == string("-ocap") || string(argv[i]) == string("--oven-capacity")) {
             CHECK_NEXT_ARG(argc, i);
-            std::stringstream(argv[++i]) >> ovens;
-        }
-        if (strcmp(argv[i], "--fermentation-rooms") == 0 || strcmp(argv[i], "-fr") == 0) {
+            std::stringstream(argv[++i]) >> oven_capacity;
+        } else if (string(argv[i]) == string("-fc") || string(argv[i]) == string("--fermentation-rooms")) {
             CHECK_NEXT_ARG(argc, i);
             std::stringstream(argv[++i]) >> fermentation_rooms;
-        }
-        if (strcmp(argv[i], "--fermentation-room-capacity") == 0 || strcmp(argv[i], "-frc") == 0) {
+        } else if (string(argv[i]) == string("-fcap") || string(argv[i]) == string("--fermentation-room-capacity")) {
             CHECK_NEXT_ARG(argc, i);
             std::stringstream(argv[++i]) >> fermentation_room_capacity;
+        } else if (string(argv[i]) == string("-s") || string(argv[i]) == string("--simulations")) {
+            CHECK_NEXT_ARG(argc, i);
+            std::stringstream(argv[++i]) >> simulations;
+        } else {
+            print_help_exit(ExitCodes_BAD_ARGUMENTS);
         }
     }
+}
+void Args::debug_args() const {
+    std::cout << "mixers: " << mixers << std::endl;
+    std::cout << "mixer_capacity: " << mixer_capacity << std::endl;
+    std::cout << "breads: " << breads << std::endl;
+    std::cout << "ovens: " << ovens << std::endl;
+    std::cout << "oven_capacity: " << oven_capacity << std::endl;
+    std::cout << "fermentation_rooms: " << fermentation_rooms << std::endl;
+    std::cout << "fermentation_room_capacity: " << fermentation_room_capacity << std::endl;
+    std::cout << "outfile: " << outfile << std::endl;
+    std::cout << "time_baking_sec: " << time_baking_sec << std::endl;
+    std::cout << "time_fermentation_sec: " << time_fermentation_sec << std::endl;
+    std::cout << "time_mixing_sec: " << time_mixing_sec << std::endl;
+    std::cout << "time_loading_sec: " << time_loading_sec << std::endl;
 }

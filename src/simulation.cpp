@@ -3,3 +3,11 @@
 //
 
 #include "simulation.h"
+
+void simulate(Program &program) {
+    Args &args = program.args;
+
+    for (int i = 0; i < args.simulations; ++i) {
+        std::cout << i << ". Simulation\n";
+    }
+}
