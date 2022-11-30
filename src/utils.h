@@ -2,6 +2,7 @@
 #define SRC_UTILS_H_
 
 #include <iostream>
+#include <random>
 #include <string>
 
 #include "ExitCodes.h"

@@ -9,6 +9,8 @@ void WorkShiftProcess::Behavior() {
 
 void BakeProcess::Behavior() {
     // TODO: implement
+    double duration = Normal(bake_duration_mean_sec, bake_duration_deviation_sec);
+    (*bake_duration)(duration);
 }
 
 void FermentationProcess::Behavior() {
