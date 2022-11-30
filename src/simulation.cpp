@@ -4,12 +4,22 @@
 
 #include "simulation.h"
 
+#include "Processes.h"
+
 void simulate(Program &program) {
     Args &args = program.args;
 
     for (int i = 0; i < args.simulations; ++i) {
-        std::cout << i << ". Simulation\n";
-        //        Store store(args);
-        std::cout << Uniform(0, 1) << std::endl;
+        //
+        std::cout << "=== " << i << ". START Simulation ===\n";
+
+        //
+        Init(0, static_cast<double>(args.time_work_shift_sec));
+        (new WorkShiftProcess)->Activate();
+        Run();
+        SIMLIB_statistics.Output();
+
+        //
+        std::cout << "=== " << i << ". END Simulation ===\n";
     }
 }
