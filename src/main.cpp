@@ -10,13 +10,15 @@
 
 using namespace std;  // NOLINT
 
-int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv) {
-    Args args(argc, argv);
-    Program program(args);
+int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv) {
+    auto* args = new Args(argc, argv);
+    auto* stores = new CustomStores(args);
+    auto program = new Program(args, stores);
 
     //
     simulate(program);
 
     //
+    delete program;
     return 0;
 }

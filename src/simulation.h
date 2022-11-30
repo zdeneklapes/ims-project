@@ -10,6 +10,6 @@
 #include "Args.h"
 #include "Program.h"
 
-void simulate(Program &program);
+void simulate(Program *program);
 
 #endif  // SRC_SIMULATION_H_

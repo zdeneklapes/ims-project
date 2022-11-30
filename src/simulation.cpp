@@ -6,10 +6,10 @@
 
 #include "Processes.h"
 
-void simulate(Program &program) {
-    Args &args = program.args;
+void simulate(Program *program) {
+    auto &args = *program->args;
 
-    for (int i = 0; i < args.simulations; ++i) {
+    for (u_int64_t i = 0; i < args.simulations; ++i) {
         //
         std::cout << "=== " << i << ". START Simulation ===\n";
 

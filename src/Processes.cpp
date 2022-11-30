@@ -1,50 +1,74 @@
 #include "Processes.h"
 
-//                  mixer+ovens+
-Facility facilities[1 + 1 + 1 + 1 + 1];
+#include <z3_fixedpoint.h>
 
 /******************************************************************************
  * WorkShiftProcess
  *****************************************************************************/
-WorkShiftProcess::WorkShiftProcess(Program& _program) : program(_program) {}
+WorkShiftProcess::WorkShiftProcess(Program* _program) : program(_program) {}
 
 WorkShiftProcess::~WorkShiftProcess() = default;
 
 void WorkShiftProcess::Behavior() {
-    while (this->program.args.breads > 0) {
+    auto* stores = program->stores;
+    auto args = program->args;
+    while (this->program->args->mixer_capacity > 0) {
+        //
+        Enter(*stores->mixer_capacity, 1);
         (new MixProcess(this->program))->Activate();
 
-        // TODO: Mix
+        //
+        //        Enter(cut_capacity, 1);
+        //        (new CutProcess(this->program))->Activate();
 
-        // TODO: Cut
+        //
+        //        Enter(fermentation_capacity, 1);
+        //        (new FermentationProcess(this->program))->Activate();
 
-        // TODO: Fermentation
+        //
+        //        Enter(bake_capacity, 1);
+        //        (new BakeProcess(this->program))->Activate();
 
-        // TODO: Bake
+        //
+        //        Enter(load_capacity, 1);
+        //        (new LoadProcess(this->program))->Activate();
 
-        // TODO: Pack
-
-        // TODO: Load
+        args->breads--;
     }
 }
 
 /******************************************************************************
- * BakeProcess
+ * MixProcess
  *****************************************************************************/
-BakeProcess::BakeProcess(Program& _program) : bake_duration(new Stat("Bake duration")), program(_program) {}
+MixProcess::MixProcess(Program* _program) : mix_duration(new Stat("Mix duration")), program(_program) {}
 
-BakeProcess::~BakeProcess() { delete bake_duration; }
+MixProcess::~MixProcess() { delete mix_duration; }
 
-void BakeProcess::Behavior() {
-    double duration = Normal(bake_duration_mean_sec, bake_duration_deviation_sec);
-    (*bake_duration)(duration);
+void MixProcess::Behavior() {
+    const double duration = Normal(mix_duration_mean_per_cart_sec, mix_duration_deviation_per_cart_sec);
+    (*mix_duration)(duration);
+    Wait(duration);
+    Leave(*this->program->stores->mixer_capacity, 1);
+}
+
+#if 0
+
+/******************************************************************************
+ * CutProcess
+ *****************************************************************************/
+CutProcess::CutProcess(Program& _program) : cutting_duration(new Stat("Cut Duration")), program(args) {}
+
+CutProcess::~CutProcess() { delete cutting_duration; }
+
+void CutProcess::Behavior() {
+    //
 }
 
 /******************************************************************************
  * FermentationProcess
  *****************************************************************************/
 FermentationProcess::FermentationProcess(Program& _program)
-    : fermentation_duration(new Stat("Bread fermentation duration")), program(_program) {
+    : fermentation_duration(new Stat("Fermentation duration")), program(args) {
     // TODO: implement
 }
 
@@ -58,24 +82,26 @@ void FermentationProcess::Behavior() {
 }
 
 /******************************************************************************
- * MixProcess
+ * BakeProcess
  *****************************************************************************/
-MixProcess::MixProcess(Program& _program) : mix_duration(new Stat("Mixing duration")), program(_program) {}
+BakeProcess::BakeProcess(Program& _program) : bake_duration(new Stat("Bake duration")), program(args) {}
 
-MixProcess::~MixProcess() { delete mix_duration; }
+BakeProcess::~BakeProcess() { delete bake_duration; }
 
-void MixProcess::Behavior() {
-    const double duration = Normal(mix_duration_mean_per_cart_sec, mix_duration_deviation_per_cart_sec);
-    (*mix_duration)(duration);
+void BakeProcess::Behavior() {
+    double duration = Normal(bake_duration_mean_sec, bake_duration_deviation_sec);
+    (*bake_duration)(duration);
 }
 
 /******************************************************************************
- * CutProcess
+ * LoadProcess
  *****************************************************************************/
-CutProcess::CutProcess(Program& _program) : cutting_duration(new Stat("Cutting Duration")), program(_program) {}
+LoadProcess::LoadProcess(Program& _program) : load_duration(new Stat("Load Duration")), program(args) {}
 
-CutProcess::~CutProcess() { delete cutting_duration; }
+LoadProcess::~LoadProcess() { delete load_duration; }
 
-void CutProcess::Behavior() {
+void LoadProcess::Behavior() {
     //
 }
+
+#endif
