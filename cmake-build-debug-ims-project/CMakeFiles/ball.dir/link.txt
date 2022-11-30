@@ -1,0 +1,1 @@
+/usr/bin/c++   -g -Wall -Wextra -pedantic -g   CMakeFiles/ball.dir/third_party/simlib/examples/ball.cc.o  -o ball   -L/usr/local/lib  -Wl,-rpath,/usr/local/lib -lsimlib 

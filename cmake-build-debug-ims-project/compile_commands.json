@@ -1,0 +1,132 @@
+[
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/wheel2.dir/third_party/simlib/examples/wheel2.cc.o -c /tmp/tmp.ZzpiupKbav/third_party/simlib/examples/wheel2.cc",
+  "file": "/tmp/tmp.ZzpiupKbav/third_party/simlib/examples/wheel2.cc"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/wheel.dir/third_party/simlib/examples/wheel.cc.o -c /tmp/tmp.ZzpiupKbav/third_party/simlib/examples/wheel.cc",
+  "file": "/tmp/tmp.ZzpiupKbav/third_party/simlib/examples/wheel.cc"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/test3D.dir/third_party/simlib/examples/test3D.cc.o -c /tmp/tmp.ZzpiupKbav/third_party/simlib/examples/test3D.cc",
+  "file": "/tmp/tmp.ZzpiupKbav/third_party/simlib/examples/test3D.cc"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/rlc.dir/third_party/simlib/examples/rlc.cc.o -c /tmp/tmp.ZzpiupKbav/third_party/simlib/examples/rlc.cc",
+  "file": "/tmp/tmp.ZzpiupKbav/third_party/simlib/examples/rlc.cc"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/rc.dir/third_party/simlib/examples/rc.cc.o -c /tmp/tmp.ZzpiupKbav/third_party/simlib/examples/rc.cc",
+  "file": "/tmp/tmp.ZzpiupKbav/third_party/simlib/examples/rc.cc"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/procesor.dir/third_party/simlib/examples/procesor.cc.o -c /tmp/tmp.ZzpiupKbav/third_party/simlib/examples/procesor.cc",
+  "file": "/tmp/tmp.ZzpiupKbav/third_party/simlib/examples/procesor.cc"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/network.dir/third_party/simlib/examples/network.cc.o -c /tmp/tmp.ZzpiupKbav/third_party/simlib/examples/network.cc",
+  "file": "/tmp/tmp.ZzpiupKbav/third_party/simlib/examples/network.cc"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/ball.dir/third_party/simlib/examples/ball.cc.o -c /tmp/tmp.ZzpiupKbav/third_party/simlib/examples/ball.cc",
+  "file": "/tmp/tmp.ZzpiupKbav/third_party/simlib/examples/ball.cc"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/lorenz.dir/third_party/simlib/examples/lorenz.cc.o -c /tmp/tmp.ZzpiupKbav/third_party/simlib/examples/lorenz.cc",
+  "file": "/tmp/tmp.ZzpiupKbav/third_party/simlib/examples/lorenz.cc"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/bessel.dir/third_party/simlib/examples/bessel.cc.o -c /tmp/tmp.ZzpiupKbav/third_party/simlib/examples/bessel.cc",
+  "file": "/tmp/tmp.ZzpiupKbav/third_party/simlib/examples/bessel.cc"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/ctest.dir/third_party/simlib/examples/ctest.cc.o -c /tmp/tmp.ZzpiupKbav/third_party/simlib/examples/ctest.cc",
+  "file": "/tmp/tmp.ZzpiupKbav/third_party/simlib/examples/ctest.cc"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/bread_factory.dir/src/Args.cpp.o -c /tmp/tmp.ZzpiupKbav/src/Args.cpp",
+  "file": "/tmp/tmp.ZzpiupKbav/src/Args.cpp"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/bread_factory.dir/src/Processes.cpp.o -c /tmp/tmp.ZzpiupKbav/src/Processes.cpp",
+  "file": "/tmp/tmp.ZzpiupKbav/src/Processes.cpp"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/bread_factory.dir/src/Program.cpp.o -c /tmp/tmp.ZzpiupKbav/src/Program.cpp",
+  "file": "/tmp/tmp.ZzpiupKbav/src/Program.cpp"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/bread_factory.dir/src/main.cpp.o -c /tmp/tmp.ZzpiupKbav/src/main.cpp",
+  "file": "/tmp/tmp.ZzpiupKbav/src/main.cpp"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/bread_factory.dir/src/simulation.cpp.o -c /tmp/tmp.ZzpiupKbav/src/simulation.cpp",
+  "file": "/tmp/tmp.ZzpiupKbav/src/simulation.cpp"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/bread_factory.dir/src/utils.cpp.o -c /tmp/tmp.ZzpiupKbav/src/utils.cpp",
+  "file": "/tmp/tmp.ZzpiupKbav/src/utils.cpp"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/ball2.dir/third_party/simlib/examples/ball2.cc.o -c /tmp/tmp.ZzpiupKbav/third_party/simlib/examples/ball2.cc",
+  "file": "/tmp/tmp.ZzpiupKbav/third_party/simlib/examples/ball2.cc"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/model4.dir/third_party/simlib/examples/model4.cc.o -c /tmp/tmp.ZzpiupKbav/third_party/simlib/examples/model4.cc",
+  "file": "/tmp/tmp.ZzpiupKbav/third_party/simlib/examples/model4.cc"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/pbx.dir/third_party/simlib/examples/pbx.cc.o -c /tmp/tmp.ZzpiupKbav/third_party/simlib/examples/pbx.cc",
+  "file": "/tmp/tmp.ZzpiupKbav/third_party/simlib/examples/pbx.cc"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/heating.dir/third_party/simlib/examples/heating.cc.o -c /tmp/tmp.ZzpiupKbav/third_party/simlib/examples/heating.cc",
+  "file": "/tmp/tmp.ZzpiupKbav/third_party/simlib/examples/heating.cc"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/model2-timeout.dir/third_party/simlib/examples/model2-timeout.cc.o -c /tmp/tmp.ZzpiupKbav/third_party/simlib/examples/model2-timeout.cc",
+  "file": "/tmp/tmp.ZzpiupKbav/third_party/simlib/examples/model2-timeout.cc"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/model2.dir/third_party/simlib/examples/model2.cc.o -c /tmp/tmp.ZzpiupKbav/third_party/simlib/examples/model2.cc",
+  "file": "/tmp/tmp.ZzpiupKbav/third_party/simlib/examples/model2.cc"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/multiexp.dir/third_party/simlib/examples/multiexp.cc.o -c /tmp/tmp.ZzpiupKbav/third_party/simlib/examples/multiexp.cc",
+  "file": "/tmp/tmp.ZzpiupKbav/third_party/simlib/examples/multiexp.cc"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/model3.dir/third_party/simlib/examples/model3.cc.o -c /tmp/tmp.ZzpiupKbav/third_party/simlib/examples/model3.cc",
+  "file": "/tmp/tmp.ZzpiupKbav/third_party/simlib/examples/model3.cc"
+},
+{
+  "directory": "/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project",
+  "command": "/usr/bin/c++   -I/tmp/tmp.ZzpiupKbav/cmake-build-debug-ims-project -I/tmp/tmp.ZzpiupKbav -I/tmp/tmp.ZzpiupKbav/src -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy/analyzer -I/tmp/tmp.ZzpiupKbav/third_party/simlib/fuzzy -I/tmp/tmp.ZzpiupKbav/third_party/simlib/src   -g -Wall -Wextra -pedantic -g   -std=gnu++2a -o CMakeFiles/model5.dir/third_party/simlib/examples/model5.cc.o -c /tmp/tmp.ZzpiupKbav/third_party/simlib/examples/model5.cc",
+  "file": "/tmp/tmp.ZzpiupKbav/third_party/simlib/examples/model5.cc"
+}
+]
