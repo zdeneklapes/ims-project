@@ -11,9 +11,6 @@ Args::Args(int argc, char *argv[]) {
         } else if (string(argv[i]) == string("-o") || string(argv[i]) == string("--outfile")) {
             CHECK_NEXT_ARG(argc, i);
             outfile = argv[++i];
-        } else if (string(argv[i]) == string("-w") || string(argv[i]) == string("--workers")) {
-            CHECK_NEXT_ARG(argc, i);
-            std::stringstream(argv[++i]) >> workers;
         } else if (string(argv[i]) == string("-mc") || string(argv[i]) == string("--mixers")) {
             CHECK_NEXT_ARG(argc, i);
             std::stringstream(argv[++i]) >> mixers;
@@ -23,9 +20,6 @@ Args::Args(int argc, char *argv[]) {
         } else if (string(argv[i]) == string("-oc") || string(argv[i]) == string("--ovens")) {
             CHECK_NEXT_ARG(argc, i);
             std::stringstream(argv[++i]) >> ovens;
-        } else if (string(argv[i]) == string("-ocap") || string(argv[i]) == string("--oven-capacity")) {
-            CHECK_NEXT_ARG(argc, i);
-            std::stringstream(argv[++i]) >> oven_carriage_capacity;
         } else if (string(argv[i]) == string("-fc") || string(argv[i]) == string("--fermentation-rooms")) {
             CHECK_NEXT_ARG(argc, i);
             std::stringstream(argv[++i]) >> fermentation_rooms;
@@ -49,11 +43,11 @@ Args::Args(int argc, char *argv[]) {
 void Args::debug_args() const {
     //
     std::cout << "outfile: " << outfile << std::endl;
-    std::cout << "workers: " << workers << std::endl;
+
     std::cout << "mixers: " << mixers << std::endl;
     std::cout << "mixer_capacity: " << mixer_capacity << std::endl;
     std::cout << "ovens: " << ovens << std::endl;
-    std::cout << "oven_carriage_capacity: " << oven_carriage_capacity << std::endl;
+
     std::cout << "fermentation_rooms: " << fermentation_rooms << std::endl;
     std::cout << "fermentation_room_carriage_capacity: " << fermentation_room_carriage_capacity << std::endl;
     std::cout << "tables: " << tables << std::endl;

@@ -21,7 +21,8 @@ struct Args {
     /////////////////////////
     // System inputs
     /////////////////////////
-    uint64_t workers = 1;
+    uint64_t workers_start_till_fermentation = 3;
+    uint64_t workers_baking_till_loading = 2;
     //
     uint64_t mixers = 1;
     uint64_t mixer_capacity = 100;

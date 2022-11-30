@@ -5,24 +5,29 @@
 #include <random>
 #include <string>
 
+#include "Program.h"
 #include "simlib.h"
 
 class WorkShiftProcess : public Process {
    public:  // NOLINT
-    WorkShiftProcess() = default;
+    explicit WorkShiftProcess(Program &_program);
     ~WorkShiftProcess() override = default;
 
     void Behavior() override;
+
+   private:
+    Program program;
 };
 
 class FermentationProcess : public Process {
    public:  // NOLINT
-    FermentationProcess() = default;
-    ~FermentationProcess() override = default;
+    explicit FermentationProcess(Program &_program);
+    ~FermentationProcess() override;
     void Behavior() override;
 
    private:  // NOLINT
     Stat *fermentation_duration;
+    Program program;
 };
 
 class BakeProcess : public Process {

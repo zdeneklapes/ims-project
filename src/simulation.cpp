@@ -15,7 +15,7 @@ void simulate(Program &program) {
 
         //
         Init(0, static_cast<double>(args.time_work_shift_sec));
-        (new WorkShiftProcess)->Activate();
+        (new WorkShiftProcess(program))->Activate();
         Run();
         SIMLIB_statistics.Output();
 
