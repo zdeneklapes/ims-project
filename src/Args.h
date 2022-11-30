@@ -26,6 +26,8 @@ struct Args {
     uint16_t mixers = 1;
     uint16_t mixer_capacity = 100;
     //
+    uint16_t tables = 1;
+    //
     uint16_t breads = 100;
     //
     uint16_t ovens = 1;
@@ -41,14 +43,13 @@ struct Args {
     /////////////////////////
     // System Data
     /////////////////////////
-    u_int64_t time_unload_raw_materials_sec = 10 * 60;  // TODO: Time to unload raw materials for 100 breads
-    u_int64_t time_baking_sec = 30 * 60;                // TODO: Time to bake 1 bread
-    u_int64_t time_fermentation_sec = 20 * 60;          // TODO: Time to fermentation for 1 bread
-    u_int64_t time_mixing_sec = 10 * 60;                // TODO: Time to mix dough for 100 loaves of bread
-    u_int64_t time_make_loaf_sec = 10 * 60;             // TODO: Time to make 1 loaf of bread
-    u_int64_t time_move_bread_sec = 10 * 60;  // TODO: Time to move carriage with loaves of bread between stages
-    u_int64_t time_loading_sec = 5 * 60;      // TODO: Time to load boxes with bread to the truck
-    u_int64_t time_unloading_sec = 5 * 60;    // TODO: Time to unload boxes from truck
+    u_int64_t time_baking_sec = 30 * 60;         // TODO: Time to bake 1 bread
+    u_int64_t time_fermentation_sec = 20 * 60;   // TODO: Time to fermentation for 1 bread
+    u_int64_t time_mixing_sec = 10 * 60;         // TODO: Time to mix dough for 100 loaves of bread
+    u_int64_t time_make_loaf_sec = 1 * 60;       // TODO: Time to make 1 loaf of bread from dough
+    u_int64_t time_move_carriage_sec = 2 * 60;   // TODO: Time to move carriage with loaves of bread between stages
+    u_int64_t time_loading_box_sec = 0.25 * 60;  // TODO: Time to load boxes with bread to the truck
+    u_int64_t time_unloading_sec = 0.25 * 60;    // TODO: Time to unload boxes from truck
 };
 
 #endif  // SRC_ARGS_H_

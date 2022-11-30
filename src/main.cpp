@@ -6,6 +6,8 @@
 #include "Program.h"
 #include "simulation.h"
 
+using namespace std;  // NOLINT
+
 int main([[maybe_unused]] int argc, [[maybe_unused]] char **argv) {
     Args args(argc, argv);
     Program program(args);
