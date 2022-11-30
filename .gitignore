@@ -42,9 +42,7 @@ manual.pdf
 
 ## IDE
 .idea/
-cmake-build-debug
-cmake-build-debug-docker
-cmake-build-debug-remote-host
+**cmake-build-**/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
