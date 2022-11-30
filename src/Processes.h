@@ -8,7 +8,8 @@
 #include "Program.h"
 #include "simlib.h"
 
-Store worker_capacity = Store("Worker capacity", 5);  // default
+Store worker_capacity_1 = Store("Worker capacity", 5);  // default
+Store worker_capacity_2 = Store("Worker capacity", 5);  // default
 
 class WorkShiftProcess : public Process {
    public:
