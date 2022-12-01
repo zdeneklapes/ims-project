@@ -53,7 +53,11 @@ function run() {
     #    echo "6. Run..." && ./build/$PROJECT_NAME -ocap 10000
     #    echo "7. Run..." && ./build/$PROJECT_NAME -fc 10000
     #    echo "8. Run..." && ./build/$PROJECT_NAME -fcap 10000
-    echo "9. Run..." && ./build/$PROJECT_NAME
+    ./build/$PROJECT_NAME
+}
+
+function run_valgrind() {
+    valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose ./build/$PROJECT_NAME
 }
 
 function clean() {
@@ -157,6 +161,7 @@ while [ "$#" -gt 0 ]; do
     '-bc' | '--build-cmake') build_cmake ;;
     '-bm' | '--build-make') build_make ;;
     '-r' | '--run') run ;;
+    '--valgrind') run_valgrind ;;
     '-c' | '--clean') clean ;;
     '-z' | '--zip') zip_project ;;
     '--download-third-party') download_third_party ;;

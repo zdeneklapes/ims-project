@@ -11,11 +11,24 @@ class CustomStores {
     explicit CustomStores(Args *_args);
     ~CustomStores();
 
-    Store *mixer_capacity;
-    Store *cut_capacity;
-    Store *fermentation_capacity;
-    Store *bake_capacity;
-    Store *load_capacity;
+    Store *mixing;
+    Store *cutting;
+    Store *fermenting;
+    Store *baking;
+    Store *loading;
+};
+
+class CustomStats {
+   public:
+    CustomStats();
+    ~CustomStats();
+
+    //
+    Stat *mix_duration;
+    Stat *cut_duration;
+    Stat *fermentation_duration;
+    Stat *bake_duration;
+    Stat *load_duration;
 };
 
 class Program {
@@ -25,6 +38,8 @@ class Program {
 
     Args *args;
     CustomStores *stores;
+    CustomStats *stats;
+    bool is_running = true;
 };
 
 #endif  // SRC_PROGRAM_H_

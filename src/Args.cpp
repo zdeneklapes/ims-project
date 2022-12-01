@@ -22,10 +22,10 @@ Args::Args(int argc, char *argv[]) {
             std::stringstream(argv[++i]) >> ovens;
         } else if (string(argv[i]) == string("-fc") || string(argv[i]) == string("--fermentation-rooms")) {
             CHECK_NEXT_ARG(argc, i);
-            std::stringstream(argv[++i]) >> fermentation_rooms;
+            std::stringstream(argv[++i]) >> fermentations;
         } else if (string(argv[i]) == string("-fcap") || string(argv[i]) == string("--fermentation-room-capacity")) {
             CHECK_NEXT_ARG(argc, i);
-            std::stringstream(argv[++i]) >> fermentation_room_carriage_capacity;
+            std::stringstream(argv[++i]) >> fermentation_capacity;
         } else if (string(argv[i]) == string("-t") || string(argv[i]) == string("--tables")) {
             CHECK_NEXT_ARG(argc, i);
             std::stringstream(argv[++i]) >> tables;
@@ -45,11 +45,11 @@ void Args::debug_args() const {
     std::cout << "outfile: " << outfile << std::endl;
 
     std::cout << "mixers: " << mixers << std::endl;
-    std::cout << "mixer_capacity: " << mixer_capacity << std::endl;
+    std::cout << "mixing: " << mixer_capacity << std::endl;
     std::cout << "ovens: " << ovens << std::endl;
 
-    std::cout << "fermentation_rooms: " << fermentation_rooms << std::endl;
-    std::cout << "fermentation_room_carriage_capacity: " << fermentation_room_carriage_capacity << std::endl;
+    //    std::cout << "fermentation_rooms: " << fermentation_rooms << std::endl;
+    //    std::cout << "fermentation_room_carriage_capacity: " << fermentation_room_carriage_capacity << std::endl;
     std::cout << "tables: " << tables << std::endl;
     std::cout << "breads: " << breads << std::endl;
     std::cout << "simulations: " << simulations << std::endl;

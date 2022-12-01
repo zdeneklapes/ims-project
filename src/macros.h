@@ -13,4 +13,11 @@
         }                                             \
     } while (0);
 
+#define LEAVE_MIXING(program, condition)          \
+    do {                                          \
+        if ((condition)) {                        \
+            Leave(*(program)->stores->mixing, 1); \
+        }                                         \
+    } while (0);
+
 #endif  // SRC_MACROS_H_

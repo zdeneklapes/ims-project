@@ -21,27 +21,24 @@ struct Args {
     /////////////////////////
     // System inputs
     /////////////////////////
-    uint64_t workers_start_till_fermentation = 3;
-    uint64_t workers_baking_till_loading = 2;
+    // Order
+    uint64_t breads = 10;
     //
     uint64_t mixers = 1;
-    uint64_t mixer_capacity = 100;
+    uint64_t mixer_capacity = 50;
     //
     uint64_t tables = 1;
-    //
-    uint64_t breads = 100;
+    uint64_t table_capacity = 1;
     //
     uint64_t ovens = 1;
-    uint64_t oven_bread_capacity = 20;
+    uint64_t oven_capacity = 50;
     //
-    uint64_t fermentation_rooms = 1;
-    uint64_t fermentation_room_carriage_capacity = 8;
-    //
-    u_int64_t carriage_bread_capacity = 10 * 8;  // 10 levels of shelves * 8 bread per slat
+    uint64_t fermentations = 1;
+    uint64_t fermentation_capacity = 50;
     //
     uint64_t simulations = 1;
     //
-    std::string outfile = "bread_factory.txt";
+    std::string outfile;
 
     /////////////////////////
     // System Data

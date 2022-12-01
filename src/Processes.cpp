@@ -1,107 +1,132 @@
 #include "Processes.h"
 
-#include <z3_fixedpoint.h>
+int get_breads_tbd(Args* args) { return args->breads > args->mixer_capacity ? args->mixer_capacity : args->breads; }
 
 /******************************************************************************
  * WorkShiftProcess
  *****************************************************************************/
 WorkShiftProcess::WorkShiftProcess(Program* _program) : program(_program) {}
 
-WorkShiftProcess::~WorkShiftProcess() = default;
+WorkShiftProcess::~WorkShiftProcess() {
+    program->stats->mix_duration->Output();
+    program->stats->cut_duration->Output();
+    program->stats->fermentation_duration->Output();
+    program->stats->bake_duration->Output();
+    program->stats->load_duration->Output();
+
+    //
+    std::stringstream msg;
+    msg << "Total baking time: "
+        << (program->stats->mix_duration->MeanValue() + program->stats->cut_duration->MeanValue() +
+            program->stats->fermentation_duration->MeanValue() + program->stats->bake_duration->MeanValue() +
+            program->stats->load_duration->MeanValue()) /
+               SECONDS_PER_MINUTE
+        << " minutes\n";
+    Print(msg.str().c_str());
+}
 
 void WorkShiftProcess::Behavior() {
     auto* stores = program->stores;
     auto args = program->args;
-    while (this->program->args->mixer_capacity > 0) {
-        //
-        Enter(*stores->mixer_capacity, 1);
+    while (args->breads > 0) {
+        args->breads -= get_breads_tbd(args);
+        Enter(*stores->mixing, args->mixers);
         (new MixProcess(this->program))->Activate();
-
-        //
-        //        Enter(cut_capacity, 1);
-        //        (new CutProcess(this->program))->Activate();
-
-        //
-        //        Enter(fermentation_capacity, 1);
-        //        (new FermentationProcess(this->program))->Activate();
-
-        //
-        //        Enter(bake_capacity, 1);
-        //        (new BakeProcess(this->program))->Activate();
-
-        //
-        //        Enter(load_capacity, 1);
-        //        (new LoadProcess(this->program))->Activate();
-
-        args->breads--;
     }
+
+    Enter(*stores->mixing, stores->mixing->Capacity());
+    (new MixProcess(this->program))->Activate();
 }
 
 /******************************************************************************
  * MixProcess
  *****************************************************************************/
-MixProcess::MixProcess(Program* _program) : mix_duration(new Stat("Mix duration")), program(_program) {}
+MixProcess::MixProcess(Program* _program) : program(_program) {}
 
-MixProcess::~MixProcess() { delete mix_duration; }
+MixProcess::~MixProcess() = default;
 
 void MixProcess::Behavior() {
-    const double duration = Normal(mix_duration_mean_per_cart_sec, mix_duration_deviation_per_cart_sec);
-    (*mix_duration)(duration);
+    const double duration = Normal(mix_mean_duration_per_bread_sec, mix_deviation_duration_per_bread_sec);
+    (*program->stats->mix_duration)(duration);
     Wait(duration);
-    Leave(*this->program->stores->mixer_capacity, 1);
-}
+    LEAVE_MIXING(program, program->args->breads > 0);  // Wait until all loaves of breads are baked
 
-#if 0
+    // Start Cutting after dough is mixed
+    Enter(*program->stores->cutting, program->args->tables);
+    (new CutProcess(this->program))->Activate();
+}
 
 /******************************************************************************
  * CutProcess
  *****************************************************************************/
-CutProcess::CutProcess(Program& _program) : cutting_duration(new Stat("Cut Duration")), program(args) {}
+CutProcess::CutProcess(Program* _program) : program(_program) {}
 
-CutProcess::~CutProcess() { delete cutting_duration; }
+CutProcess::~CutProcess() = default;
 
 void CutProcess::Behavior() {
-    //
+    for (u_int64_t i = 0; i < program->args->mixer_capacity; ++i) {
+        const double duration = Normal(cut_mean_duration_per_bread_sec, cut_deviation_duration_per_bread_sec);
+        (*program->stats->cut_duration)(duration);
+        Wait(duration);
+    }
+
+    Leave(*this->program->stores->cutting, 1);
+
+    // Start Fermentation after all mixed dough is cut
+    Enter(*program->stores->fermenting, program->args->fermentations);
+    (new FermentationProcess(this->program))->Activate();
 }
 
 /******************************************************************************
  * FermentationProcess
  *****************************************************************************/
-FermentationProcess::FermentationProcess(Program& _program)
-    : fermentation_duration(new Stat("Fermentation duration")), program(args) {
-    // TODO: implement
-}
+FermentationProcess::FermentationProcess(Program* _program) : program(_program) {}
 
-FermentationProcess::~FermentationProcess() {
-    // TODO: implement
-    delete fermentation_duration;
-}
+FermentationProcess::~FermentationProcess() = default;
 
 void FermentationProcess::Behavior() {
-    // TODO: implement
+    const double duration =
+        Normal(fermentation_mean_duration_per_bread_sec, fermentation_deviation_duration_per_bread_sec);
+    (*program->stats->fermentation_duration)(duration);
+    Wait(duration);
+    Leave(*this->program->stores->fermenting, 1);
+
+    //     Start Baking after one heap of mixed dough is fermented
+    Enter(*program->stores->baking, program->args->ovens);
+    (new BakeProcess(this->program))->Activate();
 }
 
 /******************************************************************************
  * BakeProcess
  *****************************************************************************/
-BakeProcess::BakeProcess(Program& _program) : bake_duration(new Stat("Bake duration")), program(args) {}
+BakeProcess::BakeProcess(Program* _program) : program(_program) {}
 
-BakeProcess::~BakeProcess() { delete bake_duration; }
+BakeProcess::~BakeProcess() = default;
 
 void BakeProcess::Behavior() {
-    double duration = Normal(bake_duration_mean_sec, bake_duration_deviation_sec);
-    (*bake_duration)(duration);
+    double duration = Normal(bake_duration_mean_per_break_sec, bake_duration_deviation_per_bread_sec);
+    (*program->stats->bake_duration)(duration);
+    Wait(duration);
+    Leave(*this->program->stores->baking, program->args->ovens);
+
+    // Start Loading after one heap of mixed dough is baked
+    Enter(*program->stores->loading, 1);
+    (new LoadProcess(this->program))->Activate();
 }
 
 /******************************************************************************
  * LoadProcess
  *****************************************************************************/
-LoadProcess::LoadProcess(Program& _program) : load_duration(new Stat("Load Duration")), program(args) {}
+LoadProcess::LoadProcess(Program* _program) : program(_program) {}
 
-LoadProcess::~LoadProcess() { delete load_duration; }
+LoadProcess::~LoadProcess() = default;
 
 void LoadProcess::Behavior() {
-    //
+    for (u_int64_t i = 0; i < program->args->mixer_capacity; ++i) {
+        const double duration = Normal(load_mean_duration_per_bread_sec, load_deviation_duration_per_bread_sec);
+        (*program->stats->load_duration)(duration);
+        Wait(duration);
+    }
+    Leave(*this->program->stores->loading, 1);
+    LEAVE_MIXING(program, program->args->breads == 0);  // Wait until all loaves of breads are baked
 }
-
-#endif

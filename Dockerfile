@@ -36,6 +36,7 @@ RUN apt-get update \
                         python \
                         fish \
                         doxygen \
+                        valgrind \
     && apt-get clean \
     && ln -s /usr/bin/make /usr/bin/gmake
 
