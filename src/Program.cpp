@@ -9,7 +9,7 @@ CustomStores::CustomStores(Args* _args) {
     cutting = new Store("Cutting capacity", _args->tables * _args->table_capacity);
     fermenting = new Store("Fermentation capacity", _args->fermentations);  // default (1 fermentation room * 8 carts)
     baking = new Store("Bake capacity", _args->ovens);                      // default (1 oven * 8 carts)
-    loading = new Store("Bake capacity", 1);                                // default (1 oven * 8 carts)
+    loading = new Store("Load capacity", 1);                                // default (1 oven * 8 carts)
 }
 
 CustomStores::~CustomStores() {

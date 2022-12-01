@@ -22,7 +22,7 @@ struct Args {
     // System inputs
     /////////////////////////
     // Order
-    uint64_t breads = 10;
+    uint64_t breads = 1000;
     //
     uint64_t mixers = 1;
     uint64_t mixer_capacity = 50;
