@@ -1,59 +1,79 @@
 #include "Processes.h"
 
-int get_breads_tbd(const Args* args) {
-    return args->breads > args->mixer_capacity ? args->mixer_capacity : args->breads;
+size_t get_breads_tbd(const Args* args) {
+    return (args->breads > args->mixer_capacity) ? args->mixer_capacity : args->breads;
+}
+
+size_t get_facility_idx_or_first(const std::vector<Facility>& facilities) {
+    uint64_t idx = 0;
+    for (const auto& facility : facilities) {
+        if (!facility.Busy()) {
+            return idx;
+        }
+        idx++;
+    }
+    return (idx < facilities.size()) ? idx : 0;
 }
 
 /******************************************************************************
- * WorkShiftProcess
+ * OrderProcess
  *****************************************************************************/
-WorkShiftProcess::WorkShiftProcess(Program* _program) : program(_program) {}
+OrderProcess::OrderProcess(Program* _program) : program(_program) {}
 
-WorkShiftProcess::~WorkShiftProcess() {
+OrderProcess::~OrderProcess() {
     program->stats->mix_duration->Output();
     program->stats->cut_duration->Output();
     program->stats->fermentation_duration->Output();
     program->stats->bake_duration->Output();
     program->stats->load_duration->Output();
 
-    std::stringstream msg;
-    msg << "Total bake time: "
-        << (program->stats->mix_duration->MeanValue() + program->stats->cut_duration->MeanValue() +
-            program->stats->fermentation_duration->MeanValue() + program->stats->bake_duration->MeanValue() +
-            program->stats->load_duration->MeanValue()) /
-               SECONDS_PER_MINUTE
-        << " minutes\n";
-    Print(msg.str().c_str());
+    //    std::stringstream msg;
+    //    msg << "Total bake time: "
+    //        << (program->stats->mix_duration->MeanValue() + program->stats->cut_duration->MeanValue() +
+    //            program->stats->fermentation_duration->MeanValue() + program->stats->bake_duration->MeanValue() +
+    //            program->stats->load_duration->MeanValue()) /
+    //               SECONDS_PER_MINUTE
+    //        << " minutes\n";
+    //    Print(msg.str().c_str());
 }
 
-void WorkShiftProcess::Behavior() {
-    auto* stores = program->stores;
+void OrderProcess::Behavior() {
+    auto& sources = program->sources;
     auto args = program->args;
+
+    // Start Day Order
+    Enter(*sources->orders, sources->orders->Capacity());
 
     //
     while (args->breads > 0) {
-        DEBUG_PRINT("WorkShiftProcess breads_tbd: %d\n", get_breads_tbd(program->args));
-        Enter(*stores->mixing, args->mixers);
+        DEBUG_PRINT("OrderProcess breads_tbd: %zu\n", get_breads_tbd(program->args));
+
+        // Start mixing
         (new MixProcess(this->program, get_breads_tbd(args)))->Activate();
+
+        //
         args->breads -= get_breads_tbd(args);
     }
 
     // Wait for all processes to finish
-    //    DEBUG_PRINT("Wait 1%s\n", "");
-    Enter(*stores->mixing, stores->mixing->Capacity());
-    //    DEBUG_PRINT("Wait 2%s\n", "");
-    Leave(*stores->mixing, stores->mixing->Capacity());
-    //    DEBUG_PRINT("Wait 3%s\n", "");
+    DEBUG_PRINT("Wait 1%s\n", "");
+    Enter(*sources->orders, sources->orders->Capacity());
+    DEBUG_PRINT("Wait 2%s\n", "");
+    Leave(*sources->orders, sources->orders->Capacity());
+    DEBUG_PRINT("Wait 3%s\n", "");
 }
 
 /******************************************************************************
  * MixProcess
  *****************************************************************************/
-MixProcess::MixProcess(Program* _program, const int _breads_tbd) : breads_tbd(_breads_tbd), program(_program) {}
+MixProcess::MixProcess(Program* _program, const size_t _breads_tbd) : breads_tbd(_breads_tbd), program(_program) {}
 
 MixProcess::~MixProcess() = default;
 
 void MixProcess::Behavior() {
+    auto idx = get_facility_idx_or_first(program->sources->mixers);
+    Seize(program->sources->mixers[idx]);
+
     DEBUG_PRINT("MixProcess breads_tbd: %d\n", breads_tbd);
 
     //
@@ -62,50 +82,56 @@ void MixProcess::Behavior() {
     (*program->stats->mix_duration)(duration);
     Wait(duration);
 
-    // Continue mixing
-    if (breads_tbd == (int)program->args->mixer_capacity) {
-        DEBUG_PRINT("Leave Mix%s\n", "");
-        Leave(*(program)->stores->mixing, 1);
-    }
+    // Continue mixers
+    Release(program->sources->mixers[idx]);
 
     // Start Cutting after dough is mixed
-    Enter(*program->stores->cutting, program->args->tables);
-    (new CutProcess(this->program, breads_tbd))->Activate();
+    (new CutProcess(program, breads_tbd))->Activate();
 }
 
 /******************************************************************************
  * CutProcess
  *****************************************************************************/
-CutProcess::CutProcess(Program* _program, const int _breads_tbd) : breads_tbd(_breads_tbd), program(_program) {}
+CutProcess::CutProcess(Program* _program, const size_t _breads_tbd)
+    : breads_tbd(_breads_tbd), program(_program) {}  // Bread_tbd are divided by cart capacity
 
 CutProcess::~CutProcess() = default;
 
 void CutProcess::Behavior() {
-    DEBUG_PRINT("CutProcess breads_tbd: %d\n", breads_tbd);
+    DEBUG_PRINT("CutProcess breads_tbd: %zu\n", breads_tbd);
+    auto idx = get_facility_idx_or_first(program->sources->tables);
+
     //
+    Seize(program->sources->tables[idx]);
+
+    // TODO: Better handle the case when cart if full go to fermenting (Now two carts are used)
     const double duration =
         Normal(cut_mean_duration_per_bread_sec * breads_tbd, cut_deviation_duration_per_bread_sec * breads_tbd);
     (*program->stats->cut_duration)(duration);
     Wait(duration);
 
     //
-    Leave(*this->program->stores->cutting, 1);
+    Release(program->sources->tables[idx]);
 
     // Start Fermentation after all mixed dough is cut
-    Enter(*program->stores->fermenting, program->args->fermentations);
-    (new FermentationProcess(this->program, breads_tbd))->Activate();
+    (new FermentationProcess(program, breads_tbd / program->args->cart_capacity))->Activate();
 }
 
 /******************************************************************************
  * FermentationProcess
  *****************************************************************************/
-FermentationProcess::FermentationProcess(Program* _program, const int _breads_tbd)
-    : breads_tbd(_breads_tbd), program(_program) {}
+FermentationProcess::FermentationProcess(Program* _program, const size_t _breads_tbd)
+    : program(_program), breads_tbd(_breads_tbd) {}
 
 FermentationProcess::~FermentationProcess() = default;
 
 void FermentationProcess::Behavior() {
-    DEBUG_PRINT("FermentationProcess breads_tbd: %d\n", breads_tbd);
+    const size_t carts_tbd = breads_tbd / program->args->cart_capacity;
+    DEBUG_PRINT("FermentationProcess carts/Capacity: %zu/%zu\n", carts_tbd, program->sources->fermenting->Capacity());
+
+    //
+    Enter(*program->sources->fermenting, carts_tbd);
+
     // Fermentation bunch of breads
     const double duration =
         Normal(fermentation_mean_duration_per_bread_sec, fermentation_deviation_duration_per_bread_sec);
@@ -113,35 +139,46 @@ void FermentationProcess::Behavior() {
     Wait(duration);
 
     //
-    Leave(*this->program->stores->fermenting, 1);
+    Leave(*program->sources->fermenting, carts_tbd);
 
     //     Start Baking after one heap of mixed dough is fermented
-    Enter(*program->stores->baking, program->args->ovens);
     (new BakeProcess(this->program, breads_tbd))->Activate();
 }
 
 /******************************************************************************
  * BakeProcess
  *****************************************************************************/
-BakeProcess::BakeProcess(Program* _program, const int _breads_tbd) : breads_tbd(_breads_tbd), program(_program) {}
+BakeProcess::BakeProcess(Program* _program, const size_t _breads_tbd) : program(_program), breads_tbd(_breads_tbd) {}
 
 BakeProcess::~BakeProcess() = default;
 
 void BakeProcess::Behavior() {
-    DEBUG_PRINT("BakeProcess breads_tbd: %d\n", breads_tbd);
+    DEBUG_PRINT("BakeProcess breads_tbd: %zu\n", breads_tbd);
+    auto idx = get_facility_idx_or_first(program->sources->tables);
+
+    //
+    Seize(program->sources->ovens[idx]);
+
     //
     double duration = Normal(bake_duration_mean_per_break_sec, bake_duration_deviation_per_bread_sec);
     (*program->stats->bake_duration)(duration);
     Wait(duration);
 
     //
-    Leave(*this->program->stores->baking, program->args->ovens);
+    Release(program->sources->ovens[idx]);
 
     // Start Loading after one heap of mixed dough is baked
-    Enter(*program->stores->loading, 1);
-    (new LoadProcess(this->program, breads_tbd))->Activate();
+    //    Enter(*program->sources->loading, 1);
+    //    (new LoadProcess(this->program, breads_tbd))->Activate();
+
+    // Leave the bakery after all breads are loaded
+    if (breads_tbd < program->args->mixer_capacity) {
+        DEBUG_PRINT("Leave Mix%s\n", "");
+        Leave(*(program->sources->orders), 1);
+    }
 }
 
+#if 0
 /******************************************************************************
  * LoadProcess
  *****************************************************************************/
@@ -158,11 +195,9 @@ void LoadProcess::Behavior() {
     Wait(duration);
 
     //
-    Leave(*program->stores->loading, 1);
+    Leave(*program->sources->loading, 1);
 
-    // Leave the bakery after all breads are loaded
-    if (breads_tbd < (int)program->args->mixer_capacity) {
-        DEBUG_PRINT("Leave Mix%s\n", "");
-        Leave(*(program)->stores->mixing, 1);
-    }
+    // TODO: Order DONE
 }
+
+#endif

@@ -4,18 +4,23 @@
 
 #ifndef SRC_PROGRAM_H_
 #define SRC_PROGRAM_H_
+
+#include <iostream>
+#include <vector>
+
 #include "Args.h"
 
-class CustomStores {
+class Sources {
    public:
-    explicit CustomStores(Args *_args);
-    ~CustomStores();
+    explicit Sources(Args *_args);
+    ~Sources();
 
-    Store *mixing;
-    Store *cutting;
-    Store *fermenting;
-    Store *baking;
-    Store *loading;
+    std::vector<Facility> mixers;  // mixers available in bakery
+    std::vector<Facility> tables;  // tables available in bakery
+    Store *fermenting;             // fermentation room capacity in bakery
+    std::vector<Facility> ovens;   // ovens available in bakery
+    Store *loading;                // loading is evaluated per cart which are waiting to be loaded in queue
+    Store *orders;                 // flag if all breads are baked
 };
 
 class CustomStats {
@@ -33,11 +38,11 @@ class CustomStats {
 
 class Program {
    public:
-    explicit Program(Args *_args, CustomStores *_stores);
+    explicit Program(Args *_args, Sources *_stores);
     ~Program();
 
     Args *args;
-    CustomStores *stores;
+    Sources *sources;
     CustomStats *stats;
     bool is_running = true;
 };

@@ -4,8 +4,6 @@
 
 #include "simulation.h"
 
-#include "Processes.h"
-
 void simulate(Program *program) {
     auto &args = *program->args;
     std::stringstream msg;
@@ -21,8 +19,8 @@ void simulate(Program *program) {
         Print(msg.str().c_str());
 
         //
-        Init(0, static_cast<double>(args.time_work_shift_sec));
-        (new WorkShiftProcess(program))->Activate();
+        Init(0);  // TODO: Max work-shift time
+        (new OrderProcess(program))->Activate();
         Run();
 
         //

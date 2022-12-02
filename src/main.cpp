@@ -12,7 +12,7 @@ using namespace std;  // NOLINT
 
 int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv) {
     auto* args = new Args(argc, argv);
-    auto* stores = new CustomStores(args);
+    auto* stores = new Sources(args);
     auto program = new Program(args, stores);
 
     //

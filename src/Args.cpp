@@ -14,18 +14,19 @@ Args::Args(int argc, char *argv[]) {
         } else if (string(argv[i]) == string("-mc") || string(argv[i]) == string("--mixers")) {
             CHECK_NEXT_ARG(argc, i);
             std::stringstream(argv[++i]) >> mixers;
-        } else if (string(argv[i]) == string("-mcap") || string(argv[i]) == string("--mixer-capacity")) {
-            CHECK_NEXT_ARG(argc, i);
-            std::stringstream(argv[++i]) >> mixer_capacity;
+            //        } else if (string(argv[i]) == string("-mcap") || string(argv[i]) == string("--mixer-capacity")) {
+            //            CHECK_NEXT_ARG(argc, i);
+            //            std::stringstream(argv[++i]) >> mixer_capacity;
         } else if (string(argv[i]) == string("-oc") || string(argv[i]) == string("--ovens")) {
             CHECK_NEXT_ARG(argc, i);
             std::stringstream(argv[++i]) >> ovens;
         } else if (string(argv[i]) == string("-fc") || string(argv[i]) == string("--fermentation-rooms")) {
             CHECK_NEXT_ARG(argc, i);
             std::stringstream(argv[++i]) >> fermentations;
-        } else if (string(argv[i]) == string("-fcap") || string(argv[i]) == string("--fermentation-room-capacity")) {
-            CHECK_NEXT_ARG(argc, i);
-            std::stringstream(argv[++i]) >> fermentation_capacity;
+            //        } else if (string(argv[i]) == string("-fcap") || string(argv[i]) ==
+            //        string("--fermentation-room-capacity")) {
+            //            CHECK_NEXT_ARG(argc, i);
+            //            std::stringstream(argv[++i]) >> fermentation_capacity;
         } else if (string(argv[i]) == string("-t") || string(argv[i]) == string("--tables")) {
             CHECK_NEXT_ARG(argc, i);
             std::stringstream(argv[++i]) >> tables;
@@ -45,7 +46,7 @@ void Args::debug_args() const {
     std::cout << "outfile: " << outfile << std::endl;
 
     std::cout << "mixers: " << mixers << std::endl;
-    std::cout << "mixing: " << mixer_capacity << std::endl;
+    //    std::cout << "mixers: " << mixer_capacity << std::endl;
     std::cout << "ovens: " << ovens << std::endl;
 
     //    std::cout << "fermentation_rooms: " << fermentation_rooms << std::endl;

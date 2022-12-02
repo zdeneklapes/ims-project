@@ -8,6 +8,7 @@
 #include <string>
 
 #include "Args.h"
+#include "Processes.h"
 #include "Program.h"
 
 void simulate(Program *program);

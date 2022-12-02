@@ -1,23 +1,21 @@
 #include "Program.h"
 
 /******************************************************************************
- * CustomStores
+ * Sources
  *****************************************************************************/
-CustomStores::CustomStores(Args* _args) {
-    // TODO: Capacity
-    mixing = new Store("Mixer capacity", _args->mixers);
-    cutting = new Store("Cutting capacity", _args->tables * _args->table_capacity);
-    fermenting = new Store("Fermentation capacity", _args->fermentations);  // default (1 fermentation room * 8 carts)
-    baking = new Store("Bake capacity", _args->ovens);                      // default (1 oven * 8 carts)
-    loading = new Store("Load capacity", 1);                                // default (1 oven * 8 carts)
+Sources::Sources(Args* _args) {
+    mixers = std::vector<Facility>(_args->mixers);
+    fermenting = new Store("Fermentation capacity", _args->fermentations);
+    tables = std::vector<Facility>(_args->tables);
+    ovens = std::vector<Facility>(_args->ovens);
+    loading = new Store("Load capacity", 1);  // one cart per time
+    orders = new Store("Order capacity", 1);  // flag for day order
 }
 
-CustomStores::~CustomStores() {
-    delete mixing;
-    delete cutting;
+Sources::~Sources() {
     delete fermenting;
-    delete baking;
     delete loading;
+    delete orders;
 }
 /******************************************************************************
  * CustomStats
@@ -40,9 +38,10 @@ CustomStats::~CustomStats() {
 /******************************************************************************
  * Program
  *****************************************************************************/
-Program::Program(Args* _args, CustomStores* _stores) : args(_args), stores(_stores), stats(new CustomStats()) {}
+Program::Program(Args* _args, Sources* _stores) : args(_args), sources(_stores), stats(new CustomStats()) {}
 
 Program::~Program() {
     delete args;
-    delete stores;
+    delete sources;
+    delete stats;
 }
