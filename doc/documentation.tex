@@ -1,0 +1,66 @@
+\documentclass[a4paper, 10pt]{article}
+\usepackage[unicode]{hyperref}
+\usepackage[utf8x]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage[slovak]{babel}
+\usepackage[left=2cm, top=3cm, text={17cm, 24cm}]{geometry}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{listings} % vkladanie obrazkov
+\usepackage{color}
+\usepackage{xcolor}
+
+
+\begin{document}
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Titulná stránka %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \begin{titlepage}
+        \begin{center}
+            \includegraphics[width=0.77\linewidth]{src/FIT_logo} \\
+            \vspace{\stretch{0.382}}
+            \Huge{Modelování a simulace -- IMS} \\
+            \huge{Okruh 12. -- SHO vo výrobe} \\
+            \Large{Dokumentácia}
+            \vspace{\stretch{0.618}}
+        \end{center}
+
+        \begin{flushleft}
+            \Large{Lapeš Zdeněk (xlapes02)} \\
+            \Large{Bínovský Andrej (xbinov00)}
+        \end{flushleft}
+        \vspace{-12mm}
+        \hfill\Large{\today}
+    \end{titlepage}
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Obsah %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \tableofcontents
+    \newpage
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Úvod %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section*{Úvod}
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Rozbor témy a použitých metód/technológií %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section {Rozbor projektu}
+        \subsection{Téma}
+
+        \subsection{Použitie metód a technológií}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Implementácia programu %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \section {Koncepcia modelu}
+
+
+    \section{Architektúra simulačného modelu}
+
+    \section{Podstata imulačných experimentov a ich priebeh}
+
+    \section{Zhrnutie simulašnych experimentov}
+
+    \section {Čerpanie zdrojov}
+        {\cite{example}}
+
+    \newpage
+    \bibliographystyle{czechiso}
+    \bibliography{documentation}
+\end{document}
