@@ -1,8 +1,14 @@
+DIR_BUILD=build
+EXECUTABLE=bread_factory
+RM=rm -rfd
+
 all:
-	./start.sh -bc -bm
+	$(RM) $(DIR_BUILD)
+	mkdir $(DIR_BUILD)
+	cd build && cmake .. && make
 
 run:
-	./start.sh -r
+	./$(DIR_BUILD)/$(EXECUTABLE)
 
 clean:
 	./start.sh -c

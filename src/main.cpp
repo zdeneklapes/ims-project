@@ -7,6 +7,7 @@
 #include "Args.h"
 #include "Program.h"
 #include "simulation.h"
+#include "test.h"
 
 using namespace std;  // NOLINT
 
@@ -16,7 +17,11 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv) {
     auto program = new Program(args, stores);
 
     //
+#if TEST
+    test1(program);
+#else
     simulate(program);
+#endif
 
     //
     delete program;

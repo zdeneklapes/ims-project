@@ -66,6 +66,7 @@ function clean() {
     ${RM} cmake-build**
     ${RM} .cache
     ${RM} *.zip
+    ${RM} *.tar**
     ${RM} tags
     ${RM} cscope.out
     ${RM} ${DOCUMENTATION}
@@ -140,18 +141,15 @@ function tags() {
     cscope -Rb
 }
 
-function ssh() {
-    scp "$(pwd)/${ZIP_NAME}.zip" $1@eva.fit.vutbr.cz:/homes/eva/xl/$1
-}
-
-function ssh() {
+function send_ssh() {
     scp "$(pwd)/${ZIP_NAME}.zip" $1@eva.fit.vutbr.cz:/homes/eva/xl/$1
 }
 
 function pack() {
-    make -C doc && cp doc/${DOCUMENTATION} .
-    #    zip -r ${ZIP_NAME}.zip src CMakeLists.txt README.md doc start.sh ${DOCUMENTATION}
-    tar -czvf ${ZIP_NAME}.tar.gz src CMakeLists.txt README.md doc start.sh ${DOCUMENTATION}
+    make -C doc
+    cp ./doc/${DOCUMENTATION} .
+    zip -r ${ZIP_NAME}.zip src start.sh Makefile CMakeLists.txt README.md start.sh ${DOCUMENTATION}
+    #    tar -czvf ${ZIP_NAME}.tar.gz src CMakeLists.txt README.md doc start.sh ${DOCUMENTATION}
 }
 
 ################################################################################
@@ -163,6 +161,7 @@ while [ "$#" -gt 0 ]; do
     '-bc' | '--build-cmake') build_cmake ;;
     '-bm' | '--build-make') build_make ;;
     '-r' | '--run') run ;;
+    '-s' | '--send-ssh') send_ssh "xlapes02" ;;
     '--valgrind') run_valgrind ;;
     '-c' | '--clean') clean ;;
     '-p' | '--pack') pack ;;

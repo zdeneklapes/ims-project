@@ -48,24 +48,24 @@ target_link_libraries(${PROJECT_NAME} PUBLIC /usr/local/lib/libsimlib.so)
 ################################################################################
 # Petr Peringer's Examples
 ################################################################################
-list(APPEND EXAMPLES
-        ball ball2
-        bessel
-        ctest
-        heating
-        lorenz
-        model2 model2-timeout model3 model4 model5
-        multiexp
-        network
-        pbx
-        procesor
-        rc
-        rlc
-        test3D
-        wheel wheel2
-        )
-foreach (example IN LISTS EXAMPLES)
-    add_executable(${example} third_party/simlib/examples/${example}.cc)
-    target_include_directories(${example} PUBLIC ${PROJECT_HEADER_DIRS})
-    target_link_libraries(${example} PUBLIC /usr/local/lib/libsimlib.so)
-endforeach ()
+#list(APPEND EXAMPLES
+#        ball ball2
+#        bessel
+#        ctest
+#        heating
+#        lorenz
+#        model2 model2-timeout model3 model4 model5
+#        multiexp
+#        network
+#        pbx
+#        procesor
+#        rc
+#        rlc
+#        test3D
+#        wheel wheel2
+#        )
+#foreach (example IN LISTS EXAMPLES)
+#    add_executable(${example} third_party/simlib/examples/${example}.cc)
+#    target_include_directories(${example} PUBLIC ${PROJECT_HEADER_DIRS})
+#    target_link_libraries(${example} PUBLIC /usr/local/lib/libsimlib.so)
+#endforeach ()

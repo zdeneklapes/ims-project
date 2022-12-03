@@ -2,6 +2,8 @@
 #define SRC_PROCESSES_H_
 
 //
+#include <simlib.h>
+
 #include <cmath>
 #include <iostream>
 #include <random>
@@ -9,7 +11,6 @@
 #include <vector>
 
 #include "Program.h"
-#include "simlib.h"
 
 //
 class OrderTimer;

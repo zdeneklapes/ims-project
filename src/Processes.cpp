@@ -13,9 +13,13 @@ size_t get_carts_tbd(const size_t breads_tbd, const size_t cart_capacity) {
 /******************************************************************************
  * OrderProcess
  *****************************************************************************/
-OrderProcess::OrderProcess(Program* _program) : program(_program) {}
+OrderProcess::OrderProcess(Program* _program) : program(_program) { program->reinit(); }
 
+#if TEST
 OrderProcess::~OrderProcess() = default;
+#else
+OrderProcess::~OrderProcess() { program->print_data(); }
+#endif
 
 void OrderProcess::Behavior() {
     // Init
@@ -44,8 +48,6 @@ void OrderProcess::Behavior() {
 
     //
     program->simulation_time = Time - program->simulation_time;
-    //    program->print_data();
-    program->reinit();
 }
 
 /******************************************************************************

@@ -1,13 +1,14 @@
 #ifndef SRC_ARGS_H_
 #define SRC_ARGS_H_
 
+#include <simlib.h>
+
 #include <iostream>
 #include <sstream>
 #include <string>
 
 #include "ExitCodes.h"
 #include "macros.h"
-#include "simlib.h"
 #include "utils.h"
 
 struct Args {
@@ -24,7 +25,7 @@ struct Args {
     // System inputs
     /////////////////////////
     std::string outfile;
-    const size_t test_value = 2;
+    const size_t test_value = 1;
 
     // Editable Capacities
     size_t breads = 200;
@@ -33,7 +34,11 @@ struct Args {
     size_t fermentations = test_value + 1;  // TODO: error if fermentations < 2
     size_t ovens = test_value;
     size_t loads = test_value;
-    size_t simulations = 2;
+#if TEST
+    size_t simulations = 1;
+#else
+    size_t simulations = 5;
+#endif
 
     // Not editable Capacities
     const size_t mixer_capacity = 140;
