@@ -62,7 +62,7 @@ class Program {
     ~Program();
 
     //
-    //    void print_data() const;
+    void print_data() const;
     void reinit();
 
     Args *args;

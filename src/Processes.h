@@ -25,8 +25,6 @@ class OrderProcess : public Process {
 
     void Behavior() override;
 
-    void print_data() const;
-
    private:
     Program *program;
 };

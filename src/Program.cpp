@@ -92,38 +92,38 @@ void Program::reinit() {
     stats = new CustomStats();
     sources = new Sources(args);
 }
-// void Program::print_data() const {
-//     // STATS
-//     Print("\n=================== STATS ====================\n");
-//     const auto total_bake_time =
-//         (stats->mix_duration->Sum() + stats->cut_duration->Sum() + stats->fermentation_duration->Sum() +
-//          stats->bake_duration->Sum() + stats->load_duration->Sum()) /
-//         SECONDS_PER_MINUTE;
-//     const auto mean_bake_time_minutes = (stats->mix_duration->MeanValue() + stats->cut_duration->MeanValue() +
-//                                          stats->fermentation_duration->MeanValue() +
-//                                          stats->bake_duration->MeanValue() + stats->load_duration->MeanValue()) /
-//                                         SECONDS_PER_MINUTE;
-//
-//     stats->mix_duration->Output();
-//     stats->cut_duration->Output();
-//     stats->fermentation_duration->Output();
-//     stats->bake_duration->Output();
-//     stats->load_duration->Output();
-//
-//     // SOURCES
-//     Print("\n=================== STORES / FACILITIES ====================\n");
-//     for (const auto& f : sources->mixers) f->Output();
-//     for (const auto& f : sources->tables) f->Output();
-//     sources->fermenting->Output();
-//     for (const auto& f : sources->ovens) f->Output();
-//     sources->loading->Output();
-//     sources->orders->Output();
-//
-//     // ALL
-//     Print("=================== ALL ====================\n");
-//     Print("Total bake time: %d minutes (%d hours)\n", (simulation_time / SECONDS_PER_MINUTE),
-//           (simulation_time / SECONDS_PER_MINUTE / SECONDS_PER_MINUTE));
-//     Print("Machines Run time: %d minutes (%d hours)\n", total_bake_time, (total_bake_time / SECONDS_PER_MINUTE));
-//     Print("Mean time to bake 1 bread: %d minutes (%d hours)\n", mean_bake_time_minutes,
-//           (mean_bake_time_minutes / SECONDS_PER_MINUTE));
-// }
+
+void Program::print_data() const {
+    // STATS
+    Print("\n=================== STATS ====================\n");
+    stats->mix_duration->Output();
+    stats->cut_duration->Output();
+    stats->fermentation_duration->Output();
+    stats->bake_duration->Output();
+    stats->load_duration->Output();
+
+    // SOURCES
+    Print("\n=================== STORES / FACILITIES ====================\n");
+    for (const auto& f : sources->mixers) f->Output();
+    for (const auto& f : sources->tables) f->Output();
+    sources->fermenting->Output();
+    for (const auto& f : sources->ovens) f->Output();
+    sources->loading->Output();
+    sources->orders->Output();
+
+    // ALL
+    const auto total_bake_time =
+        (stats->mix_duration->Sum() + stats->cut_duration->Sum() + stats->fermentation_duration->Sum() +
+         stats->bake_duration->Sum() + stats->load_duration->Sum()) /
+        SECONDS_PER_MINUTE;
+    const auto mean_bake_time_minutes = (stats->mix_duration->MeanValue() + stats->cut_duration->MeanValue() +
+                                         stats->fermentation_duration->MeanValue() + stats->bake_duration->MeanValue() +
+                                         stats->load_duration->MeanValue()) /
+                                        SECONDS_PER_MINUTE;
+    Print("=================== ALL ====================\n");
+    Print("Total bake time (%d loaves of bread): %d minutes (%f hours)\n", (int)args->breads,
+          (int)(simulation_time / SECONDS_PER_MINUTE), (simulation_time / SECONDS_PER_MINUTE / SECONDS_PER_MINUTE));
+    Print("Machines Run time: %d minutes (%f hours)\n", (int)total_bake_time, (total_bake_time / SECONDS_PER_MINUTE));
+    Print("Mean time to bake 1 bread: %d minutes (%f hours)\n", (int)mean_bake_time_minutes,
+          (mean_bake_time_minutes / SECONDS_PER_MINUTE));
+}

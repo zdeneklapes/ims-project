@@ -33,7 +33,7 @@ struct Args {
     size_t fermentations = test_value + 1;  // TODO: error if fermentations < 2
     size_t ovens = test_value;
     size_t loads = test_value;
-    size_t simulations = 1;
+    size_t simulations = 2;
 
     // Not editable Capacities
     const size_t mixer_capacity = 140;

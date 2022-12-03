@@ -12,7 +12,6 @@ void simulate(Program *program) {
     }
 
     for (u_int64_t i = 0; i < args.simulations; ++i) {
-        //        program->reinit();
         Print("========== %d. START Simulation (%d loaves of bread) ==========\n", i, args.breads);
 
         //

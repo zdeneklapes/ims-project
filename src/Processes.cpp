@@ -15,42 +15,7 @@ size_t get_carts_tbd(const size_t breads_tbd, const size_t cart_capacity) {
  *****************************************************************************/
 OrderProcess::OrderProcess(Program* _program) : program(_program) {}
 
-OrderProcess::~OrderProcess() {
-    // STATS
-    Print("\n=================== STATS ====================\n");
-    program->stats->mix_duration->Output();
-    program->stats->cut_duration->Output();
-    program->stats->fermentation_duration->Output();
-    program->stats->bake_duration->Output();
-    program->stats->load_duration->Output();
-
-    // SOURCES
-    Print("\n=================== STORES / FACILITIES ====================\n");
-    for (const auto& f : program->sources->mixers) f->Output();
-    for (const auto& f : program->sources->tables) f->Output();
-    program->sources->fermenting->Output();
-    for (const auto& f : program->sources->ovens) f->Output();
-    program->sources->loading->Output();
-    program->sources->orders->Output();
-
-    // ALL
-    const auto total_bake_time = (program->stats->mix_duration->Sum() + program->stats->cut_duration->Sum() +
-                                  program->stats->fermentation_duration->Sum() + program->stats->bake_duration->Sum() +
-                                  program->stats->load_duration->Sum()) /
-                                 SECONDS_PER_MINUTE;
-    const auto mean_bake_time_minutes =
-        (program->stats->mix_duration->MeanValue() + program->stats->cut_duration->MeanValue() +
-         program->stats->fermentation_duration->MeanValue() + program->stats->bake_duration->MeanValue() +
-         program->stats->load_duration->MeanValue()) /
-        SECONDS_PER_MINUTE;
-    Print("=================== ALL ====================\n");
-    Print("Total bake time (%d loaves of bread): %d minutes (%f hours)\n", (int)program->args->breads,
-          (int)(program->simulation_time / SECONDS_PER_MINUTE),
-          (program->simulation_time / SECONDS_PER_MINUTE / SECONDS_PER_MINUTE));
-    Print("Machines Run time: %d minutes (%f hours)\n", (int)total_bake_time, (total_bake_time / SECONDS_PER_MINUTE));
-    Print("Mean time to bake 1 bread: %d minutes (%f hours)\n", (int)mean_bake_time_minutes,
-          (mean_bake_time_minutes / SECONDS_PER_MINUTE));
-}
+OrderProcess::~OrderProcess() = default;
 
 void OrderProcess::Behavior() {
     // Init
@@ -79,44 +44,8 @@ void OrderProcess::Behavior() {
 
     //
     program->simulation_time = Time - program->simulation_time;
-    //    this->print_data();
-}
-
-void OrderProcess::print_data() const {
-    // STATS
-    Print("\n=================== STATS ====================\n");
-    const auto total_bake_time = (program->stats->mix_duration->Sum() + program->stats->cut_duration->Sum() +
-                                  program->stats->fermentation_duration->Sum() + program->stats->bake_duration->Sum() +
-                                  program->stats->load_duration->Sum()) /
-                                 SECONDS_PER_MINUTE;
-    const auto mean_bake_time_minutes =
-        (program->stats->mix_duration->MeanValue() + program->stats->cut_duration->MeanValue() +
-         program->stats->fermentation_duration->MeanValue() + program->stats->bake_duration->MeanValue() +
-         program->stats->load_duration->MeanValue()) /
-        SECONDS_PER_MINUTE;
-
-    program->stats->mix_duration->Output();
-    program->stats->cut_duration->Output();
-    program->stats->fermentation_duration->Output();
-    program->stats->bake_duration->Output();
-    program->stats->load_duration->Output();
-
-    // SOURCES
-    Print("\n=================== STORES / FACILITIES ====================\n");
-    for (const auto& f : program->sources->mixers) f->Output();
-    for (const auto& f : program->sources->tables) f->Output();
-    program->sources->fermenting->Output();
-    for (const auto& f : program->sources->ovens) f->Output();
-    program->sources->loading->Output();
-    program->sources->orders->Output();
-
-    // ALL
-    Print("=================== ALL ====================\n");
-    Print("Total bake time: %d minutes (%d hours)\n", (program->simulation_time / SECONDS_PER_MINUTE),
-          (program->simulation_time / SECONDS_PER_MINUTE / SECONDS_PER_MINUTE));
-    Print("Machines Run time: %d minutes (%d hours)\n", total_bake_time, (total_bake_time / SECONDS_PER_MINUTE));
-    Print("Mean time to bake 1 bread: %d minutes (%d hours)\n", mean_bake_time_minutes,
-          (mean_bake_time_minutes / SECONDS_PER_MINUTE));
+    //    program->print_data();
+    program->reinit();
 }
 
 /******************************************************************************
