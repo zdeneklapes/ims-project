@@ -29,6 +29,16 @@ Facility* Sources::get_facility_to_use(const std::vector<Facility*> facilities) 
     return facilities[0];
 }
 
+size_t Sources::get_free_facility_len(const std::vector<Facility*> facilities) {
+    size_t free_facilities = 0;
+    for (auto facility : facilities) {
+        if (!facility->Busy()) {
+            free_facilities++;
+        }
+    }
+    return free_facilities;
+}
+
 /******************************************************************************
  * CustomStats
  *****************************************************************************/

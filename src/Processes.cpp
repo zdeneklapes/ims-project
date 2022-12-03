@@ -35,13 +35,14 @@ void OrderProcess::Behavior() {
 
     //
     while (args->breads > 0) {
-        DEBUG_PRINT("OrderProcess breads_tbd: %zu\n", get_breads_tbd(program->args));
-
         // Start mixing
         (new MixProcess(this->program, get_breads_tbd(args)))->Activate();
 
         // Update breads to be done
         args->breads -= get_breads_tbd(args);
+
+        //
+        DEBUG_PRINT("OrderProcess breads_tbd: %zu | Left: %zu\n", get_breads_tbd(program->args), args->breads);
     }
 
     // Wait for all processes to finish
@@ -60,12 +61,14 @@ MixProcess::MixProcess(Program* _program, const size_t _breads_tbd) : program(_p
 MixProcess::~MixProcess() = default;
 
 void MixProcess::Behavior() {
-    DEBUG_PRINT("MixProcess breads_tbd: %zu\n", breads_tbd);
-
     // Init
     Facility* facility = program->sources->get_facility_to_use(program->sources->mixers);
     const double duration = Normal(mix_mean_duration_per_bread_sec * (double)breads_tbd,
                                    mix_deviation_duration_per_bread_sec * (double)breads_tbd);
+
+    //
+    DEBUG_PRINT("MixProcess breads_tbd: %zu | Free mixers: %zu | Wait: %f\n", breads_tbd,
+                program->sources->get_free_facility_len(program->sources->mixers), duration);
 
     // Wait
     Seize(*facility);
@@ -86,12 +89,14 @@ CutProcess::CutProcess(Program* _program, const size_t _breads_tbd)
 CutProcess::~CutProcess() = default;
 
 void CutProcess::Behavior() {
-    DEBUG_PRINT("CutProcess breads_tbd: %zu\n", breads_tbd);
-
     // Init
     auto facility = program->sources->get_facility_to_use(program->sources->tables);
     const double duration = Normal(cut_mean_duration_per_bread_sec * (double)breads_tbd,
                                    cut_deviation_duration_per_bread_sec * (double)breads_tbd);
+
+    //
+    DEBUG_PRINT("CutProcess breads_tbd: %zu | Free tables: %zu | Wait: %f\n", breads_tbd,
+                program->sources->get_free_facility_len(program->sources->tables), duration);
 
     // Wait
     Seize(*facility);
@@ -118,7 +123,7 @@ void FermentationProcess::Behavior() {
         Normal(fermentation_mean_duration_per_bread_sec, fermentation_deviation_duration_per_bread_sec);
 
     //
-    DEBUG_PRINT("FermentationProcess breads: %zu | Carts: %zu\n", breads_tbd, carts_tbd);
+    DEBUG_PRINT("FermentationProcess breads_tbd: %zu | Carts: %zu | Wait: %f\n", breads_tbd, carts_tbd, duration);
 
     // Wait
     Enter(*program->sources->fermenting, carts_tbd);
@@ -138,12 +143,13 @@ BakeProcess::BakeProcess(Program* _program, const size_t _breads_tbd) : program(
 BakeProcess::~BakeProcess() = default;
 
 void BakeProcess::Behavior() {
-    DEBUG_PRINT("BakeProcess breads_tbd: %zu | Ovens: %zu\n", breads_tbd, program->args->ovens);
-
     // Init
     const size_t carts_tbd = ceil((double)breads_tbd / (double)program->args->cart_capacity);
     const double duration = Normal(bake_duration_mean_per_break_sec, bake_duration_deviation_per_bread_sec);
     const auto facility = program->sources->get_facility_to_use(program->sources->ovens);
+
+    //
+    DEBUG_PRINT("BakeProcess breads_tbd: %zu | Ovens: %zu | Wait: %f\n", breads_tbd, program->args->ovens, duration);
 
     // Wait
     for (size_t i = 0; i < carts_tbd; ++i) {
@@ -165,12 +171,13 @@ LoadProcess::LoadProcess(Program* _program, const size_t _breads_tbd) : program(
 LoadProcess::~LoadProcess() = default;
 
 void LoadProcess::Behavior() {
-    DEBUG_PRINT("LoadProcess breads_tbd: %zu | Load Capacity: %zu\n", breads_tbd,
-                program->sources->loading->Capacity());
-
     // Init
     const double duration = Normal(load_mean_duration_per_bread_sec * (double)breads_tbd,
                                    load_deviation_duration_per_bread_sec * (double)breads_tbd);
+
+    //
+    DEBUG_PRINT("LoadProcess breads_tbd: %zu | Load Capacity: %zu | Wait: %f\n", breads_tbd,
+                program->sources->loading->Capacity(), duration);
 
     // Wait
     Enter(*program->sources->loading, 1);
