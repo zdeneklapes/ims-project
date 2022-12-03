@@ -1,8 +1,6 @@
 SHELL = /usr/bin/env bash
 NAME = documentation
 
-
-
 all: bibtex or biblatex
 
 biblatex:
@@ -10,8 +8,6 @@ biblatex:
 	biber $(NAME).bcf
 	pdflatex $(NAME).tex
 	@$(MAKE) -s clean
-
-
 
 bibtex:
 	pdflatex $(NAME).tex

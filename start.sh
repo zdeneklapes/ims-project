@@ -12,7 +12,8 @@ GREEN='\033[0;32m'
 
 # Project
 PROJECT_NAME="bread_factory"
-ZIP_NAME="xbinov00-xlapes02"
+ZIP_NAME="12_xlapes02_xbinov00"
+DOCUMENTATION="documentation.pdf"
 
 ################################################################################
 # HELPER
@@ -62,13 +63,12 @@ function run_valgrind() {
 
 function clean() {
     ${RM} build
-    ${RM} cmake-build-debug
-    ${RM} cmake-build-debug-docker
-    ${RM} cmake-build-debug-remote-host
+    ${RM} cmake-build**
     ${RM} .cache
     ${RM} *.zip
     ${RM} tags
     ${RM} cscope.out
+    ${RM} ${DOCUMENTATION}
 }
 
 function download_third_party() {
@@ -82,10 +82,6 @@ function download_third_party() {
     tar xvzf simlib-3.09-20221108.tar.gz
     rm simlib-3.09-20221108.tar.gz
     cd - || error_exit "cd"
-}
-
-function zip_project() {
-    echo "TODO"
 }
 
 ################################################################################
@@ -152,6 +148,12 @@ function ssh() {
     scp "$(pwd)/${ZIP_NAME}.zip" $1@eva.fit.vutbr.cz:/homes/eva/xl/$1
 }
 
+function pack() {
+    make -C doc && cp doc/${DOCUMENTATION} .
+    #    zip -r ${ZIP_NAME}.zip src CMakeLists.txt README.md doc start.sh ${DOCUMENTATION}
+    tar -czvf ${ZIP_NAME}.tar.gz src CMakeLists.txt README.md doc start.sh ${DOCUMENTATION}
+}
+
 ################################################################################
 # MAIN
 ################################################################################
@@ -163,7 +165,7 @@ while [ "$#" -gt 0 ]; do
     '-r' | '--run') run ;;
     '--valgrind') run_valgrind ;;
     '-c' | '--clean') clean ;;
-    '-z' | '--zip') zip_project ;;
+    '-p' | '--pack') pack ;;
     '--download-third-party') download_third_party ;;
         #
     '--cloc') count_loc ;;
