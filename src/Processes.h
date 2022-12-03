@@ -1,6 +1,7 @@
 #ifndef SRC_PROCESSES_H_
 #define SRC_PROCESSES_H_
 
+//
 #include <cmath>
 #include <iostream>
 #include <random>
@@ -10,6 +11,13 @@
 #include "Program.h"
 #include "simlib.h"
 
+//
+class OrderTimer;
+#include "OrderTimer.h"
+
+/******************************************************************************
+ * OrderProcess
+ *****************************************************************************/
 class OrderProcess : public Process {
    public:
     explicit OrderProcess(Program *_program);
@@ -17,10 +25,15 @@ class OrderProcess : public Process {
 
     void Behavior() override;
 
+    void print_data() const;
+
    private:
     Program *program;
 };
 
+/******************************************************************************
+ * MixProcess
+ *****************************************************************************/
 class MixProcess : public Process {
    public:
     MixProcess(Program *_program, size_t _breads_tbd);
@@ -37,6 +50,9 @@ class MixProcess : public Process {
     const size_t breads_tbd;
 };
 
+/******************************************************************************
+ * CutProcess
+ *****************************************************************************/
 class CutProcess : public simlib3::Process {
    public:
     CutProcess(Program *_program, size_t _breads_tbd);
@@ -53,6 +69,9 @@ class CutProcess : public simlib3::Process {
     Program *program;
 };
 
+/******************************************************************************
+ * FermentationProcess
+ *****************************************************************************/
 class FermentationProcess : public simlib3::Process {
    public:
     FermentationProcess(Program *_program, size_t _breads_tbd);
@@ -69,6 +88,9 @@ class FermentationProcess : public simlib3::Process {
     const size_t breads_tbd;
 };
 
+/******************************************************************************
+ * BakeProcess
+ *****************************************************************************/
 class BakeProcess : public simlib3::Process {
    public:
     BakeProcess(Program *_program, size_t _breads_tbd);
@@ -85,6 +107,9 @@ class BakeProcess : public simlib3::Process {
     const size_t breads_tbd;
 };
 
+/******************************************************************************
+ * LoadProcess
+ *****************************************************************************/
 class LoadProcess : public Process {
    public:
     LoadProcess(Program *_program, size_t _breads_tbd);

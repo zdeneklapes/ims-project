@@ -16,12 +16,17 @@ struct Args {
     ~Args() = default;
 
     /////////////////////////
+    // Methods
+    /////////////////////////
+    static size_t get_breads_tbd(const size_t &_breads, const size_t &_mixer_capacity);
+
+    /////////////////////////
     // System inputs
     /////////////////////////
     std::string outfile;
     const size_t test_value = 2;
 
-    // Capacities
+    // Editable Capacities
     size_t breads = 200;
     size_t mixers = test_value;
     size_t tables = test_value;
@@ -30,14 +35,9 @@ struct Args {
     size_t loads = test_value;
     size_t simulations = 1;
 
-    //
+    // Not editable Capacities
     const size_t mixer_capacity = 140;
     const size_t cart_capacity = 70;
-
-    // Timer
-    const size_t timer_work_shift = 8 * 60 * SECONDS_PER_MINUTE;  // 8 hours: work time
-
-    static size_t get_breads_tbd(const size_t &_breads, const size_t &_mixer_capacity);
 };
 
 #endif  // SRC_ARGS_H_

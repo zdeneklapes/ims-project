@@ -6,28 +6,24 @@
 
 void simulate(Program *program) {
     auto &args = *program->args;
-    std::stringstream msg;
 
     if (!args.outfile.empty()) {
         SetOutput(args.outfile.c_str());
     }
 
     for (u_int64_t i = 0; i < args.simulations; ++i) {
-        //
-        msg.str("");  // clear
-        msg << "========== " << i << ". START Simulation (" << args.breads << " loaves of bread) ==========\n";
-        Print(msg.str().c_str());
+        //        program->reinit();
+        Print("========== %d. START Simulation (%d loaves of bread) ==========\n", i, args.breads);
 
         //
-        Init(0.0, (double)args.timer_work_shift);
-        (new OrderProcess(program))->Activate();
+        Init(OrderTimer::ORDER_WORK_TIME_START_SEC, OrderTimer::ORDER_WORK_TIME_END_SEC);
+        auto *order_process = new OrderProcess(program);
+        order_process->Activate();
         Run();
         SIMLIB_statistics.Output();
 
         //
-        msg.str("");  // clear
-        msg << "========== " << i << ". END Simulation "
-            << "(" << args.timer_work_shift / SECONDS_PER_MINUTE << ") ==========\n\n";
-        Print(msg.str().c_str());
+        Print("========== %d. END Simulation (%d hours) ==========\n\n", i,
+              OrderTimer::ORDER_WORK_TIME_END_SEC / SECONDS_PER_MINUTE);
     }
 }

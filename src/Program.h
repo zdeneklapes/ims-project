@@ -61,10 +61,14 @@ class Program {
     explicit Program(Args *_args, Sources *_stores);
     ~Program();
 
+    //
+    //    void print_data() const;
+    void reinit();
+
     Args *args;
     Sources *sources;
     CustomStats *stats;
-    bool is_running = true;
+    double simulation_time = 0;
 };
 
 #endif  // SRC_PROGRAM_H_

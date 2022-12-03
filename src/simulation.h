@@ -10,6 +10,7 @@
 #include "Args.h"
 #include "Processes.h"
 #include "Program.h"
+#include "simlib.h"
 
 void simulate(Program *program);
 

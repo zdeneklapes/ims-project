@@ -16,8 +16,8 @@ size_t get_carts_tbd(const size_t breads_tbd, const size_t cart_capacity) {
 OrderProcess::OrderProcess(Program* _program) : program(_program) {}
 
 OrderProcess::~OrderProcess() {
-    // Init
-    std::stringstream msg;
+    // STATS
+    Print("\n=================== STATS ====================\n");
     const auto total_bake_time = (program->stats->mix_duration->Sum() + program->stats->cut_duration->Sum() +
                                   program->stats->fermentation_duration->Sum() + program->stats->bake_duration->Sum() +
                                   program->stats->load_duration->Sum()) /
@@ -28,51 +28,33 @@ OrderProcess::~OrderProcess() {
          program->stats->load_duration->MeanValue()) /
         SECONDS_PER_MINUTE;
 
-    // Print
     program->stats->mix_duration->Output();
     program->stats->cut_duration->Output();
     program->stats->fermentation_duration->Output();
     program->stats->bake_duration->Output();
     program->stats->load_duration->Output();
 
-    for (const auto& f : program->sources->mixers) {
-        f->Output();
-    }
-    for (const auto& f : program->sources->tables) {
-        f->Output();
-    }
+    // SOURCES
+    Print("\n=================== STORES / FACILITIES ====================\n");
+    for (const auto& f : program->sources->mixers) f->Output();
+    for (const auto& f : program->sources->tables) f->Output();
     program->sources->fermenting->Output();
-    for (const auto& f : program->sources->ovens) {
-        f->Output();
-    }
+    for (const auto& f : program->sources->ovens) f->Output();
     program->sources->loading->Output();
+    program->sources->orders->Output();
 
-    // Clear
-    program->stats->mix_duration->Clear();
-    program->stats->cut_duration->Clear();
-    program->stats->fermentation_duration->Clear();
-    program->stats->bake_duration->Clear();
-    program->stats->load_duration->Clear();
-    program->sources->mixers.clear();
-    program->sources->tables.clear();
-    program->sources->fermenting->Clear();
-    program->sources->ovens.clear();
-    program->sources->loading->Clear();
-    program->sources->orders->Clear();
-
-    //
-    msg << "Total bake time: " << total_bake_time << " minutes"
-        << "(" << total_bake_time / SECONDS_PER_MINUTE << " hours)\n";
-    Print(msg.str().c_str());
-
-    //
-    msg.str("");
-    msg << "Mean time to bake 1 bread: " << mean_bake_time_minutes << " minutes ("
-        << mean_bake_time_minutes / SECONDS_PER_MINUTE << " hours)\n";
-    Print(msg.str().c_str());
+    // ALL
+    Print("=================== ALL ====================\n");
+    Print("Total bake time: %d minutes (%d hours)\n", (program->simulation_time / SECONDS_PER_MINUTE),
+          (program->simulation_time / SECONDS_PER_MINUTE / SECONDS_PER_MINUTE));
+    Print("Machines Run time: %d minutes (%d hours)\n", total_bake_time, (total_bake_time / SECONDS_PER_MINUTE));
+    Print("Mean time to bake 1 bread: %d minutes (%d hours)\n", mean_bake_time_minutes,
+          (mean_bake_time_minutes / SECONDS_PER_MINUTE));
 }
 
 void OrderProcess::Behavior() {
+    // Init
+    program->simulation_time = Time;
     auto& sources = program->sources;
     auto args = program->args;
 
@@ -94,6 +76,47 @@ void OrderProcess::Behavior() {
     DEBUG_PRINT("Wait 2%s\n", "");
     Leave(*sources->orders, sources->orders->Capacity());
     DEBUG_PRINT("Wait 3%s\n", "");
+
+    //
+    program->simulation_time = Time - program->simulation_time;
+    //    this->print_data();
+}
+
+void OrderProcess::print_data() const {
+    // STATS
+    Print("\n=================== STATS ====================\n");
+    const auto total_bake_time = (program->stats->mix_duration->Sum() + program->stats->cut_duration->Sum() +
+                                  program->stats->fermentation_duration->Sum() + program->stats->bake_duration->Sum() +
+                                  program->stats->load_duration->Sum()) /
+                                 SECONDS_PER_MINUTE;
+    const auto mean_bake_time_minutes =
+        (program->stats->mix_duration->MeanValue() + program->stats->cut_duration->MeanValue() +
+         program->stats->fermentation_duration->MeanValue() + program->stats->bake_duration->MeanValue() +
+         program->stats->load_duration->MeanValue()) /
+        SECONDS_PER_MINUTE;
+
+    program->stats->mix_duration->Output();
+    program->stats->cut_duration->Output();
+    program->stats->fermentation_duration->Output();
+    program->stats->bake_duration->Output();
+    program->stats->load_duration->Output();
+
+    // SOURCES
+    Print("\n=================== STORES / FACILITIES ====================\n");
+    for (const auto& f : program->sources->mixers) f->Output();
+    for (const auto& f : program->sources->tables) f->Output();
+    program->sources->fermenting->Output();
+    for (const auto& f : program->sources->ovens) f->Output();
+    program->sources->loading->Output();
+    program->sources->orders->Output();
+
+    // ALL
+    Print("=================== ALL ====================\n");
+    Print("Total bake time: %d minutes (%d hours)\n", (program->simulation_time / SECONDS_PER_MINUTE),
+          (program->simulation_time / SECONDS_PER_MINUTE / SECONDS_PER_MINUTE));
+    Print("Machines Run time: %d minutes (%d hours)\n", total_bake_time, (total_bake_time / SECONDS_PER_MINUTE));
+    Print("Mean time to bake 1 bread: %d minutes (%d hours)\n", mean_bake_time_minutes,
+          (mean_bake_time_minutes / SECONDS_PER_MINUTE));
 }
 
 /******************************************************************************
@@ -240,7 +263,7 @@ void LoadProcess::Behavior() {
     // END: Leave the bakery
     if (program->sources->all_sources_free()) {
         DEBUG_PRINT("End%s\n", "");
-        Leave(*(program->sources->orders), 1);
+        Leave(*program->sources->orders, 1);
     } else {
         DEBUG_PRINT("Continue%s\n", "");
     }
