@@ -19,6 +19,10 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get update && apt-get -y install tzdata
 RUN apt-get update \
   && apt-get install -y ssh \
                         build-essential \
+                        vim \
+                        neovim \
+                        python \
+                        fish \
                         gcc \
                         g++ \
                         gdb \
@@ -33,10 +37,9 @@ RUN apt-get update \
                         dos2unix \
                         rsync \
                         tar \
-                        python \
-                        fish \
                         doxygen \
                         valgrind \
+                        tree \
     && apt-get clean \
     && ln -s /usr/bin/make /usr/bin/gmake
 
@@ -54,6 +57,8 @@ RUN make -C ./third_party/simlib install \
     && yes password | passwd user \
     && usermod -s /bin/bash user \
     && yes root | passwd root
+
+USER user
 
 CMD ["/usr/sbin/sshd", "-D", "-e", "-f", "/etc/ssh/sshd_config_test_clion"]
 

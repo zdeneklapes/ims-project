@@ -1,6 +1,7 @@
 #ifndef SRC_PROCESSES_H_
 #define SRC_PROCESSES_H_
 
+#include <cmath>
 #include <iostream>
 #include <random>
 #include <string>
@@ -30,10 +31,10 @@ class MixProcess : public Process {
     // Data
     const double mix_mean_duration_per_bread_sec = 0.5 * SECONDS_PER_MINUTE;
     const double mix_deviation_duration_per_bread_sec = 0.1 * SECONDS_PER_MINUTE;
-    const int breads_tbd;
 
     //
     Program *program;
+    const size_t breads_tbd;
 };
 
 class CutProcess : public simlib3::Process {
@@ -84,10 +85,9 @@ class BakeProcess : public simlib3::Process {
     const size_t breads_tbd;
 };
 
-#if 0
 class LoadProcess : public Process {
    public:
-    explicit LoadProcess(Program *_program, const int _breads_tbd);
+    LoadProcess(Program *_program, const size_t _breads_tbd);
     ~LoadProcess() override;
     void Behavior() override;
 
@@ -95,11 +95,10 @@ class LoadProcess : public Process {
     // Data
     const double load_mean_duration_per_bread_sec = 0.25 * SECONDS_PER_MINUTE;
     const double load_deviation_duration_per_bread_sec = 0.1 * SECONDS_PER_MINUTE;
-    const int breads_tbd;
 
     //
     Program *program;
+    const size_t breads_tbd;
 };
-#endif
 
 #endif  // SRC_PROCESSES_H_

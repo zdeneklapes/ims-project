@@ -4,11 +4,13 @@
  * Sources
  *****************************************************************************/
 Sources::Sources(Args* _args) {
-    mixers = std::vector<Facility>(_args->mixers);
+    mixers = std::vector<Facility*>(_args->mixers, new Facility("Mixer"));
+    tables = std::vector<Facility*>(_args->tables, new Facility("Table"));
     fermenting = new Store("Fermentation capacity", _args->fermentations);
-    tables = std::vector<Facility>(_args->tables);
-    ovens = std::vector<Facility>(_args->ovens);
+    ovens = std::vector<Facility*>(_args->ovens, new Facility("Oven"));
     loading = new Store("Load capacity", 1);  // one cart per time
+
+    //
     orders = new Store("Order capacity", 1);  // flag for day order
 }
 
@@ -17,6 +19,16 @@ Sources::~Sources() {
     delete loading;
     delete orders;
 }
+
+Facility* Sources::get_facility_to_use(const std::vector<Facility*> facilities) {
+    for (auto facility : facilities) {
+        if (!facility->Busy()) {
+            return *facility;
+        }
+    }
+    return facilities[0];
+}
+
 /******************************************************************************
  * CustomStats
  *****************************************************************************/

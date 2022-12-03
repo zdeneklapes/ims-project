@@ -6,23 +6,35 @@
 #define SRC_PROGRAM_H_
 
 #include <iostream>
+#include <string>
 #include <vector>
 
 #include "Args.h"
 
+/******************************************************************************
+ * Sources
+ *****************************************************************************/
 class Sources {
    public:
     explicit Sources(Args *_args);
     ~Sources();
 
-    std::vector<Facility> mixers;  // mixers available in bakery
-    std::vector<Facility> tables;  // tables available in bakery
-    Store *fermenting;             // fermentation room capacity in bakery
-    std::vector<Facility> ovens;   // ovens available in bakery
-    Store *loading;                // loading is evaluated per cart which are waiting to be loaded in queue
-    Store *orders;                 // flag if all breads are baked
+    // Bread baking steps
+    std::vector<Facility *> mixers;  // mixers available in bakery
+    std::vector<Facility *> tables;  // tables available in bakery
+    Store *fermenting;               // fermentation room capacity in bakery
+    std::vector<Facility *> ovens;   // ovens available in bakery
+    Store *loading;                  // loading is evaluated per cart which are waiting to be loaded in queue
+
+    //
+    Store *orders;  // flag if all breads are baked
+
+    Facility *get_facility_to_use(const std::vector<Facility *> facilities);
 };
 
+/******************************************************************************
+ * CustomStats
+ *****************************************************************************/
 class CustomStats {
    public:
     CustomStats();
@@ -36,6 +48,9 @@ class CustomStats {
     Stat *load_duration;
 };
 
+/******************************************************************************
+ * Program
+ *****************************************************************************/
 class Program {
    public:
     explicit Program(Args *_args, Sources *_stores);

@@ -22,10 +22,10 @@ struct Args {
     // System inputs
     /////////////////////////
     // Order
-    size_t breads = 10;
+    size_t breads = 100;
     //
     size_t mixers = 1;
-    size_t mixer_capacity = 150;
+    size_t mixer_capacity = 140;
     //
     size_t tables = 1;
     //
@@ -33,7 +33,7 @@ struct Args {
     //
     size_t ovens = 1;
     //
-    size_t fermentations = 1;
+    size_t fermentations = 2;
     //
     size_t simulations = 1;
     //
