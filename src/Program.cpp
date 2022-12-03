@@ -4,10 +4,16 @@
  * Sources
  *****************************************************************************/
 Sources::Sources(Args* _args) {
-    mixers = std::vector<Facility*>(_args->mixers, new Facility("Mixer"));
-    tables = std::vector<Facility*>(_args->tables, new Facility("Table"));
+    for (size_t i = 0; i < _args->mixers; ++i) {
+        mixers.push_back(new Facility("mixer"));
+    }
+    for (size_t i = 0; i < _args->tables; ++i) {
+        tables.push_back(new Facility("table"));
+    }
     fermenting = new Store("Fermentation capacity", _args->fermentations);
-    ovens = std::vector<Facility*>(_args->ovens, new Facility("Oven"));
+    for (size_t i = 0; i < _args->ovens; ++i) {
+        ovens.push_back(new Facility("oven"));
+    }
     loading = new Store("Load capacity", _args->loads);  // one cart per time
 
     //
@@ -20,16 +26,16 @@ Sources::~Sources() {
     delete orders;
 }
 
-Facility* Sources::get_facility_to_use(const std::vector<Facility*> facilities) {
+Facility* Sources::get_facility_to_use(const std::vector<Facility*>& facilities) {
     for (auto facility : facilities) {
         if (!facility->Busy()) {
-            return *facility;
+            return facility;
         }
     }
     return facilities[0];
 }
 
-size_t Sources::get_free_facility_len(const std::vector<Facility*> facilities) {
+size_t Sources::get_free_facility_len(const std::vector<Facility*>& facilities) {
     size_t free_facilities = 0;
     for (auto facility : facilities) {
         if (!facility->Busy()) {
@@ -38,7 +44,7 @@ size_t Sources::get_free_facility_len(const std::vector<Facility*> facilities) {
     }
     return free_facilities;
 }
-bool Sources::all_sources_free() {
+bool Sources::all_sources_free() const {
     bool are_mixers_free = std::all_of(mixers.cbegin(), mixers.cend(), [](Facility* f) { return !f->Busy(); });
     bool are_tables_free = std::all_of(tables.cbegin(), tables.cend(), [](Facility* f) { return !f->Busy(); });
     bool are_ovens_free = std::all_of(ovens.cbegin(), ovens.cend(), [](Facility* f) { return !f->Busy(); });

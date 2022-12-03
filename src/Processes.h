@@ -23,14 +23,14 @@ class OrderProcess : public Process {
 
 class MixProcess : public Process {
    public:
-    MixProcess(Program *_program, const size_t _breads_tbd);
+    MixProcess(Program *_program, size_t _breads_tbd);
     ~MixProcess() override;
     void Behavior() override;
 
    private:
     // Data
-    const double mix_mean_duration_per_bread_sec = 0.5 * SECONDS_PER_MINUTE;
-    const double mix_deviation_duration_per_bread_sec = 0.2 * SECONDS_PER_MINUTE;
+    const double mix_mi_duration_per_bread_sec = 0.5 * SECONDS_PER_MINUTE;
+    const double mix_sigma_duration_per_bread_sec = mix_mi_duration_per_bread_sec * 0.2;
 
     //
     Program *program;
@@ -39,14 +39,14 @@ class MixProcess : public Process {
 
 class CutProcess : public simlib3::Process {
    public:
-    CutProcess(Program *_program, const size_t _breads_tbd);
+    CutProcess(Program *_program, size_t _breads_tbd);
     ~CutProcess() override;
     void Behavior() override;
 
    private:
     // Data
-    const double cut_mean_duration_per_bread_sec = 0.5 * SECONDS_PER_MINUTE;
-    const double cut_deviation_duration_per_bread_sec = 0.2 * SECONDS_PER_MINUTE;
+    const double cut_mi_duration_per_bread_sec = 0.5 * SECONDS_PER_MINUTE;
+    const double cut_sigma_duration_per_bread_sec = cut_mi_duration_per_bread_sec * 0.2;
     const size_t breads_tbd;
 
     //
@@ -55,14 +55,14 @@ class CutProcess : public simlib3::Process {
 
 class FermentationProcess : public simlib3::Process {
    public:
-    FermentationProcess(Program *_program, const size_t _breads_tbd);
+    FermentationProcess(Program *_program, size_t _breads_tbd);
     ~FermentationProcess() override;
     void Behavior() override;
 
    private:
     // Data
-    const double fermentation_mean_duration_per_bread_sec = 20 * SECONDS_PER_MINUTE;
-    const double fermentation_deviation_duration_per_bread_sec = 5 * SECONDS_PER_MINUTE;
+    const double fermentation_mi_duration_per_bread_sec = 20 * SECONDS_PER_MINUTE;
+    const double fermentation_sigma_duration_per_bread_sec = fermentation_mi_duration_per_bread_sec * 0.2;
 
     //
     Program *program;
@@ -71,14 +71,14 @@ class FermentationProcess : public simlib3::Process {
 
 class BakeProcess : public simlib3::Process {
    public:
-    BakeProcess(Program *_program, const size_t _breads_tbd);
+    BakeProcess(Program *_program, size_t _breads_tbd);
     ~BakeProcess() override;
     void Behavior() override;
 
    private:
     // Data
-    const double bake_duration_mean_per_break_sec = 30 * SECONDS_PER_MINUTE;
-    const double bake_duration_deviation_per_bread_sec = 10 * SECONDS_PER_MINUTE;
+    const double bake_mi_duration_per_break_sec = 30 * SECONDS_PER_MINUTE;
+    const double bake_sigma_duration_per_bread_sec = bake_mi_duration_per_break_sec * 0.2;
 
     //
     Program *program;
@@ -87,14 +87,14 @@ class BakeProcess : public simlib3::Process {
 
 class LoadProcess : public Process {
    public:
-    LoadProcess(Program *_program, const size_t _breads_tbd);
+    LoadProcess(Program *_program, size_t _breads_tbd);
     ~LoadProcess() override;
     void Behavior() override;
 
    private:
     // Data
-    const double load_mean_duration_per_bread_sec = 0.25 * SECONDS_PER_MINUTE;
-    const double load_deviation_duration_per_bread_sec = 0.2 * SECONDS_PER_MINUTE;
+    const double load_mi_duration_per_bread_sec = 0.25 * SECONDS_PER_MINUTE;
+    const double load_sigma_duration_per_bread_sec = load_mi_duration_per_bread_sec * 0.2;
 
     //
     Program *program;

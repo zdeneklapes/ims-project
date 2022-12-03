@@ -1,1 +1,0 @@
-/usr/bin/c++   -g -Wall -Wextra -pedantic -g   CMakeFiles/wheel2.dir/third_party/simlib/examples/wheel2.cc.o  -o wheel2   -L/usr/local/lib  -Wl,-rpath,/usr/local/lib -lsimlib 

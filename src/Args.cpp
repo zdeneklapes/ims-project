@@ -37,4 +37,6 @@ Args::Args(int argc, char *argv[]) {
         }
     }
 }
-size_t Args::get_breads_tbd() const { return (breads > mixer_capacity) ? mixer_capacity : breads; }
+size_t Args::get_breads_tbd(const size_t &_breads, const size_t &_mixer_capacity) {
+    return (_breads > _mixer_capacity) ? _mixer_capacity : _breads;
+}

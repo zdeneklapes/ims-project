@@ -8,7 +8,7 @@
 # stop:
 #   docker stop clion_remote_env
 #
-# ssh credentials (test user):
+# ssh credentials (test_value user):
 #   user@password
 
 FROM ubuntu:20.04

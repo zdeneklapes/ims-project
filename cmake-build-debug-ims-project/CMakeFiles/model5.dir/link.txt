@@ -1,1 +1,0 @@
-/usr/bin/c++   -g -Wall -Wextra -pedantic -g   CMakeFiles/model5.dir/third_party/simlib/examples/model5.cc.o  -o model5   -L/usr/local/lib  -Wl,-rpath,/usr/local/lib -lsimlib 

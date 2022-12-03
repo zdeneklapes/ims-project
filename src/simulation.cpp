@@ -15,20 +15,19 @@ void simulate(Program *program) {
     for (u_int64_t i = 0; i < args.simulations; ++i) {
         //
         msg.str("");  // clear
-        msg << "========== " << i << ". START Simulation ==========\n";
+        msg << "========== " << i << ". START Simulation (" << args.breads << " loaves of bread) ==========\n";
         Print(msg.str().c_str());
 
         //
-        Init(0);  // TODO: Max work-shift time
+        Init(0.0, (double)args.timer_work_shift);
         (new OrderProcess(program))->Activate();
         Run();
-
-        //
         SIMLIB_statistics.Output();
 
         //
         msg.str("");  // clear
-        msg << "========== " << i << ". END Simulation ==========\n";
+        msg << "========== " << i << ". END Simulation "
+            << "(" << args.timer_work_shift / SECONDS_PER_MINUTE << ") ==========\n\n";
         Print(msg.str().c_str());
     }
 }
