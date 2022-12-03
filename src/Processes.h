@@ -30,7 +30,7 @@ class MixProcess : public Process {
    private:
     // Data
     const double mix_mean_duration_per_bread_sec = 0.5 * SECONDS_PER_MINUTE;
-    const double mix_deviation_duration_per_bread_sec = 0.1 * SECONDS_PER_MINUTE;
+    const double mix_deviation_duration_per_bread_sec = 0.2 * SECONDS_PER_MINUTE;
 
     //
     Program *program;
@@ -46,7 +46,7 @@ class CutProcess : public simlib3::Process {
    private:
     // Data
     const double cut_mean_duration_per_bread_sec = 0.5 * SECONDS_PER_MINUTE;
-    const double cut_deviation_duration_per_bread_sec = 0.1 * SECONDS_PER_MINUTE;
+    const double cut_deviation_duration_per_bread_sec = 0.2 * SECONDS_PER_MINUTE;
     const size_t breads_tbd;
 
     //
@@ -62,7 +62,7 @@ class FermentationProcess : public simlib3::Process {
    private:
     // Data
     const double fermentation_mean_duration_per_bread_sec = 20 * SECONDS_PER_MINUTE;
-    const double fermentation_deviation_duration_per_bread_sec = 1 * SECONDS_PER_MINUTE;
+    const double fermentation_deviation_duration_per_bread_sec = 5 * SECONDS_PER_MINUTE;
 
     //
     Program *program;
@@ -78,7 +78,7 @@ class BakeProcess : public simlib3::Process {
    private:
     // Data
     const double bake_duration_mean_per_break_sec = 30 * SECONDS_PER_MINUTE;
-    const double bake_duration_deviation_per_bread_sec = 3 * SECONDS_PER_MINUTE;
+    const double bake_duration_deviation_per_bread_sec = 10 * SECONDS_PER_MINUTE;
 
     //
     Program *program;
@@ -94,7 +94,7 @@ class LoadProcess : public Process {
    private:
     // Data
     const double load_mean_duration_per_bread_sec = 0.25 * SECONDS_PER_MINUTE;
-    const double load_deviation_duration_per_bread_sec = 0.1 * SECONDS_PER_MINUTE;
+    const double load_deviation_duration_per_bread_sec = 0.2 * SECONDS_PER_MINUTE;
 
     //
     Program *program;

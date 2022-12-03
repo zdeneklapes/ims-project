@@ -8,7 +8,7 @@ Sources::Sources(Args* _args) {
     tables = std::vector<Facility*>(_args->tables, new Facility("Table"));
     fermenting = new Store("Fermentation capacity", _args->fermentations);
     ovens = std::vector<Facility*>(_args->ovens, new Facility("Oven"));
-    loading = new Store("Load capacity", 1);  // one cart per time
+    loading = new Store("Load capacity", _args->loads);  // one cart per time
 
     //
     orders = new Store("Order capacity", 1);  // flag for day order
@@ -37,6 +37,14 @@ size_t Sources::get_free_facility_len(const std::vector<Facility*> facilities) {
         }
     }
     return free_facilities;
+}
+bool Sources::all_sources_free() {
+    bool are_mixers_free = std::all_of(mixers.cbegin(), mixers.cend(), [](Facility* f) { return !f->Busy(); });
+    bool are_tables_free = std::all_of(tables.cbegin(), tables.cend(), [](Facility* f) { return !f->Busy(); });
+    bool are_ovens_free = std::all_of(ovens.cbegin(), ovens.cend(), [](Facility* f) { return !f->Busy(); });
+    bool is_loading_free = loading->Empty();
+    bool is_fermenting_free = fermenting->Empty();
+    return (are_mixers_free && are_tables_free && are_ovens_free && is_loading_free && is_fermenting_free);
 }
 
 /******************************************************************************

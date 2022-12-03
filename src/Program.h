@@ -31,6 +31,7 @@ class Sources {
 
     Facility *get_facility_to_use(const std::vector<Facility *> facilities);
     size_t get_free_facility_len(const std::vector<Facility *> facilities);
+    bool all_sources_free();
 };
 
 /******************************************************************************

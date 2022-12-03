@@ -1,8 +1,10 @@
 #include "Processes.h"
 
-size_t get_breads_tbd(const Args* args) {
-    return (args->breads > args->mixer_capacity) ? args->mixer_capacity : args->breads;
-}
+/******************************************************************************
+ * TODO
+ *****************************************************************************/
+// TODO: 10361 ERROR
+// TODO: Total bake time is not updated after compilation
 
 /******************************************************************************
  * OrderProcess
@@ -36,13 +38,13 @@ void OrderProcess::Behavior() {
     //
     while (args->breads > 0) {
         // Start mixing
-        (new MixProcess(this->program, get_breads_tbd(args)))->Activate();
+        (new MixProcess(this->program, program->args->get_breads_tbd()))->Activate();
 
         // Update breads to be done
-        args->breads -= get_breads_tbd(args);
+        args->breads -= program->args->get_breads_tbd();
 
         //
-        DEBUG_PRINT("OrderProcess breads_tbd: %zu | Left: %zu\n", get_breads_tbd(program->args), args->breads);
+        DEBUG_PRINT("OrderProcess breads_tbd: %zu | Left: %zu\n", program->args->get_breads_tbd(), args->breads);
     }
 
     // Wait for all processes to finish
@@ -149,7 +151,8 @@ void BakeProcess::Behavior() {
     const auto facility = program->sources->get_facility_to_use(program->sources->ovens);
 
     //
-    DEBUG_PRINT("BakeProcess breads_tbd: %zu | Ovens: %zu | Wait: %f\n", breads_tbd, program->args->ovens, duration);
+    DEBUG_PRINT("BakeProcess breads_tbd: %zu | Ovens: %zu | Wait: %f | Carts: %zu\n", breads_tbd, program->args->ovens,
+                duration, carts_tbd);
 
     // Wait
     for (size_t i = 0; i < carts_tbd; ++i) {
@@ -185,9 +188,11 @@ void LoadProcess::Behavior() {
     Wait(duration);
     Leave(*program->sources->loading, 1);
 
-    // Leave the bakery
-    if (breads_tbd < program->args->mixer_capacity) {
-        DEBUG_PRINT("Leave Mix%s\n", "");
+    // END: Leave the bakery
+    if (program->sources->all_sources_free()) {
+        DEBUG_PRINT("End%s\n", "");
         Leave(*(program->sources->orders), 1);
+    } else {
+        DEBUG_PRINT("Continue%s\n", "");
     }
 }
