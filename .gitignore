@@ -17,6 +17,8 @@ dns_sender
 tests/data-out/
 others/
 
+*.txt
+
 # vim
 tags
 

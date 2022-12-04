@@ -52,6 +52,8 @@ struct Args {
     size_t loads = 2;          // Number of persons loading breads into the boxes
 #if TEST
     size_t simulations = 1;  // Number of simulations
+#elif DEBUG
+    size_t simulations = 1;  // Number of simulations
 #else
     size_t simulations = 3;  // Number of simulations
 #endif
