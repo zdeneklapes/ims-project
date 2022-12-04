@@ -20,7 +20,7 @@ Args::Args(int argc, char *argv[]) {
         } else if (string(argv[i]) == string("-t") || string(argv[i]) == string("--tables")) {
             CHECK_NEXT_ARG(argc, i);
             std::stringstream(argv[++i]) >> tables;
-        } else if (string(argv[i]) == string("-f") || string(argv[i]) == string("--fermentation-rooms")) {
+        } else if (string(argv[i]) == string("-f") || string(argv[i]) == string("--fermentations")) {
             CHECK_NEXT_ARG(argc, i);
             std::stringstream(argv[++i]) >> fermentations;
         } else if (string(argv[i]) == string("--ovens")) {

@@ -30,6 +30,10 @@ or
 ```bash
 make
 make run
+# or
+make run PROGRAM_ARGS='--breads 100 --mixers 2 --tables 2 --fermentations 2 --ovens 3 --loads 3 --simulations 3 --outfile out.txt'
+# or
+./build/bread_factory
 ```
 
 ### VIRTUAL MACHINE (DOCKER)
