@@ -170,16 +170,16 @@ void LoadProcess::Behavior() {
     auto sigma_sort = load_sigma_duration_per_bread_sec * (double)breads_tbd;
     const double sort_duration = Normal(mi_sort, sigma_sort);
 
-    //    auto mi_prepare = prepare_boxes_mi_duration_per_bread_sec * (double)breads_tbd;
-    //    auto sigma_prepare = prepare_boxes_sigma_duration_per_bread_sec * (double)breads_tbd;
-    //    const double prepare_boxes_duration = Normal(mi_prepare, sigma_prepare);
+    auto mi_prepare = prepare_boxes_mi_duration_per_bread_sec * (double)breads_tbd;
+    auto sigma_prepare = prepare_boxes_sigma_duration_per_bread_sec * (double)breads_tbd;
+    const double prepare_boxes_duration = Normal(mi_prepare, sigma_prepare);
 
-    const double final_duration = sort_duration;  // + prepare_boxes_duration;
+    const double final_duration = sort_duration + prepare_boxes_duration;
 
     //
     DEBUG_PRINT("LoadProcess: breads_tbd: %zu | Wait: %f (mi_prepare: %f | sigma_prepare: %f) | Store: %zu/%zu\n",
-                breads_tbd, sort_duration, mi_sort, sigma_sort, program->sources->loading->Used(),
-                program->sources->loading->Capacity());
+                breads_tbd, final_duration, mi_sort + mi_prepare, sigma_sort + sigma_prepare,
+                program->sources->loading->Used(), program->sources->loading->Capacity());
 
     // Wait
     Enter(*program->sources->loading, 1);

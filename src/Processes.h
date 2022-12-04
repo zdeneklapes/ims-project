@@ -105,8 +105,8 @@ class CutProcess : public simlib3::Process {
     /////////////////////////
     // Data about Cutting duration
     /////////////////////////
-    const double cut_mi_duration_per_bread_sec = 0.5 * SECONDS_PER_MINUTE;
-    const double cut_sigma_duration_per_bread_sec = 0.25 * SECONDS_PER_MINUTE;
+    const double cut_mi_duration_per_bread_sec = 35;
+    const double cut_sigma_duration_per_bread_sec = cut_mi_duration_per_bread_sec * 0.2;
     const size_t breads_tbd;
 
     //
@@ -216,10 +216,10 @@ class LoadProcess : public Process {
     /////////////////////////
     // Data
     /////////////////////////
-    const double load_mi_duration_per_bread_sec = 10;
-    const double load_sigma_duration_per_bread_sec = 3;
-    //    const double prepare_boxes_mi_duration_per_bread_sec = 20;
-    //    const double prepare_boxes_sigma_duration_per_bread_sec = 2;
+    const double load_mi_duration_per_bread_sec = 12;
+    const double load_sigma_duration_per_bread_sec = load_mi_duration_per_bread_sec * 0.2;
+    const double prepare_boxes_mi_duration_per_bread_sec = 20;
+    const double prepare_boxes_sigma_duration_per_bread_sec = prepare_boxes_mi_duration_per_bread_sec * 0.2;
 
     //
     Program *program;
