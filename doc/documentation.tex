@@ -82,10 +82,23 @@
     \end{itemize}
 
     \subsection{Použité metódy, postupy a technológie}
-    Na implementáciu modelu bol použitý programovací jazyk \texttt{C++} za podpory simulačnej knihonvne \texttt{SimLib}.
-    [TODO: doplnit odkaz na knihovnu] [TODO: zdůvodnění, proč jsou pro zadaný problém vhodné. Zdůvodnění může být podpořeno ukázáním alternativního přístupu a srovnáním s tím vaším]
+    Na implementáciu modelu bol použitý programovací jazyk \texttt{C++} za podpory simulačnej knižnice \texttt{SimLib}.
+    Hlavným dôvodom použitia jazyka \texttt{C++} je využitie naimplementovanej
+    knižnice \texttt{SimLib}. Knižnicu sme si vybrali z dôvodu modelovania procesov výroby na základe petriho siete, ktorá
+    toto modelovanie podporuje. Príklady a správne použitie knižnice sme čerpali z pradnášok predmetu \texttt{IMS}\cite{IMS_slides}.
+    Na kompiláciu sme využili nástroj \texttt{CMake}. Na vývoj bol zvolený operačný sýstém
+    \texttt{Linux Ubuntu}, ktorý bežal vo virtualizovanom prostredí nástroja \texttt{Docker}.
+
     \subsection{Pôvod metód a technológií}
-    [TODO]
+    \begin{itemize}
+        \item \textbf{C++} -- Verzia \texttt{C++20}: \texttt{https://en.cppreference.com/w/cpp/20}.
+        \item \textbf{SimLib} -- Verzia \texttt{3.09}\cite{simblib}. Autori knižnice sú Petr Peringer,
+        David Leska a David Martinek.
+        \item \textbf{CMAKE} -- Verzia \texttt{3.5}: \texttt{https://cmake.org/}.
+        \item \textbf{Docker} -- Verzia \texttt{20.10.17}: \texttt{https://www.docker.com/}.
+        \item \textbf{Linux Ubuntu} -- Verzia \texttt{20.04}: \texttt{https://ubuntu.com/}.
+    \end{itemize}
+
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Implementácia programu %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section {Koncepcia modelu}
@@ -110,12 +123,11 @@
     \end{itemize}
 
     \section{Architektúra simulačného modelu}
-    Simulacni model\cite[slide 44]{IMS_slides} lze spustit ve 3 rezimech. Nastaveni techto
-    rezimu je urceno konstantami v souboru \texttt{src/macros.h}.
+    Simulačný model\cite[slide 44]{IMS_slides} je možné spustiť v 3 režimoch. Nastavenie týchto
+    režimov je určené konštantami v súbore \texttt{src/macros.h}.
+    Každý proces ma nasledujúcu implementáciu funkcie \texttt{Behavior()}:
+    Na začiatku sa spustia všetky \texttt{mixer process}, poprípade se vytvori fronta na \texttt{mixer process}.\\
 
-    Kazdy proces ma nasledujici implementaci funkce \texttt{Behavior()}:
-
-    Na zacatku se spusti vsechny mixer process, popriapde se vytvroi fronta na mixer process.
     \begin{algorithm}[ht]
         \SetKw{Break}{break}
 
@@ -140,44 +152,44 @@
     \end{algorithm}
 
     \subsection{Vstupy modelu}
-    Vstupem simulacniho modelu jsou atributy tridy \texttt{Args} v souboru \texttt{src/Args.h}:
+    Vstupom simulačného modelu sú atribúty triedy \texttt{Args} v súbore \texttt{src/Args.h}:
     \begin{itemize}
-        \item breads -- pocet chlebov, ktere se maji vyrobit
-        \item mixers -- pocet mixeru
-        \item tables -- pocet stolu na krájeni
-        \item carts -- pocet voziku
-        \item ovens -- pocet peci
-        \item packers -- pocet balicich pracovniku
+        \item breads -- počet chlebov, ktoré se majú vyrobiť
+        \item mixers -- počet mixérov
+        \item tables -- počet stolov na krájanie
+        \item carts -- počet vozíkov
+        \item ovens -- počet pecí
+        \item packers -- počet pracovníkov na balenie
     \end{itemize}
 
-    Dalsi atributy tridy \texttt{Args} jsou pro ovladani simulace a vystupniho souboru:
+    Dalšie atribúty triedy \texttt{Args} sú pre ovládanie simulácie a výstupného súboru:
     \begin{itemize}
-        \item outfile -- nazev vystupniho souboru
-        \item simulations -- pocet simulaci, ktere se maji spustit
+        \item outfile -- názov výstupného súboru
+        \item simulations -- počet simulácií, ktoré se majú spustiť
     \end{itemize}
 
-    Tyto vstupy jsou zadavany pri spusteni programu, viz.\ref{subsec:spousteni-simulacniho-model}
+    Tieto vstupy sú zadávané pri spustení programu, viz.\ref{subsec:spousteni-simulacniho-model}
 
     \subsection{Výstup simulácie}
-    Výstupem simulácie je mozen ridit pres konstanty v souboru \texttt{src/macros.h}:
+    Výstupom simulácie je možné riadit cez konštanty v súbore \texttt{src/macros.h}:
     \begin{itemize}
-        \item SIMULACNI REZIM (DEBUG=0 a TEST=0) -- v tomto rezimu je mozne spustit simulaci a sledovat vysledky, model se spusti 3x.
-        \item DEBUG REZIM (DEBUG=1) -- v tomto rezimu je mozne sledovat podrobnejsi info o probihajici simulaci
-        v jednotlivych krocich (doba vyrizeni jednotlivych procesu, vstupy a vystupy jednotlivych procesu, \ldots)
-        \item EXPERIMENT REZIM (TEST=1) -- v tomto rezimu je spusteno experimentovani pro zjisteni,
-        ktera konfigurace modelu (vstupu), jse nejvhodnejsi pro peceni
-        chleba z hlediska nejmensiho casu vyrizeni tzv. optimalni konfigurace.
+        \item SIMULAČNÝ REŽIM (DEBUG=0 a TEST=0) -- v tomto režimu je možné spustiť simuláciu a sledovať výsledky, model se spustí 3x.
+        \item DEBUG REŽIM (DEBUG=1) -- v tomto režimu je možné sledovať podrobnejšie informácie o prebiehajúcich simuláciách
+        v jednotlivých krokoch (doba vybavenia jednotlivých procesov, vstupy a výstupy jednotlivých procesov, \ldots)
+        \item EXPERIMENT REŽIM (TEST=1) -- v tomto režimu je spustené experimentovanie pre zistenie,
+        ktorá konfigurácia modelu (vstupu), je najvhôdnejšia pre pečenie
+        chleba z hladiska nejmenšieho času vybavenia tzv. optimalnej konfigurácie.
     \end{itemize}
 
-    Výstupom simulácie jsou data o čase výroby chleba, zatizeni jednotlivich stroju a pracovniku.
-    Vystup muze byt ulozen do souboru, ktery je zadany prikazem \texttt{--outfile}, pokud neni zadan
-    vystup je vytisten na standardni vystup.
+    Výstupom simulácie sú dáta o čase výroby chleba, zataženie jednotlivých strojov a pracovníkov.
+    Výstup môže byť uložený do súboru, ktorý je zadaný príkazom \texttt{--outfile}, keď nie je zadaný
+    výstup je vytlačený na štandratný výstup.
 
-    \subsection{Spousteni simulacniho model}\label{subsec:spousteni-simulacniho-model}
-    Simulacni model se musi pred spustenim kompilovat pomoci Makefile.
-    \texttt{make} a spustim model je mozne pomoci prikazu \texttt{make run} s defaultnimi hodnotami vstupu.
-    Model lze spoustet i s parametry, ktere jsou vstupy simulacniho modelu, viz. \texttt{src/Args.h}:
-    Spousteni: \texttt{./build/bread\_factory --breads 100 --mixers 2 --tables 2
+    \subsection{Spúšťanie simulačného modelu}\label{subsec:spousteni-simulacniho-model}
+    Simulačný model se musí pred spustením skompilovať pomocou \texttt{Makefile}.
+    \texttt{make} a spustený model je možné pomocou príkazu \texttt{make run} s predvolenými hodnotami vstupu.
+    Model je možné spúšťať aj s parametrami, ktoré sú vstupmi simulačného modelu, viz. \texttt{src/Args.h}:
+    Spúšťanie: \texttt{./build/bread\_factory --breads 100 --mixers 2 --tables 2
     --fermentations 2 --ovens 3 --loads 3 --simulations 3 --outfile out.txt}.
 
 
