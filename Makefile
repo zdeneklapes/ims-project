@@ -21,7 +21,7 @@ build:
 	$(MAKE) -C $(DIR_BUILD)
 
 run: build
-	./$(DIR_BUILD)/$(EXECUTABLE)
+	./$(DIR_BUILD)/$(EXECUTABLE) $(PROGRAM_ARGS)
 
 clean:
 	./start.sh -c

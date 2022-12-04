@@ -10,6 +10,7 @@
 \usepackage{listings} % vkladanie obrazkov
 \usepackage{color}
 \usepackage{xcolor}
+\usepackage[czech, boxed]{algorithm2e}
 
 
 \begin{document}
@@ -58,7 +59,7 @@
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Rozbor témy a použitých metód/technológií %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \section {Rozbor témy}
+    \section {Rozbor témy}\label{sec:rozbor-temy}
     Postup výroby chleba sa skladá z viacerych procesov, ktoré sú navzájom závislé:
     \begin{itemize}
         \item \textbf{Výroba cesta} -- Proces výroby cesta spočíva zo zmiešania všetkých surovín do jedného. Počet
@@ -91,16 +92,36 @@
 
 
     \section{Architektúra simulačného modelu}
-    Simulacni model\cite[slide 44]{IMS_slides} lze spusti ve 3 rezimech a nastaveni techto rezimu je rizeno konstantami v souboru
-    \texttt{src/macros.h}:
-    \begin{itemize}
-        \item SIMULACNI REZIM (DEBUG=0 a TEST=0) -- v tomto rezimu je mozne spustit simulaci a sledovat vysledky, model se spusti 3x.
-        \item DEBUG REZIM (DEBUG=1) -- v tomto rezimu je mozne sledovat podrobnejsi info o probihajici simulaci
-        v jednotlivych krocich (doba vyrizeni jednotlivych procesu, vstupy a vystupy jednotlivych procesu, \ldots)
-        \item TEST REZIM (TEST=1) -- v tomto rezimu je mozne spustit test, ktery zjisti, ktera konfigurace modelu (vstupy),
-        jsou nejvhodnejsi pro peceni chleba, tzv. optimalni konfigurace, aby se dosahlo nejmensiho casu vyrizeni.
-    \end{itemize}
+    Simulacni model\cite[slide 44]{IMS_slides} lze spustit ve 3 rezimech. Nastaveni techto
+    rezimu je urceno konstantami v souboru \texttt{src/macros.h}.
 
+    Kazdy proces ma nasledujici implementaci funkce \texttt{Behavior()}:
+
+    Na zacatku se spusti vsechny mixer process, popriapde se vytvroi fronta na mixer process.
+    \begin{algorithm}[ht]
+        \SetKw{Break}{break}
+
+        Zahajeni order process\;
+        \While{nemixuje se testo pro upeceni vsech chlebu}
+        {
+            Zahajeni mixer process\;
+        }
+        čekání, až budou vsechny chleby v bednickach\;
+        ukončeni Order process\;
+
+        \caption{Zahajeni procesu výroby chleba}
+        \label{algorithm:orderprocess}
+    \end{algorithm}
+
+    \begin{algorithm}[ht]
+        \SetKw{Break}{break}
+        Cekej dokud neni dany process hotovy\;
+        Spust nasledujici process\;
+        \caption{Process výroby chleba}
+        \label{algorithm:otherprocess}
+    \end{algorithm}
+
+    \subsection{Vstupy modelu}
     Vstupem simulacniho modelu jsou atributy tridy \texttt{Args} v souboru \texttt{src/Args.h}:
     \begin{itemize}
         \item breads -- pocet chlebov, ktere se maji vyrobit
@@ -111,17 +132,34 @@
         \item packers -- pocet balicich pracovniku
     \end{itemize}
 
-    Dalsi atributy tridy \texttt{Args} jsou pro ovladani simulace a vystupu:
+    Dalsi atributy tridy \texttt{Args} jsou pro ovladani simulace a vystupniho souboru:
     \begin{itemize}
         \item outfile -- nazev vystupniho souboru
         \item simulations -- pocet simulaci, ktere se maji spustit
     \end{itemize}
 
-    \subsection{Spousteni simulacniho modelu}
+    Tyto vstupy jsou zadavany pri spusteni programu, viz.\ref{subsec:spousteni-simulacniho-model}
+
+    \subsection{Výstup simulácie}
+    Výstupem simulácie je mozen ridit pres konstanty v souboru \texttt{src/macros.h}:
+    \begin{itemize}
+        \item SIMULACNI REZIM (DEBUG=0 a TEST=0) -- v tomto rezimu je mozne spustit simulaci a sledovat vysledky, model se spusti 3x.
+        \item DEBUG REZIM (DEBUG=1) -- v tomto rezimu je mozne sledovat podrobnejsi info o probihajici simulaci
+        v jednotlivych krocich (doba vyrizeni jednotlivych procesu, vstupy a vystupy jednotlivych procesu, \ldots)
+        \item TEST REZIM (TEST=1) -- v tomto rezimu je spusten test, ktery zjisti, ktera konfigurace modelu (vstupy),
+        jsou nejvhodnejsi pro peceni chleba, tzv. optimalni konfigurace, aby se dosahlo nejmensiho casu vyrizeni.
+    \end{itemize}
+
+    Výstupom simulácie jsou data o čase výroby chleba, zatizeni jednotlivich stroju a pracovniku.
+    Vystup muze byt ulozen do souboru, ktery je zadany prikazem \texttt{--outfile}, pokud neni zadan
+    vystup je vytisten na standardni vystup.
+
+    \subsection{Spousteni simulacniho model}\label{subsec:spousteni-simulacniho-model}
     Simulacni model se musi pred spustenim kompilovat pomoci Makefile.
     \texttt{make} a spustim model je mozne pomoci prikazu \texttt{make run} s defaultnimi hodnotami vstupu.
     Model lze spoustet i s parametry, ktere jsou vstupy simulacniho modelu, viz. \texttt{src/Args.h}:
-    \texttt{./build/bread_factory --breads 100 --mixers 2 --tables 2 --fermentations 2 --ovens 3 --loads 3 --simulations 3 --outfile out.txt}.
+    Spousteni: \texttt{./build/bread\_factory --breads 100 --mixers 2 --tables 2
+    --fermentations 2 --ovens 3 --loads 3 --simulations 3 --outfile out.txt}.
 
 
     \section{Podstata imulačných experimentov a ich priebeh}
