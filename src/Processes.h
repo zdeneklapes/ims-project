@@ -218,6 +218,8 @@ class LoadProcess : public Process {
     /////////////////////////
     const double load_mi_duration_per_bread_sec = 10;
     const double load_sigma_duration_per_bread_sec = 3;
+    //    const double prepare_boxes_mi_duration_per_bread_sec = 20;
+    //    const double prepare_boxes_sigma_duration_per_bread_sec = 2;
 
     //
     Program *program;

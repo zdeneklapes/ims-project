@@ -166,18 +166,25 @@ LoadProcess::~LoadProcess() = default;
 
 void LoadProcess::Behavior() {
     // Init
-    auto mi = load_mi_duration_per_bread_sec * (double)breads_tbd;
-    auto sigma = load_sigma_duration_per_bread_sec * (double)breads_tbd;
-    const double duration = Normal(mi, sigma);
+    auto mi_sort = load_mi_duration_per_bread_sec * (double)breads_tbd;
+    auto sigma_sort = load_sigma_duration_per_bread_sec * (double)breads_tbd;
+    const double sort_duration = Normal(mi_sort, sigma_sort);
+
+    //    auto mi_prepare = prepare_boxes_mi_duration_per_bread_sec * (double)breads_tbd;
+    //    auto sigma_prepare = prepare_boxes_sigma_duration_per_bread_sec * (double)breads_tbd;
+    //    const double prepare_boxes_duration = Normal(mi_prepare, sigma_prepare);
+
+    const double final_duration = sort_duration;  // + prepare_boxes_duration;
 
     //
-    DEBUG_PRINT("LoadProcess: breads_tbd: %zu | Wait: %f (mi: %f | sigma: %f) | Store: %zu/%zu\n", breads_tbd, duration,
-                mi, sigma, program->sources->loading->Used(), program->sources->loading->Capacity());
+    DEBUG_PRINT("LoadProcess: breads_tbd: %zu | Wait: %f (mi_prepare: %f | sigma_prepare: %f) | Store: %zu/%zu\n",
+                breads_tbd, sort_duration, mi_sort, sigma_sort, program->sources->loading->Used(),
+                program->sources->loading->Capacity());
 
     // Wait
     Enter(*program->sources->loading, 1);
-    (*program->stats->load_duration)(duration);
-    Wait(duration);
+    (*program->stats->load_duration)(final_duration);
+    Wait(final_duration);
     Leave(*program->sources->loading, 1);
 
     // END: Leave the bakery
