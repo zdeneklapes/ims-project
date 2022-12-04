@@ -6,8 +6,8 @@
 
 #include "Args.h"
 #include "Program.h"
+#include "experiments.h"
 #include "simulation.h"
-#include "test.h"
 
 using namespace std;  // NOLINT
 
@@ -18,7 +18,7 @@ int main([[maybe_unused]] int argc, [[maybe_unused]] char** argv) {
 
     //
 #if TEST
-    test1(program);
+    experiments(program);
 #else
     simulate(program);
 #endif

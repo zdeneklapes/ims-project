@@ -5,7 +5,7 @@
  *****************************************************************************/
 OrderProcess::OrderProcess(Program* _program) : program(_program) { program->reinit(); }
 
-#if TEST
+#if TEST | DEBUG
 OrderProcess::~OrderProcess() = default;
 #else
 OrderProcess::~OrderProcess() { program->print_data(); }
@@ -23,10 +23,12 @@ void OrderProcess::Behavior() {
     //
     auto breads_tbd = args->breads;
     while (breads_tbd > 0) {
-        (new MixProcess(this->program, Args::get_breads_tbd(breads_tbd, args->mixer_capacity)))->Activate();
-        breads_tbd -= Args::get_breads_tbd(breads_tbd, args->mixer_capacity);
         DEBUG_PRINT("OrderProcess breads_tbd: %zu | Left: %zu\n",
                     Args::get_breads_tbd(breads_tbd, args->mixer_capacity), breads_tbd);
+
+        //
+        (new MixProcess(this->program, Args::get_breads_tbd(breads_tbd, args->mixer_capacity)))->Activate();
+        breads_tbd -= Args::get_breads_tbd(breads_tbd, args->mixer_capacity);
     }
 
     // Wait for all processes to finish
@@ -49,12 +51,15 @@ MixProcess::~MixProcess() = default;
 
 void MixProcess::Behavior() {
     // Init
+    const auto carts_tbd = get_carts_tbd(breads_tbd, program->args->cart_capacity);
     Facility* facility = program->sources->get_facility_to_use(program->sources->mixers);
     const double duration = Normal(mix_mi_duration_per_bread_sec, mix_sigma_duration_per_bread_sec);
 
     //
-    DEBUG_PRINT("MixProcess breads_tbd: %zu | Free mixers: %zu | Wait: %f\n", breads_tbd,
-                program->sources->get_free_facility_len(program->sources->mixers), duration);
+    DEBUG_PRINT(
+        "MixProcess: breads_tbd: %zu | Wait: %f (mi: %f | sigma: %f) | Carts: %zu | Facility: %p | Capacity %zu\n",
+        breads_tbd, duration, mix_mi_duration_per_bread_sec, mix_sigma_duration_per_bread_sec, carts_tbd,
+        (void*)facility, program->sources->mixers.size());
 
     // Wait
     Seize(*facility);
@@ -63,7 +68,10 @@ void MixProcess::Behavior() {
     Release(*facility);
 
     // Continue making loaves
-    (new CutProcess(program, breads_tbd))->Activate();
+    for (size_t i = 0; i < carts_tbd; ++i) {
+        const size_t cap = program->args->cart_capacity;
+        (new CutProcess(program, breads_tbd > cap ? cap : breads_tbd))->Activate();
+    }
 }
 
 /******************************************************************************
@@ -94,9 +102,7 @@ void CutProcess::Behavior() {
     Release(*facility);
 
     // Continue By Cart
-    for (size_t i = 0; i < carts_tbd; ++i) {
-        (new FermentationProcess(program, program->args->cart_capacity))->Activate();
-    }
+    (new FermentationProcess(program, breads_tbd))->Activate();
 }
 
 /******************************************************************************

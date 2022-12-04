@@ -74,7 +74,7 @@ class MixProcess : public Process {
 
     //
     Program *program;
-    const size_t breads_tbd;
+    size_t breads_tbd;
 };
 
 /******************************************************************************

@@ -1,5 +1,7 @@
 #include "Program.h"
 
+#include "experiments.h"
+
 /******************************************************************************
  * Sources
  *****************************************************************************/
@@ -133,4 +135,10 @@ void Program::print_data() const {
     Print("Machines Run time: %d minutes (%f hours)\n", (int)total_bake_time, (total_bake_time / SECONDS_PER_MINUTE));
     Print("Mean time to bake 1 bread: %d minutes (%f hours)\n\n", (int)mean_bake_time_minutes,
           (mean_bake_time_minutes / SECONDS_PER_MINUTE));
+
+    std::vector<TestResult*> results;
+    results.push_back(new TestResult(args->mixers, args->tables, args->fermentations, args->ovens, args->loads,
+                                     args->simulations, args->breads, args->mixer_capacity, args->cart_capacity,
+                                     simulation_time));
+    print_test_result(results);
 }
