@@ -38,14 +38,49 @@
     \newpage
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Úvod %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \section*{Úvod}
+    \section{Úvod}
+        V tejto práci je riešená implementácia procesu výroby chleba, ktorá je použitá na zostavenie modelu testujúceho
+        najlepšie možné nakonfigurovanie množstva strojov, pracovníkov a miestností výroby pre rôzne scenáre požiadaviek
+        množstva chlebov v daný deň. Danú prácu vypracovali študenti Zdenek Lapeš a Andrej Bínovský z Fakulty informačných
+        technológií VUT v Brne.
+        \subsection{Čerpanie a konzultácia dát}
+            V rámci tejto práce boli dáta použité a konzultované z praxe, ktoré boli získané z výrobného procesu chleba
+            z Brnenskej pekárne \texttt{Crocus}. Pre dosianutie čo najvalidnejšieho modelu procesu výroby chleba sme
+            spomenutú pekáreň navštívili a získali informácie o problematike každého procesu výroby.
+        \subsection{Overovanie validity dát}
+            Po celý čas modelovania boli dáta overované a validované na základe komunikácie majitela pekárne. Hned zo
+            začiatku sme si namodelovali a porovnali presnú konfiguráciu spomenutej pekárne. Čo nám docielilo overenie
+            presnosti modelu na základe porovnania skutočného času výroby s časom výroby chleba v modeli.
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Rozbor témy a použitých metód/technológií %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \section {Rozbor projektu}
-        \subsection{Téma}
+    \section {Rozbor témy}
+            Postup výroby chleba sa skladá z viacerych procesov, ktoré sú navzájom závislé:
+            \begin{itemize}
+                \item \textbf{Výroba cesta} -- Proces výroby cesta spočíva zo zmiešania všetkých surovín do jedného. Počet
+                a dostupnosť surovín sa v modeli neberie k úvahe. Jeden proces výroby cesta reprezentuje jeden mixér a
+                výsledokm je \textbf{140kg cesta}. Proces trvá \textbf{10 minút} \textpm \textbf{ 2 minúty}.
 
-        \subsection{Použitie metód a technológií}
+                \item \textbf{Krájanie cesta na bochníky} -- Krájanie cesta na bochníky je proces, ktorý sa vykonáva pracovníkom
+                ručne. V modeli teda platí, že jeden pracovník sa rovná jednému stolu na krájanie. Vstupom procesu je
+                \textbf{1kg cesta} a výstupom je \textbf{1 bochník}. Proces trvá \textbf{30 sekúnd} \textpm \textbf{ 5 sekúnd}.
+
+                \item \textbf{Fermentácia bochníkov} -- Po nakrájaní sa bochníky ukladajú na plech do vozíka.
+                Jeden vozík obsahuje miesto na \textbf{70 bochníkov}. Po naplnení sa vozík odvezie do fermentačnej miestnosti
+                na čas  \textbf{20 minút} \textpm \textbf{ 2 minúty}.
+
+                \item \textbf{Pečenie chleba} -- Po fermentácii sa bochníky na vozíkoch uložia do pece, kde sa pečú.
+                Jedna pec má kapacitu \textbf{1 vozíku}, teda \textbf{70 bochníkov}. Proces trvá \textbf{30 minút} \textpm \textbf{ 2 minúty}.
+
+                \item \textbf{Balenie chleba} -- Po upečení pracovníci roztrieda chleba do bedien. Balenie jedného chleba
+                praconíkom trvá \textbf{10 sekúnd} \textpm \textbf{ 3 sekundy}.
+            \end{itemize}
+
+        \subsection{Použité metódy, postupy a technológie}
+        Na implementáciu modelu bol použitý programovací jazyk \texttt{C++} za podpory simulačnej knihonvne \texttt{SimLib}.
+        [TODO: doplnit odkaz na knihovnu] [TODO:  zdůvodnění, proč jsou pro zadaný problém vhodné. Zdůvodnění může být podpořeno ukázáním alternativního přístupu a srovnáním s tím vaším]
+        \subsection{Pôvod metód a technológií}
+        [TODO]
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Implementácia programu %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section {Koncepcia modelu}
