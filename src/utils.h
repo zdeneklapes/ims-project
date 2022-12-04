@@ -7,6 +7,8 @@
 
 #include "ExitCodes.h"
 
-void print_help_exit(uint16_t exit_code);
+void print_help_exit(ExitCodes exit_code);
+
+size_t get_carts_tbd(const size_t breads_tbd, const size_t cart_capacity);
 
 #endif  // SRC_UTILS_H_

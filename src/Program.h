@@ -16,24 +16,32 @@
  *****************************************************************************/
 class Sources {
    public:
+    /**
+     * @brief Construct a new Sources object
+     * @param _args Args*
+     */
     explicit Sources(Args *_args);
+
+    /**
+     * @brief Destroy the Sources object
+     */
     ~Sources();
 
-    // Bread baking steps
+    //////////////////////
+    // Facilities & Stores
+    //////////////////////
     std::vector<Facility *> mixers;  // mixers available in bakery
     std::vector<Facility *> tables;  // tables available in bakery
     Store *fermenting;               // fermentation room capacity in bakery
     std::vector<Facility *> ovens;   // ovens available in bakery
     Store *loading;                  // loading is evaluated per cart which are waiting to be loaded in queue
+    Store *orders;                   // flag if all breads are baked
 
-    //
-    Store *orders;  // flag if all breads are baked
-
-    //
+    //////////////////////
+    // Methods
+    //////////////////////
     Facility *get_facility_to_use(const std::vector<Facility *> &facilities);
     size_t get_free_facility_len(const std::vector<Facility *> &facilities);
-
-    //
     bool all_sources_free() const;
 };
 
@@ -42,10 +50,19 @@ class Sources {
  *****************************************************************************/
 class CustomStats {
    public:
+    /**
+     * @brief Construct a new Custom Stats object
+     */
     CustomStats();
+
+    /**
+     * @brief Destroy the Custom Stats object
+     */
     ~CustomStats();
 
-    //
+    //////////////////////
+    // Stats
+    //////////////////////
     Stat *mix_duration;
     Stat *cut_duration;
     Stat *fermentation_duration;
@@ -76,7 +93,9 @@ class Program {
      */
     ~Program();
 
-    //
+    //////////////////////
+    // Methods
+    //////////////////////
     /**
      * Print all data from CustomStats and Sources classes
      */
@@ -87,10 +106,16 @@ class Program {
      */
     void reinit();
 
-    //
+    //////////////////////
+    // Fields
+    //////////////////////
     Args *args;
     Sources *sources;
     CustomStats *stats;
+
+    //////////////////////
+    // Members
+    //////////////////////
     double simulation_time = 0;
 };
 

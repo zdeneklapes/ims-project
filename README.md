@@ -7,44 +7,38 @@
 
 ## QUESTION
 
-### What is the most efficient way to produce specified loaves of bread?
+#### What is the most efficient way to produce specified loaves of bread?
 
-## DATA
+## REQUIREMENTS
 
-What raw materials are needed for the bread production?
+- SIMLIB
+- Linux OS
 
-How long does it take to produce a loaf of bread?
+## INSTALLATION
 
-How long does it take to produce a bread loaf?
+### LOCAL
 
-How much flour in kg is needed to produce 1 loaf of bread?
+```bash
+# 1.
+./start.sh -bc # Prepare Cmake
+./start.sh -bm # Build project
+./start.sh -r  # Run program
+```
 
-How long does it take bread fermentation?
+or
 
-How long does it take to bake a loaf of bread?
+```bash
+make
+make run
+```
 
----
+### VIRTUAL MACHINE (DOCKER)
 
-Kolik casu zabere 1 pracovnikovi namichat testo na 100 chlebu?
+```bash
+./start.sh --download-third-party # Download third party libraries (SIMLIB)
+docker build -t clion/remote-cpp-env:0.5 -f Dockerfile .
+docker run -itd --cap-add sys_ptrace -p 127.0.0.1:2222:22 -v (pwd):/home/user/project clion/remote-cpp-env:0.5
 
-Kolik mouky, vody a kvasnic je potreba upeceni na 100 chlebu?
-
-Kolik casu zabere 1 praconikovi udelat 100 bochanku cheba z namichaneho testa?
-
-Kolik casu zabere kynuti 1 bochanku cheba?
-
-Jak dlouho se prumerne pece 1 chleba?
-
-Kolik chlebu se vejde do jedne bedynky?
-
-Kolik casu zabere 1 pracovnikovi nachystat 100 ks chleba do bedynek?
-
-Kolik casu zabere 1 pracovnikovi premistit bedynky se 100 chleby do auta pro rozvoz?
-
-Time to bake 1 bread?
-Time to fermentation for 1 bread?
-Time to mix dough for 100 loaves of bread?
-Time to make 1 loaf of bread from dough?
-Time to move carriage with loaves of bread between stages?
-Time to loads boxes with bread to the truck?
-Time to unload boxes from truck?
+#... next you go into docker container and run:
+./start.sh -bc -bm -r
+```

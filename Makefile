@@ -9,12 +9,18 @@ DIR_BUILD=build
 EXECUTABLE=bread_factory
 RM=rm -rfd
 
-all:
+.PHONY: cmake
+cmake:
 	$(RM) $(DIR_BUILD)
 	mkdir $(DIR_BUILD)
-	cd build && cmake .. && make
+	cd build && cmake ..
+	$(MAKE) build
 
-run: all
+.PHONY: build
+build:
+	$(MAKE) -C $(DIR_BUILD)
+
+run: build
 	./$(DIR_BUILD)/$(EXECUTABLE)
 
 clean:

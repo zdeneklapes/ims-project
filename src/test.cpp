@@ -28,32 +28,7 @@ class TestResult {
     const double simulation_time;
 };
 
-void test1(Program *program) {
-    std::vector<TestResult *> results;
-
-    //
-    for (int mixers = 1; mixers < MAX_CONSTANT; ++mixers) {
-        for (int tables = 1; tables < MAX_CONSTANT; ++tables) {
-            for (int fermentation_cap = 1; fermentation_cap < MAX_CONSTANT; ++fermentation_cap) {
-                for (int ovens = 1; ovens < MAX_CONSTANT; ++ovens) {
-                    for (int loads = 1; loads < MAX_CONSTANT; ++loads) {
-                        program->args->mixers = mixers;
-                        program->args->tables = tables;
-                        program->args->fermentations = fermentation_cap;
-                        program->args->ovens = ovens;
-                        program->args->loads = loads;
-                        program->reinit();
-                        simulate(program);
-                        results.push_back(new TestResult(mixers, tables, fermentation_cap, ovens, loads,
-                                                         program->args->simulations, program->args->breads,
-                                                         program->args->mixer_capacity, program->args->cart_capacity,
-                                                         program->simulation_time));
-                    }
-                }
-            }
-        }
-    }
-
+void print_test_result(std::vector<TestResult *> &results) {
     //
     const auto test_result_min = *std::min_element(
         results.begin(), results.end(),
@@ -62,17 +37,49 @@ void test1(Program *program) {
         results.begin(), results.end(),
         [](const TestResult *a, const TestResult *b) { return a->simulation_time < b->simulation_time; });
 
+    auto print_info = [](std::string &msg, TestResult *result) {
+        std::cout << msg << result->simulation_time << ", breads: " << result->breads << ", mixers: " << result->mixers
+                  << ", tables: " << result->tables << ", fermentations: " << result->fermentations
+                  << ", ovens: " << result->ovens << ", loads: " << result->loads
+                  << ", simulations: " << result->simulations << ", mixer_capacity: " << result->mixer_capacity
+                  << ", cart_capacity: " << result->cart_capacity << std::endl;
+    };
+
+    std::string msg_min = "Min time: ";
+    std::string msg_max = "Max time: ";
+    print_info(msg_min, test_result_min);
+    print_info(msg_max, test_result_max);
+    std::cout << std::endl;
+}
+
+void test1(Program *program) {
+    std::vector<TestResult *> results;
+
     //
-    std::cout << "Min: " << test_result_min->simulation_time << ", mixers: " << test_result_min->mixers
-              << ", tables: " << test_result_min->tables << ", fermentations: " << test_result_min->fermentations
-              << ", ovens: " << test_result_min->ovens << ", loads: " << test_result_min->loads
-              << ", simulations: " << test_result_min->simulations << ", breads: " << test_result_min->breads
-              << ", mixer_capacity: " << test_result_min->mixer_capacity
-              << ", cart_capacity: " << test_result_min->cart_capacity << std::endl;
-    std::cout << "Max: " << test_result_max->simulation_time << ", mixers: " << test_result_max->mixers
-              << ", tables: " << test_result_max->tables << ", fermentations: " << test_result_max->fermentations
-              << ", ovens: " << test_result_max->ovens << ", loads: " << test_result_max->loads
-              << ", simulations: " << test_result_max->simulations << ", breads: " << test_result_max->breads
-              << ", mixer_capacity: " << test_result_max->mixer_capacity
-              << ", cart_capacity: " << test_result_max->cart_capacity << std::endl;
+    for (int breads = 1; breads < 4; ++breads) {
+        for (int mixers = 1; mixers < MAX_CONSTANT; ++mixers) {
+            for (int tables = 1; tables < MAX_CONSTANT; ++tables) {
+                for (int fermentation_cap = 1; fermentation_cap < MAX_CONSTANT; ++fermentation_cap) {
+                    for (int ovens = 1; ovens < MAX_CONSTANT; ++ovens) {
+                        for (int loads = 1; loads < MAX_CONSTANT; ++loads) {
+                            program->args->breads = 100 * breads;
+                            program->args->mixers = mixers;
+                            program->args->tables = tables;
+                            program->args->fermentations = fermentation_cap;
+                            program->args->ovens = ovens;
+                            program->args->loads = loads;
+                            program->reinit();
+                            simulate(program);
+                            results.push_back(new TestResult(mixers, tables, fermentation_cap, ovens, loads,
+                                                             program->args->simulations, program->args->breads,
+                                                             program->args->mixer_capacity,
+                                                             program->args->cart_capacity, program->simulation_time));
+                        }
+                    }
+                }
+            }
+        }
+        print_test_result(results);
+        results.clear();
+    }
 }

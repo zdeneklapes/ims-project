@@ -1,9 +1,5 @@
 #include "Processes.h"
 
-size_t get_carts_tbd(const size_t breads_tbd, const size_t cart_capacity) {
-    return ceil((double)breads_tbd / (double)cart_capacity);
-}
-
 /******************************************************************************
  * OrderProcess
  *****************************************************************************/
@@ -54,8 +50,7 @@ MixProcess::~MixProcess() = default;
 void MixProcess::Behavior() {
     // Init
     Facility* facility = program->sources->get_facility_to_use(program->sources->mixers);
-    const double duration = Normal(mix_mi_duration_per_bread_sec * (double)breads_tbd,
-                                   mix_sigma_duration_per_bread_sec * (double)breads_tbd);
+    const double duration = Normal(mix_mi_duration_per_bread_sec, mix_sigma_duration_per_bread_sec);
 
     //
     DEBUG_PRINT("MixProcess breads_tbd: %zu | Free mixers: %zu | Wait: %f\n", breads_tbd,
