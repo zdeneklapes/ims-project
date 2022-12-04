@@ -13,6 +13,11 @@
 #include "Processes.h"
 #include "Program.h"
 
+/**
+ * @brief Function that simulate implemented system using Simlib library
+ *
+ * @param program Program*
+ */
 void simulate(Program *program);
 
 #endif  // SRC_SIMULATION_H_

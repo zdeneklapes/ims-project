@@ -26,9 +26,6 @@ ENDMACRO()
 project(bread_factory VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-#set(CMAKE_AUTOUIC ON)
-#set(CMAKE_AUTOMOC ON)
-#set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_BUILD_TYPE Debug)
@@ -44,9 +41,15 @@ HEADER_DIRECTORIES(PROJECT_HEADER_DIRS)
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_HEADER_DIRS})
 
+set(SIMLIB_DOCKER_LIB_PATH "/usr/local/lib/libsimlib.so")
+
 # Simlib
 find_library(SIMLIB_LIB simlib /usr/lib/ /usr/local/lib/)
-target_link_libraries(${PROJECT_NAME} PUBLIC ${SIMLIB_LIB})
+if (SIMLIB_LIB)
+    target_link_libraries(${PROJECT_NAME} PUBLIC ${SIMLIB_LIB})
+else ()
+    target_link_libraries(${PROJECT_NAME} PUBLIC ${SIMLIB_DOCKER_LIB_PATH})
+endif ()
 
 
 ################################################################################
@@ -71,5 +74,5 @@ target_link_libraries(${PROJECT_NAME} PUBLIC ${SIMLIB_LIB})
 #foreach (example IN LISTS EXAMPLES)
 #    add_executable(${example} third_party/simlib/examples/${example}.cc)
 #    target_include_directories(${example} PUBLIC ${PROJECT_HEADER_DIRS})
-#    target_link_libraries(${example} PUBLIC /usr/local/lib/libsimlib.so)
+#    target_link_libraries(${example} PUBLIC ${SIMLIB_DOCKER_LIB_PATH})
 #endforeach ()
