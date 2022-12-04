@@ -45,7 +45,7 @@
         technológií VUT v Brne.
         \subsection{Čerpanie a konzultácia dát}
             V rámci tejto práce boli dáta použité a konzultované z praxe, ktoré boli získané z výrobného procesu chleba
-            z Brnenskej pekárne \texttt{Crocus}. Pre dosianutie čo najvalidnejšieho modelu procesu výroby chleba sme
+            z Brnenskej pekárne \texttt{Crocus}\cite{Crocus}. Pre dosianutie čo najvalidnejšieho modelu procesu výroby chleba sme
             spomenutú pekáreň navštívili a získali informácie o problematike každého procesu výroby.
         \subsection{Overovanie validity dát}
             Po celý čas modelovania boli dáta overované a validované na základe komunikácie majitela pekárne. Hned zo
@@ -80,17 +80,18 @@
         Na implementáciu modelu bol použitý programovací jazyk \texttt{C++} za podpory simulačnej knižnice \texttt{SimLib}.
         Hlavným dôvodom použitia jazyka \texttt{C++} je využitie naimplementovanej
         knižnice \texttt{SimLib}. Knižnicu sme si vybrali z dôvodu modelovania procesov výroby na základe petriho siete, ktorá
-        toto modelovanie podporuje. Na kompiláciu sme využili nástroj \texttt{CMake}. Na vývoj bol zvolený operačný sýstém
+        toto modelovanie podporuje. Príklady a správne použitie knižnice sme čerpali z pradnášok predmetu \texttt{IMS}\cite{IMS_slides}.
+        Na kompiláciu sme využili nástroj \texttt{CMake}. Na vývoj bol zvolený operačný sýstém
         \texttt{Linux Ubuntu}, ktorý bežal vo virtualizovanom prostredí nástroja \texttt{Docker}.
 
         \subsection{Pôvod metód a technológií}
     \begin{itemize}
-        \item \textbf{C++} -- Verzia \texttt{C++20}.[TODO: doplnit odkaz na jazyk]
-        \item \textbf{SimLib} -- Verzia \texttt{3.09}. [TODO: doplnit odkaz na knižnicu]. Autori knižnice sú Petr Peringer,
+        \item \textbf{C++} -- Verzia \texttt{C++20}: \texttt{https://en.cppreference.com/w/cpp/20}.
+        \item \textbf{SimLib} -- Verzia \texttt{3.09}\cite{simblib}. Autori knižnice sú Petr Peringer,
         David Leska a David Martinek.
-        \item \textbf{CMAKE} -- Verzia \texttt{3.5}. [TODO: doplnit odkaz na nástroj]
-        \item \textbf{Docker} -- Verzia \texttt{20.10.17}. [TODO: doplnit odkaz na nástroj]
-        \item \textbf{Linux Ubuntu} -- Verzia \texttt{20.04}. [TODO: doplnit odkaz na operačný systém]
+        \item \textbf{CMAKE} -- Verzia \texttt{3.5}: \texttt{https://cmake.org/}.
+        \item \textbf{Docker} -- Verzia \texttt{20.10.17}: \texttt{https://www.docker.com/}.
+        \item \textbf{Linux Ubuntu} -- Verzia \texttt{20.04}: \texttt{https://ubuntu.com/}.
     \end{itemize}
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Implementácia programu %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -103,10 +104,9 @@
 
     \section{Zhrnutie simulašnych experimentov}
 
-    \section {Čerpanie zdrojov}
-        {\cite{example}}
 
     \newpage
     \bibliographystyle{czechiso}
     \bibliography{documentation}
 \end{document}
+
