@@ -4,33 +4,27 @@
 
 #include "simulation.h"
 
-#include "Processes.h"
-
 void simulate(Program *program) {
     auto &args = *program->args;
-    std::stringstream msg;
 
     if (!args.outfile.empty()) {
         SetOutput(args.outfile.c_str());
     }
 
-    for (u_int64_t i = 0; i < args.simulations; ++i) {
+    for (u_int64_t i = 1; i <= args.simulations; ++i) {
+#if !TEST
+        Print("========== %d. START Simulation (%d loaves of bread) ==========\n", i, args.breads);
+#endif
         //
-        msg.str("");  // clear
-        msg << "========== " << i << ". START Simulation ==========\n";
-        Print(msg.str().c_str());
-
-        //
-        Init(0, static_cast<double>(args.time_work_shift_sec));
-        (new WorkShiftProcess(program))->Activate();
+        Init(Args::WORK_TIME_START_SEC, Args::WORK_TIME_END_SEC);
+        auto *order_process = new OrderProcess(program);
+        order_process->Activate();
         Run();
 
-        //
+#if !TEST
         SIMLIB_statistics.Output();
-
-        //
-        msg.str("");  // clear
-        msg << "========== " << i << ". END Simulation ==========\n";
-        Print(msg.str().c_str());
+        Print("\n========== %d. END Simulation (%d hours) ==========\n\n", i,
+              (int)Args::WORK_TIME_END_SEC / SECONDS_PER_MINUTE);
+#endif
     }
 }

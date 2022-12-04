@@ -32,40 +32,44 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -Wextra -pedantic")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -Wextra -pedantic -O0")
 set(POSITION_INDEPENDENT_CODE ON)
 
 # Prepare all files
 file(GLOB_RECURSE PROJECT_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 HEADER_DIRECTORIES(PROJECT_HEADER_DIRS)
 
+
 # Target executable
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_HEADER_DIRS})
-target_link_libraries(${PROJECT_NAME} PUBLIC /usr/local/lib/libsimlib.so)
+
+# Simlib
+find_library(SIMLIB_LIB simlib /usr/lib/ /usr/local/lib/)
+target_link_libraries(${PROJECT_NAME} PUBLIC ${SIMLIB_LIB})
 
 
 ################################################################################
 # Petr Peringer's Examples
 ################################################################################
-list(APPEND EXAMPLES
-        ball ball2
-        bessel
-        ctest
-        heating
-        lorenz
-        model2 model2-timeout model3 model4 model5
-        multiexp
-        network
-        pbx
-        procesor
-        rc
-        rlc
-        test3D
-        wheel wheel2
-        )
-foreach (example IN LISTS EXAMPLES)
-    add_executable(${example} third_party/simlib/examples/${example}.cc)
-    target_include_directories(${example} PUBLIC ${PROJECT_HEADER_DIRS})
-    target_link_libraries(${example} PUBLIC /usr/local/lib/libsimlib.so)
-endforeach ()
+#list(APPEND EXAMPLES
+#        ball ball2
+#        bessel
+#        ctest
+#        heating
+#        lorenz
+#        model2 model2-timeout model3 model4 model5
+#        multiexp
+#        network
+#        pbx
+#        procesor
+#        rc
+#        rlc
+#        test3D
+#        wheel wheel2
+#        )
+#foreach (example IN LISTS EXAMPLES)
+#    add_executable(${example} third_party/simlib/examples/${example}.cc)
+#    target_include_directories(${example} PUBLIC ${PROJECT_HEADER_DIRS})
+#    target_link_libraries(${example} PUBLIC /usr/local/lib/libsimlib.so)
+#endforeach ()

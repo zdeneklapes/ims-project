@@ -1,57 +1,52 @@
 #ifndef SRC_ARGS_H_
 #define SRC_ARGS_H_
 
+#include <simlib.h>
+
 #include <iostream>
 #include <sstream>
 #include <string>
 
 #include "ExitCodes.h"
 #include "macros.h"
-#include "simlib.h"
 #include "utils.h"
 
 struct Args {
    public:  // NOLINT
     Args(int argc, char *argv[]);
-    ~Args() = default;
+    Args(const Args &);
+    ~Args();
 
-    //
-    void debug_args() const;
+    /////////////////////////
+    // Methods
+    /////////////////////////
+    static size_t get_breads_tbd(const size_t &_breads, const size_t &_mixer_capacity);
 
     /////////////////////////
     // System inputs
     /////////////////////////
-    // Order
-    uint64_t breads = 1000;
-    //
-    uint64_t mixers = 1;
-    uint64_t mixer_capacity = 50;
-    //
-    uint64_t tables = 1;
-    uint64_t table_capacity = 1;
-    //
-    uint64_t ovens = 1;
-    uint64_t oven_capacity = 50;
-    //
-    uint64_t fermentations = 1;
-    uint64_t fermentation_capacity = 50;
-    //
-    uint64_t simulations = 1;
-    //
     std::string outfile;
+    const size_t test_value = 1;
 
-    /////////////////////////
-    // System Data
-    /////////////////////////
-    // Times
-    u_int64_t time_baking_sec = 30 * 60;          // TODO: Time to bake 1 bread
-    u_int64_t time_fermentation_sec = 20 * 60;    // TODO: Time to fermentation for 1 bread
-    u_int64_t time_mixing_sec = 10 * 60;          // TODO: Time to mix dough for 100 loaves of bread
-    u_int64_t time_make_loaf_sec = 1 * 60;        // TODO: Time to make 1 loaf of bread from dough
-    u_int64_t time_move_carriage_sec = 2 * 60;    // TODO: Time to move carriage with loaves of bread between stages
-    u_int64_t time_loading_box_sec = 0.25 * 60;   // TODO: Time to load boxes with bread to the truck
-    u_int64_t time_unloading_sec = 0.25 * 60;     // TODO: Time to unload boxes from truck
-    u_int64_t time_work_shift_sec = 8 * 60 * 60;  // TODO: Time work shift
+    // Editable Capacities
+    size_t breads = 200;
+    size_t mixers = test_value;
+    size_t tables = test_value;
+    size_t fermentations = test_value + 1;  // TODO: error if fermentations < 2
+    size_t ovens = test_value;
+    size_t loads = test_value;
+#if TEST
+    size_t simulations = 1;
+#else
+    size_t simulations = 3;
+#endif
+
+    // Not editable Capacities
+    const size_t mixer_capacity = 140;
+    const size_t cart_capacity = 70;
+
+    constexpr static const double WORK_TIME_START_SEC = 0;
+    constexpr static const double WORK_TIME_END_SEC = 8 * 60 * SECONDS_PER_MINUTE;  // 8 hours: work time
 };
 
 #endif  // SRC_ARGS_H_

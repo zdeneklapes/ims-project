@@ -1,1 +1,0 @@
-/usr/bin/c++   -g -Wall -Wextra -pedantic -g   CMakeFiles/network.dir/third_party/simlib/examples/network.cc.o  -o network   -L/usr/local/lib  -Wl,-rpath,/usr/local/lib -lsimlib 

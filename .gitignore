@@ -2,6 +2,7 @@
 .DS_Store
 
 # Result
+*.pdf
 *.zip
 *.tar*
 sender
@@ -78,7 +79,7 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
-# Unit test / coverage reports
+# Unit test_value / coverage reports
 htmlcov/
 .tox/
 .coverage

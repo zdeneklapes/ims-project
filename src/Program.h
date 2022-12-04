@@ -4,20 +4,42 @@
 
 #ifndef SRC_PROGRAM_H_
 #define SRC_PROGRAM_H_
+
+#include <iostream>
+#include <string>
+#include <vector>
+
 #include "Args.h"
 
-class CustomStores {
+/******************************************************************************
+ * Sources
+ *****************************************************************************/
+class Sources {
    public:
-    explicit CustomStores(Args *_args);
-    ~CustomStores();
+    explicit Sources(Args *_args);
+    ~Sources();
 
-    Store *mixing;
-    Store *cutting;
-    Store *fermenting;
-    Store *baking;
-    Store *loading;
+    // Bread baking steps
+    std::vector<Facility *> mixers;  // mixers available in bakery
+    std::vector<Facility *> tables;  // tables available in bakery
+    Store *fermenting;               // fermentation room capacity in bakery
+    std::vector<Facility *> ovens;   // ovens available in bakery
+    Store *loading;                  // loading is evaluated per cart which are waiting to be loaded in queue
+
+    //
+    Store *orders;  // flag if all breads are baked
+
+    //
+    Facility *get_facility_to_use(const std::vector<Facility *> &facilities);
+    size_t get_free_facility_len(const std::vector<Facility *> &facilities);
+
+    //
+    bool all_sources_free() const;
 };
 
+/******************************************************************************
+ * CustomStats
+ *****************************************************************************/
 class CustomStats {
    public:
     CustomStats();
@@ -31,15 +53,45 @@ class CustomStats {
     Stat *load_duration;
 };
 
+/******************************************************************************
+ * Program
+ *****************************************************************************/
 class Program {
    public:
-    explicit Program(Args *_args, CustomStores *_stores);
+    /**
+     * Constructor
+     * @param _args Args*
+     * @param _stores Sources*
+     */
+    explicit Program(Args *_args, Sources *_stores);
+
+    /**
+     * Copy constructor
+     * @param p Program* - to copy
+     */
+    Program(const Program &);
+
+    /**
+     * Destructor
+     */
     ~Program();
 
+    //
+    /**
+     * Print all data from CustomStats and Sources classes
+     */
+    void print_data() const;
+
+    /**
+     * Reinitialize all data from CustomStats and Sources classes
+     */
+    void reinit();
+
+    //
     Args *args;
-    CustomStores *stores;
+    Sources *sources;
     CustomStats *stats;
-    bool is_running = true;
+    double simulation_time = 0;
 };
 
 #endif  // SRC_PROGRAM_H_

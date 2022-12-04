@@ -4,10 +4,13 @@
 
 #ifndef SRC_SIMULATION_H_
 #define SRC_SIMULATION_H_
+#include <simlib.h>
+
 #include <iostream>
 #include <string>
 
 #include "Args.h"
+#include "Processes.h"
 #include "Program.h"
 
 void simulate(Program *program);

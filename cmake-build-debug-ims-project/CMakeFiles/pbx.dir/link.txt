@@ -1,1 +1,0 @@
-/usr/bin/c++   -g -Wall -Wextra -pedantic -g   CMakeFiles/pbx.dir/third_party/simlib/examples/pbx.cc.o  -o pbx   -L/usr/local/lib  -Wl,-rpath,/usr/local/lib -lsimlib 

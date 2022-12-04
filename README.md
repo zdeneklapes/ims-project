@@ -46,5 +46,5 @@ Time to fermentation for 1 bread?
 Time to mix dough for 100 loaves of bread?
 Time to make 1 loaf of bread from dough?
 Time to move carriage with loaves of bread between stages?
-Time to load boxes with bread to the truck?
+Time to loads boxes with bread to the truck?
 Time to unload boxes from truck?
