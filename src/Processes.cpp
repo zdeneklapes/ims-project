@@ -1,11 +1,5 @@
 #include "Processes.h"
 
-/******************************************************************************
- * TODO
- *****************************************************************************/
-// TODO: 10361 ERROR
-// TODO: Total bake time is not updated after compilation
-
 size_t get_carts_tbd(const size_t breads_tbd, const size_t cart_capacity) {
     return ceil((double)breads_tbd / (double)cart_capacity);
 }

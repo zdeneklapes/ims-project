@@ -39,10 +39,14 @@ set(POSITION_INDEPENDENT_CODE ON)
 file(GLOB_RECURSE PROJECT_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 HEADER_DIRECTORIES(PROJECT_HEADER_DIRS)
 
+
 # Target executable
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCES})
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_HEADER_DIRS})
-target_link_libraries(${PROJECT_NAME} PUBLIC /usr/local/lib/libsimlib.so)
+
+# Simlib
+find_library(SIMLIB_LIB simlib /usr/lib/ /usr/local/lib/)
+target_link_libraries(${PROJECT_NAME} PUBLIC ${SIMLIB_LIB})
 
 
 ################################################################################

@@ -131,6 +131,6 @@ void Program::print_data() const {
     Print("Total bake time (%d loaves of bread): %d minutes (%f hours)\n", (int)args->breads,
           (int)(simulation_time / SECONDS_PER_MINUTE), (simulation_time / SECONDS_PER_MINUTE / SECONDS_PER_MINUTE));
     Print("Machines Run time: %d minutes (%f hours)\n", (int)total_bake_time, (total_bake_time / SECONDS_PER_MINUTE));
-    Print("Mean time to bake 1 bread: %d minutes (%f hours)\n", (int)mean_bake_time_minutes,
+    Print("Mean time to bake 1 bread: %d minutes (%f hours)\n\n", (int)mean_bake_time_minutes,
           (mean_bake_time_minutes / SECONDS_PER_MINUTE));
 }
