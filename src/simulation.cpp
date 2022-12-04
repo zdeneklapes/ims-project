@@ -4,7 +4,7 @@
 
 #include "simulation.h"
 
-double simulate(Program *program) {
+void simulate(Program *program) {
     auto &args = *program->args;
 
     if (!args.outfile.empty()) {
@@ -27,5 +27,4 @@ double simulate(Program *program) {
               OrderTimer::ORDER_WORK_TIME_END_SEC / SECONDS_PER_MINUTE);
 #endif
     }
-    return program->simulation_time;
 }

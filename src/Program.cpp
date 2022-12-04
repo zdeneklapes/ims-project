@@ -78,6 +78,13 @@ CustomStats::~CustomStats() {
  *****************************************************************************/
 Program::Program(Args* _args, Sources* _stores) : args(_args), sources(_stores), stats(new CustomStats()) {}
 
+Program::Program(const Program& p) {
+    args = new Args(*p.args);
+    sources = p.sources;
+    stats = p.stats;
+    simulation_time = p.simulation_time;
+}
+
 Program::~Program() {
     delete args;
     delete sources;

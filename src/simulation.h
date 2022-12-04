@@ -13,6 +13,6 @@
 #include "Processes.h"
 #include "Program.h"
 
-double simulate(Program *program);
+void simulate(Program *program);
 
 #endif  // SRC_SIMULATION_H_

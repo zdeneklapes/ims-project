@@ -37,6 +37,20 @@ Args::Args(int argc, char *argv[]) {
         }
     }
 }
+
+Args::Args(const Args &args) {
+    outfile = args.outfile;
+    breads = args.breads;
+    mixers = args.mixers;
+    tables = args.tables;
+    fermentations = args.fermentations;
+    ovens = args.ovens;
+    loads = args.loads;
+    simulations = args.simulations;
+}
+
+Args::~Args() = default;
+
 size_t Args::get_breads_tbd(const size_t &_breads, const size_t &_mixer_capacity) {
     return (_breads > _mixer_capacity) ? _mixer_capacity : _breads;
 }

@@ -14,7 +14,8 @@
 struct Args {
    public:  // NOLINT
     Args(int argc, char *argv[]);
-    ~Args() = default;
+    Args(const Args &);
+    ~Args();
 
     /////////////////////////
     // Methods

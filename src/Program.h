@@ -58,13 +58,36 @@ class CustomStats {
  *****************************************************************************/
 class Program {
    public:
+    /**
+     * Constructor
+     * @param _args Args*
+     * @param _stores Sources*
+     */
     explicit Program(Args *_args, Sources *_stores);
+
+    /**
+     * Copy constructor
+     * @param p Program* - to copy
+     */
+    Program(const Program &);
+
+    /**
+     * Destructor
+     */
     ~Program();
 
     //
+    /**
+     * Print all data from CustomStats and Sources classes
+     */
     void print_data() const;
+
+    /**
+     * Reinitialize all data from CustomStats and Sources classes
+     */
     void reinit();
 
+    //
     Args *args;
     Sources *sources;
     CustomStats *stats;
