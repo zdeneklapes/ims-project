@@ -89,7 +89,25 @@
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Implementácia programu %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section {Koncepcia modelu}
+    Konceptuálny model pekárne je zobrazený pomocou petriho siete\ref{fig:conceptual_model}.
+    V modeli je zobrazený zjednodušený proces výroby chleba. Napriek zjednodušeniu modelu je zachovaná korektnosť simulácie.
+    \begin{itemize}
+        \item \textbf{Výroba cesta} -- Pri prvom procese je zanedbateľná dostupnosť a naskladnovaie surovín,
+        pretože to zaobstaráva externá firma. Výstup a čas procesu je totožný s realitou.
 
+        \item \textbf{Krájanie cesta na bochníky} -- Pri druhom procese sme reálne dáta dekomponovali. Získané
+        dáta z pekárne reprezentovali čas nakrájania 70 bochníkov (zo 70 kg cesta) na jeden vozík pracovníkmi za čas \textbf{10 min} \textpm \textbf{ 2 minúty}.
+        Pre systém sme zvolili proces krájania 1kg cesta na 1 bochník, 1 pracovníkom za čas \textbf{30 sekúnd} \textpm \textbf{ 5 sekúnd}.
+
+        \item \textbf{Fermentácia bochníkov} -- Pri procese fermentácie sme zachovali vstupy, výstupy a časy na základe reálnych dát.
+
+        \item \textbf{Pečenie chleba} -- Pri procese pečenia sme zachovali vstupy, výstupy a časy na základe reálnych dát.
+
+        \item \textbf{Balenie chleba} -- Proces balanie chleba reprezentuje viacero podprocesov ako napríklad príprava a čistenie bedien.
+        Balenie spočíva v roztriedení chleba do bedien a ich následne uloženie do skladu. Reálny proces bol meraný na
+        zabalenie jedného vozíku 70 chlebov do bedien za čas \textbf{10 min} \textpm \textbf{ 2 minúty}. Jedna bedna môže obsahovať 3 až 4 chleby. Proces v modeli sme dekomponovali
+        na zabalenie jedného chleba jedným pracovníkom za čas \textbf{10 sekúnd} \textpm \textbf{ 3 sekundy}.
+    \end{itemize}
 
     \section{Architektúra simulačného modelu}
     Simulacni model\cite[slide 44]{IMS_slides} lze spustit ve 3 rezimech. Nastaveni techto
