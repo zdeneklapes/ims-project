@@ -198,25 +198,90 @@
     strojov, miestností a pracovníkov pre výrobu chleba.
     \subsection{Postup experimentovania}
     Pre experimentovanie je vytvorená funkcia \texttt{experiments()}, ktorá po spustení prebehne všetky možné
-    konfigurácie počtu prostriedkov v rozmedzí 1 až 10.
+    konfigurácie počtu prostriedkov v rozmedzí 1 až 9.
 
     \subsection{Priebeh experimentov}
+    Pri modelovaní výroby sme rozdelili prostriedky na konštanty a premenné.\\ \\
+    \textbf{Konštanty:}
+    \begin{itemize}
+        \item Výstup jedného procesu mixovania -- \texttt{140kg cesta}
+        \item Maximálna kapacita bochníkov vo vozíku -- \texttt{70 kusov}
+        \item Maximálna kapacita vozíkov v peci -- \texttt{1 vozík}
+    \end{itemize}
+    \textbf{Premenné:}
+    \begin{itemize}
+        \item Počet chlebov na výrobu
+        \item Počet mixérov
+        \item Počet stolov/pracovníkov na krájanie
+        \item Maximálna kapacita vozíkov vo fermentačnej miestnosti
+        \item Počet pecí
+        \item Počet pracovníkov na balenie
+    \end{itemize}
+    \textbf{Výsledky experimentov:}\\
 
+    \subsubsection{Validácia modelu}
+    \textbf{Reálna konfigurácia pekárne (simulácia)}
     \begin{center}
         \begin{tabular}{ |p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}| }
             \hline
-            čas / min & chleby / ks & mixéry & pracovníci na krájanie & kapacita fermentačnej miestnosti & kapacita peci & pracovníci na balenie \\
+            čas / min & chleby / ks & mixéry & pracovníci na krájanie & kapacita fermentačnej miestnosti & kapacita pecí & pracovníci na balenie \\
             \hline\hline
-            6253       & 100         & 2       & 9                        & 2                                 & 9             & 9                 \\
+            147 & 140 & 2 & 2 & 8 & 2 & 2  \\ \hline
+            209 & 280 & 2 & 2 & 8 & 2 & 2 \\ \hline
+            288 & 420 & 2 & 2 & 8 & 2 & 2 \\ \hline
+        \end{tabular}
+    \end{center}
+    \textbf{Reálny konfigurácia pekárne (reálny získaný čas)}
+    \begin{center}
+        \begin{tabular}{ |p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}| }
             \hline
+            čas / min & chleby / ks & mixéry & pracovníci na krájanie & kapacita fermentačnej miestnosti & kapacita pecí & pracovníci na balenie \\
+            \hline\hline
+            150 & 140 & 2 & 2 & 8 & 2 & 2  \\ \hline
+        \end{tabular}
+    \end{center}
+    Ako môžme vidieť reálny čas so simulovaným časom výroby chleba je totožný. Vďaka tomuto experimentu
+    môžme pokračovať v experimentovaní s inými konfiguráciami, ktoré nám ukážu efektivitu pekárne.
+
+    \subsubsection{Najlepšia konfigurácia experimenov (simulácia)}
+    \begin{center}
+        \begin{tabular}{ |p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}| }
+            \hline
+            čas / min & chleby / ks & mixéry & pracovníci na krájanie & kapacita fermentačnej miestnosti & kapacita pecí & pracovníci na balenie \\
+            \hline\hline
+            112 & 140 & 2 & 4 & 6 & 8 & 6  \\ \hline
+            125 & 280 & 3 & 4 & 9 & 5 & 9  \\ \hline
+            131 & 420 & 4 & 6 & 6 & 8 & 9 \\ \hline
         \end{tabular}
     \end{center}
 
-    \section{Zhrnutie simulačných experimentov}
 
-    \section {Čerpanie zdrojov}
+    \subsubsection{Najhoršia konfigurácia experimenov (simulácia):}
+    \begin{center}
+        \begin{tabular}{ |p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}| }
+            \hline
+            čas / min & chleby / ks & mixéry & pracovníci na krájanie & kapacita fermentačnej miestnosti & kapacita pecí & pracovníci na balenie \\
+            \hline\hline
+            228 & 140 & 3 & 1 & 3 & 6 & 9  \\ \hline
+            327 & 280 & 6 & 1 & 2 & 7 & 2 \\ \hline
+            419 & 420 & 8 & 1 & 4 & 1 & 2 \\ \hline
+        \end{tabular}
+    \end{center}
+
+    \subsection{Závery experimentov}
+    Pri experimentovaní bolo spustených 177 147 konfigurácií, z ktorých sme zistili najlepšie a najhoršie nakonfigurovanie
+    pekárne pre výrobu 140, 280 a 420 chlebov. Týmito vysledkami vieme tvrdit že pekáreň nemá najefektívnejšie nakonfigurovanie.
+    Najlepší výsledok pre 140 chlebov bol o \textbf{38 minút} rýchlejší ako pri reálnom čase. Z priložených tabuliek
+    môžme vidieť aj konfiguracie pre prípad výroby 280 a 420 chlebov. Do výsledkov sme taktiež zahrnuli najhoršie nakonfigurovanie
+    pre prípad vyvarovania sa tychto konfigurácií.
+
+    \section{Zhrnutie simulačných experimentov}
 
     \newpage
     \bibliographystyle{czechiso}
     \bibliography{documentation}
 \end{document}
+
+
+
+
