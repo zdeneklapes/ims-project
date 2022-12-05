@@ -27,8 +27,7 @@ void simulate(Program *program) {
 
 #if !TEST
         SIMLIB_statistics.Output();
-        Print("\n========== %d. END Simulation (%d hours) ==========\n\n", i,
-              (int)Args::WORK_TIME_END_SEC / SECONDS_PER_MINUTE);
+        Print("\n========== %d. END Simulation ==========\n\n", i);
 #endif
     }
 }

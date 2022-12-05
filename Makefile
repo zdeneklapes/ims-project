@@ -14,13 +14,10 @@ cmake:
 	$(RM) $(DIR_BUILD)
 	mkdir $(DIR_BUILD)
 	cd build && cmake ..
-	$(MAKE) build
-
-.PHONY: build
-build:
 	$(MAKE) -C $(DIR_BUILD)
 
-run: build
+run:
+	$(MAKE) -C $(DIR_BUILD)
 	./$(DIR_BUILD)/$(EXECUTABLE) $(PROGRAM_ARGS)
 
 clean:
