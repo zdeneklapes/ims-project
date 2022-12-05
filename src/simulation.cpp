@@ -1,6 +1,10 @@
-//
-// Created by Zdeněk Lapeš on 11/11/2022.
-//
+/**
+ * IMS-PROJECT VUT FIT - Bakery
+ *
+ * @file simulation.cpp
+ * @author Zdenek Lapes (xlapes02)
+ * @author Andrej Binovsky (xbinov00)
+ */
 
 #include "simulation.h"
 

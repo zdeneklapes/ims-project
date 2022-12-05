@@ -1,3 +1,11 @@
+/**
+ * IMS-PROJECT VUT FIT - Bakery
+ *
+ * @file Args.cpp
+ * @author Zdenek Lapes (xlapes02)
+ * @author Andrej Binovsky (xbinov00)
+ */
+
 #include "Args.h"
 
 Args::Args(int argc, char *argv[]) {

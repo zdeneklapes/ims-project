@@ -1,3 +1,11 @@
+/**
+ * IMS-PROJECT VUT FIT - Bakery
+ *
+ * @file experiments.h
+ * @author Zdenek Lapes (xlapes02)
+ * @author Andrej Binovsky (xbinov00)
+ */
+
 #ifndef SRC_EXPERIMENTS_H_
 #define SRC_EXPERIMENTS_H_
 

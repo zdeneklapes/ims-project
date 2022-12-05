@@ -1,3 +1,11 @@
+/**
+ * IMS-PROJECT VUT FIT - Bakery
+ *
+ * @file macros.h
+ * @author Zdenek Lapes (xlapes02)
+ * @author Andrej Binovsky (xbinov00)
+ */
+
 #ifndef SRC_MACROS_H_
 #define SRC_MACROS_H_
 

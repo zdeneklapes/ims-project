@@ -1,3 +1,11 @@
+/**
+ * IMS-PROJECT VUT FIT - Bakery
+ *
+ * @file utils.cpp
+ * @author Zdenek Lapes (xlapes02)
+ * @author Andrej Binovsky (xbinov00)
+ */
+
 #include "utils.h"
 
 /**

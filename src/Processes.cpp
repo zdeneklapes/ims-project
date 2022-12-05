@@ -1,3 +1,11 @@
+/**
+ * IMS-PROJECT VUT FIT - Bakery
+ *
+ * @file Processes.cpp
+ * @author Zdenek Lapes (xlapes02)
+ * @author Andrej Binovsky (xbinov00)
+ */
+
 #include "Processes.h"
 
 /******************************************************************************

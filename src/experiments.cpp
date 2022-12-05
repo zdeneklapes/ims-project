@@ -1,3 +1,11 @@
+/**
+ * IMS-PROJECT VUT FIT - Bakery
+ *
+ * @file experiments.cpp
+ * @author Zdenek Lapes (xlapes02)
+ * @author Andrej Binovsky (xbinov00)
+ */
+
 #include "experiments.h"
 
 TestResult::TestResult(const size_t _mixers, const size_t _tables, const size_t _fermentations, const size_t _ovens,

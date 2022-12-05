@@ -1,6 +1,10 @@
-//
-// Created by Zdeněk Lapeš on 29/11/2022.
-//
+/**
+ * IMS-PROJECT VUT FIT - Bakery
+ *
+ * @file Program.h
+ * @author Zdenek Lapes (xlapes02)
+ * @author Andrej Binovsky (xbinov00)
+ */
 
 #ifndef SRC_PROGRAM_H_
 #define SRC_PROGRAM_H_
