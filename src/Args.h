@@ -44,7 +44,7 @@ struct Args {
     std::string outfile;  // Output file
 
     // Editable Capacities
-    size_t breads = 100;       // Number of breads to be produced
+    size_t breads = 140;       // Number of breads to be produced
     size_t mixers = 2;         // Number of mixers
     size_t tables = 2;         // Number of tables
     size_t fermentations = 8;  // Number of fermentation rooms

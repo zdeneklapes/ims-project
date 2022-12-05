@@ -26,18 +26,18 @@ void print_test_result(std::vector<TestResult *> &results) {
         [](const TestResult *a, const TestResult *b) { return a->simulation_time < b->simulation_time; });
 
     auto print_info = [](std::string &msg, TestResult *result) {
-        std::cout << msg << floor(result->simulation_time / SECONDS_PER_MINUTE) << ", breads: " << result->breads
-                  << ", mixers: " << result->mixers << ", tables: " << result->tables
-                  << ", fermentations: " << result->fermentations << ", ovens: " << result->ovens
-                  << ", loads: " << result->loads << ", simulations: " << result->simulations
-                  << ", mixer_capacity: " << result->mixer_capacity << ", cart_capacity: " << result->cart_capacity
-                  << std::endl;
-        //                std::cout << floor(result->simulation_time / SECONDS_PER_MINUTE) << " & " << result->breads <<
-        //                " & "
-        //                          << result->mixers << " & " << result->tables << " & " << result->fermentations << "
-        //                          & "
-        //                          << result->ovens << " & " << result->loads << " & " << result->simulations << " & "
-        //                          << result->mixer_capacity << " & " << result->cart_capacity << " \\\\" << std::endl;
+        //        std::cout << msg << floor(result->simulation_time / SECONDS_PER_MINUTE) << ", breads: " <<
+        //        result->breads
+        //                  << ", mixers: " << result->mixers << ", tables: " << result->tables
+        //                  << ", fermentations: " << result->fermentations << ", ovens: " << result->ovens
+        //                  << ", loads: " << result->loads <<
+        //                  << ", mixer_capacity: " << result->mixer_capacity << ", cart_capacity: " <<
+        //                  result->cart_capacity
+        //                  << std::endl;
+        std::cout << floor(result->simulation_time / SECONDS_PER_MINUTE) << " & " << result->breads << " & "
+                  << result->mixers << " & " << result->tables << " & " << result->fermentations << " & "
+                  << result->ovens << " & " << result->loads << " & " << result->mixer_capacity << " & "
+                  << result->cart_capacity << " \\\\ \\hline" << std::endl;
     };
 
     std::string msg_min = "Min time: ";
@@ -50,8 +50,8 @@ void print_test_result(std::vector<TestResult *> &results) {
 void experiments(Program *program) {
     std::vector<TestResult *> results;
 
-    const int breads_count = 5;
-    const int breads_mul = 100;
+    const int breads_count = 4;
+    const int breads_mul = 140;
     const int facilities_count = 10;
 
     //
