@@ -102,7 +102,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Implementácia programu %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section {Koncepcia modelu}
-    Konceptuálny model pekárne je zobrazený pomocou petriho siete %\ref{fig:conceptual_model}.
+    Konceptuálny model pekárne je zobrazený pomocou petriho siete \ref{fig:petri}.
     V modeli je zobrazený zjednodušený proces výroby chleba. Napriek zjednodušeniu modelu je zachovaná korektnosť simulácie.
     \begin{itemize}
         \item \textbf{Výroba cesta} -- Pri prvom procese je zanedbateľná dostupnosť a naskladnovanie surovín,
@@ -121,6 +121,11 @@
         zabalenie jedného vozíku 70 chlebov do bedien za čas \textbf{10 min} \textpm \textbf{ 2 minúty}. Jedna bedna môže obsahovať 3 až 4 chleby. Proces v modeli sme dekomponovali
         na zabalenie jedného chleba jedným pracovníkom za čas \textbf{10 sekúnd} \textpm \textbf{ 3 sekundy}.
     \end{itemize}
+
+    \begin{figure}[h]
+        \center{\fbox{\scalebox{0.3}{\includegraphics{src/petri}}}}
+        \caption{\label{fig:petri}Petriho sieť modelu pekárne}
+    \end{figure}
 
     \section{Architektúra simulačného modelu}
     Simulačný model\cite[slide 44]{IMS_slides} je možné spustiť v 3 režimoch. Nastavenie týchto
@@ -204,7 +209,7 @@
     Pri modelovaní výroby sme rozdelili prostriedky na konštanty a premenné.\\ \\
     \textbf{Konštanty:}
     \begin{itemize}
-        \item Výstup jedného procesu mixovania -- \texttt{140kg cesta}
+        \item Výstup jedného procesu mixovania -- \texttt{140 kg cesta}
         \item Maximálna kapacita bochníkov vo vozíku -- \texttt{70 kusov}
         \item Maximálna kapacita vozíkov v peci -- \texttt{1 vozík}
     \end{itemize}
@@ -231,6 +236,7 @@
             288        & 420         & 2       & 2                        & 8                                 & 2              & 2                      \\ \hline
         \end{tabular}
     \end{center}
+
     \textbf{Reálny konfigurácia pekárne (reálny získaný čas)}
     \begin{center}
         \begin{tabular}{ |p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}| }
@@ -240,6 +246,7 @@
             150        & 140         & 2       & 2                        & 8                                 & 2              & 2                      \\ \hline
         \end{tabular}
     \end{center}
+
     Ako môžeme vidieť reálny čas so simulovaným časom výroby chleba je totožný. Vďaka tomuto experimentu
     môžeme pokračovať v experimentovaní s inými konfiguráciami, ktoré nám ukážu efektivitu pekárne.
 
