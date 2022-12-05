@@ -127,6 +127,7 @@
         \caption{\label{fig:petri}Petriho sieť modelu pekárne}
     \end{figure}
 
+
     \section{Architektúra simulačného modelu}
     Simulačný model\cite[slide 44]{IMS_slides} je možné spustiť v 3 režimoch. Nastavenie týchto
     režimov je určené konštantami v súbore \texttt{src/macros.h}.
@@ -201,6 +202,7 @@
     \section{Podstata simulačných experimentov a ich priebeh}
     Cieľom práce, ktorá má simulovať výrobu chleba je zistiť, či pekáreň s ktorou pracujeme má najlepšiu konfiguráciu
     strojov, miestností a pracovníkov pre výrobu chleba.
+
     \subsection{Postup experimentovania}
     Pre experimentovanie je vytvorená funkcia \texttt{experiments()}, ktorá po spustení prebehne všetky možné
     konfigurácie počtu prostriedkov v rozmedzí 1 až 9.
@@ -231,9 +233,9 @@
             \hline
             čas / min & chleby / ks & mixéry & pracovníci na krájanie & kapacita fermentačnej miestnosti & kapacita pecí & pracovníci na balenie \\
             \hline\hline
-            147        & 140         & 2       & 2                        & 8                                 & 2              & 2                      \\ \hline
-            209        & 280         & 2       & 2                        & 8                                 & 2              & 2                      \\ \hline
-            288        & 420         & 2       & 2                        & 8                                 & 2              & 2                      \\ \hline
+            147       & 140         & 2      & 2                      & 8                                & 2             & 2                     \\ \hline
+            209       & 280         & 2      & 2                      & 8                                & 2             & 2                     \\ \hline
+            288       & 420         & 2      & 2                      & 8                                & 2             & 2                     \\ \hline
         \end{tabular}
     \end{center}
 
@@ -243,7 +245,7 @@
             \hline
             čas / min & chleby / ks & mixéry & pracovníci na krájanie & kapacita fermentačnej miestnosti & kapacita pecí & pracovníci na balenie \\
             \hline\hline
-            150        & 140         & 2       & 2                        & 8                                 & 2              & 2                      \\ \hline
+            150       & 140         & 2      & 2                      & 8                                & 2             & 2                     \\ \hline
         \end{tabular}
     \end{center}
 
@@ -256,12 +258,22 @@
             \hline
             čas / min & chleby / ks & mixéry & pracovníci na krájanie & kapacita fermentačnej miestnosti & kapacita pecí & pracovníci na balenie \\
             \hline\hline
-            112        & 140         & 2       & 4                        & 6                                 & 8              & 6                      \\ \hline
-            125        & 280         & 3       & 4                        & 9                                 & 5              & 9                      \\ \hline
-            131        & 420         & 4       & 6                        & 6                                 & 8              & 9                      \\ \hline
+            112       & 140         & 2      & 4                      & 6                                & 8             & 6                     \\ \hline
+            125       & 280         & 3      & 4                      & 9                                & 5             & 9                     \\ \hline
+            131       & 420         & 4      & 6                      & 6                                & 8             & 9                     \\ \hline
         \end{tabular}
     \end{center}
 
+    Z tabulky vypliva, ze mixeru je mozne
+    mit v pekarni najmenej, nebot maji velikou produkovatelnost testa a zaroven
+    tento proces netrva prilis dlouho.
+
+    Kapacita fermentacni mistnosti a kapacita peci
+    je vhodne drzet v pomeru $2:3$ s prihlednutim ke kapacite peci, nebot
+    peceni trva o \textbf{10 minut $\pm$ 2 minuty} dele, nez fermentace.
+
+    Vice pracovniku je dobre mit k dispozici prave v dobe krajeni a baleni, protoze
+    je to proces, ktery je nejvice zavisly na lidskem faktoru.
 
     \subsubsection{Najhoršia konfigurácia experimentov (simulácia):}
     \begin{center}
@@ -269,11 +281,17 @@
             \hline
             čas / min & chleby / ks & mixéry & pracovníci na krájanie & kapacita fermentačnej miestnosti & kapacita pecí & pracovníci na balenie \\
             \hline\hline
-            228        & 140         & 3       & 1                        & 3                                 & 6              & 9                      \\ \hline
-            327        & 280         & 6       & 1                        & 2                                 & 7              & 2                      \\ \hline
-            419        & 420         & 8       & 1                        & 4                                 & 1              & 2                      \\ \hline
+            228       & 140         & 3      & 1                      & 3                                & 6             & 9                     \\ \hline
+            327       & 280         & 6      & 1                      & 2                                & 7             & 2                     \\ \hline
+            419       & 420         & 8      & 1                      & 4                                & 1             & 2                     \\ \hline
         \end{tabular}
     \end{center}
+
+    Z tabulky vypliva, ze pokud je k dispozici malo pracovniku pri baleni a krajeni
+    chleba, tak se celkovy cas vyrizeni objednavky znacne zvysi.
+
+    Rovnez vysledky dokazuji, ze je lepsi mit vetsi kapacitu fermentacni mistnosti
+    a kapcitu peci nez mixeru.
 
     \subsection{Závery experimentov}
     Pri experimentovaní bolo spustených 177 147 konfigurácií, z ktorých sme zistili najlepšie a najhoršie nakonfigurovanie
@@ -281,6 +299,7 @@
     Najlepší výsledok pre 140 chlebov bol o \textbf{38 minút} rýchlejší ako pri reálnom čase. Z priložených tabuliek
     môžme vidieť aj konfigurácie pre prípad výroby 280 a 420 chlebov. Do výsledkov sme taktiež zahrnuli najhoršie nakonfigurovanie
     pre prípad vyvarovania sa týchto konfigurácií.
+
 
     \section{Záver}
     Ako bolo uvedené v predchádzajúcej kapitole, bolo spustených 177 147 konfigurácií. Týmito výsledkami vieme tvrdiť
