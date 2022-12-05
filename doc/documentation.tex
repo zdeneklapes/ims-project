@@ -14,7 +14,7 @@
 
 
 \begin{document}
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Titulná stránka %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Titulná stránka %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \begin{titlepage}
         \begin{center}
             \includegraphics[width=0.77\linewidth]{src/FIT_logo} \\
@@ -34,11 +34,11 @@
     \end{titlepage}
 
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Obsah %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Obsah %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \tableofcontents
     \newpage
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Úvod %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Úvod %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
     \section{Úvod}
@@ -49,7 +49,7 @@
 
     \subsection{Čerpanie a konzultácia dát}
     V rámci tejto práce boli dáta použité a konzultované z praxe, ktoré boli získané z výrobného procesu chleba
-    z Brnenskej pekárne \texttt{Crocus}. Pre dosianutie čo najvalidnejšieho modelu procesu výroby chleba sme
+    z Brnenskej pekárne \texttt{Crocus}\cite{Crocus}. Pre dosianutie čo najvalidnejšieho modelu procesu výroby chleba sme
     spomenutú pekáreň navštívili a získali informácie o problematike každého procesu výroby.
 
     \subsection{Overovanie validity dát}
@@ -58,7 +58,7 @@
     presnosti modelu na základe porovnania skutočného času výroby s časom výroby chleba v modeli.
 
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Rozbor témy a použitých metód/technológií %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Rozbor témy a použitých metód/technológií %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section {Rozbor témy}\label{sec:rozbor-temy}
     Postup výroby chleba sa skladá z viacerych procesov, ktoré sú navzájom závislé:
     \begin{itemize}
@@ -100,9 +100,9 @@
     \end{itemize}
 
 
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Implementácia programu %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Implementácia programu %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section {Koncepcia modelu}
-    Konceptuálny model pekárne je zobrazený pomocou petriho siete.
+    Konceptuálny model pekárne je zobrazený pomocou petriho siete %\ref{fig:conceptual_model}.
     V modeli je zobrazený zjednodušený proces výroby chleba. Napriek zjednodušeniu modelu je zachovaná korektnosť simulácie.
     \begin{itemize}
         \item \textbf{Výroba cesta} -- Pri prvom procese je zanedbateľná dostupnosť a naskladnovaie surovín,
@@ -126,28 +126,28 @@
     Simulačný model\cite[slide 44]{IMS_slides} je možné spustiť v 3 režimoch. Nastavenie týchto
     režimov je určené konštantami v súbore \texttt{src/macros.h}.
     Každý proces ma nasledujúcu implementáciu funkcie \texttt{Behavior()}:
-    Na začiatku sa spustia všetky \texttt{mixer process}, poprípade se vytvori fronta na \texttt{mixer process}.\\
+    Na začiatku sa spustia všetky \texttt{mixer process}, poprípade se vytvori fronta na \texttt{mixer process}.
 
     \begin{algorithm}[ht]
         \SetKw{Break}{break}
 
-        Zahajeni order process\;
-        \While{nemixuje se testo pro upeceni vsech chlebu}
+        Zahájenie order process\;
+        \While{nemixuje sa cesto pre upečenie všetkých chlebov}
         {
-            Zahajeni mixer process\;
+            Zahájenie mixer process\;
         }
-        čekání, až budou vsechny chleby v bednickach\;
-        ukončeni Order process\;
+        čakanie, až budú všetky chleby v bedničkách\;
+        ukončenie Order process\;
 
-        \caption{Zahajeni procesu výroby chleba}
+        \caption{Zahájenie procesu výroby chleba}
         \label{algorithm:orderprocess}
     \end{algorithm}
 
     \begin{algorithm}[ht]
         \SetKw{Break}{break}
-        Cekej dokud neni dany process hotovy\;
-        Spust nasledujici process\;
-        \caption{Process výroby chleba}
+        Čakaj pokiaľ nieje daný proces hotový\;
+        Spusť nasledujúci proces\;
+        \caption{Proces výroby chleba}
         \label{algorithm:otherprocess}
     \end{algorithm}
 
@@ -193,13 +193,28 @@
     --fermentations 2 --ovens 3 --loads 3 --simulations 3 --outfile out.txt}.
 
 
-    \section{Podstata imulačných experimentov a ich priebeh}
+    \section{Podstata simulačných experimentov a ich priebeh}
+    Cieľom práce, ktorá má simulovať výrobu chleba je zistiť, či pekáreň s ktorou pracujeme má najlepšiu konfiguráciu
+    strojov, miestností a pracovníkov pre výrobu chleba.
+    \subsection{Postup experimentovania}
+    Pre experimentovanie je vytvorená funkcia \texttt{experiments()}, ktorá po spustení prebehne všetky možné
+    konfigurácie počtu prostriedkov v rozmedzí 1 až 10.
 
+    \subsection{Priebeh experimentov}
 
-    \section{Zhrnutie simulašnych experimentov}
+    \begin{center}
+        \begin{tabular}{ |p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}| }
+            \hline
+            čas / min & chleby / ks & mixéry & pracovníci na krájanie & kapacita fermentačnej miestnosti & kapacita peci & pracovníci na balenie \\
+            \hline\hline
+            6253       & 100         & 2       & 9                        & 2                                 & 9             & 9                 \\
+            \hline
+        \end{tabular}
+    \end{center}
+
+    \section{Zhrnutie simulačných experimentov}
 
     \section {Čerpanie zdrojov}
-    {\cite{example}}
 
     \newpage
     \bibliographystyle{czechiso}
