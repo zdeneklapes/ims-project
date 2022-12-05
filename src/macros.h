@@ -26,7 +26,7 @@
  * Macros Debug
  ******************************************************************************/
 #define DEBUG 0
-#define TEST 1
+#define TEST 0
 #define DEBUG_PRINT(fmt, ...)                                                               \
     do {                                                                                    \
         if (DEBUG) {                                                                        \
