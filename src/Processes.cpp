@@ -70,7 +70,7 @@ void MixProcess::Behavior() {
     // Continue making loaves
     for (size_t i = 0; i < carts_tbd; ++i) {
         const size_t cap = program->args->cart_capacity;
-        (new CutProcess(program, breads_tbd > cap ? cap : breads_tbd))->Activate();
+        (new CutProcess(program, cap))->Activate();
     }
 }
 
