@@ -49,22 +49,22 @@
 
     \subsection{Čerpanie a konzultácia dát}
     V rámci tejto práce boli dáta použité a konzultované z praxe, ktoré boli získané z výrobného procesu chleba
-    z Brnenskej pekárne \texttt{Crocus}\cite{Crocus}. Pre dosianutie čo najvalidnejšieho modelu procesu výroby chleba sme
-    spomenutú pekáreň navštívili a získali informácie o problematike každého procesu výroby.
+    z Brnenskej pekárne \texttt{Crocus}\cite{Crocus}. Pre dosiahnutie čo najvalidnejšieho modelu procesu výroby chleba sme
+    spomínanú pekáreň navštívili a získali informácie o problematike každého procesu výroby.
 
     \subsection{Overovanie validity dát}
-    Po celý čas modelovania boli dáta overované a validované na základe komunikácie majitela pekárne. Hned zo
+    Po celý čas modelovania boli dáta overované a validované na základe komunikácie majiteľa pekárne. Hned zo
     začiatku sme si namodelovali a porovnali presnú konfiguráciu spomenutej pekárne. Čo nám docielilo overenie
     presnosti modelu na základe porovnania skutočného času výroby s časom výroby chleba v modeli.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Rozbor témy a použitých metód/technológií %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     \section {Rozbor témy}\label{sec:rozbor-temy}
-    Postup výroby chleba sa skladá z viacerych procesov, ktoré sú navzájom závislé:
+    Postup výroby chleba sa skladá z viacerých procesov, ktoré sú navzájom závislé:
     \begin{itemize}
         \item \textbf{Výroba cesta} -- Proces výroby cesta spočíva zo zmiešania všetkých surovín do jedného. Počet
         a dostupnosť surovín sa v modeli neberie k úvahe. Jeden proces výroby cesta reprezentuje jeden mixér a
-        výsledokm je \textbf{140kg cesta}. Proces trvá \textbf{10 minút} \textpm \textbf{ 2 minúty}.
+        výsledkom je \textbf{140 kg cesta}. Proces trvá \textbf{10 minút} \textpm \textbf{ 2 minúty}.
 
         \item \textbf{Krájanie cesta na bochníky} -- Krájanie cesta na bochníky je proces, ktorý sa vykonáva pracovníkom
         ručne. V modeli teda platí, že jeden pracovník sa rovná jednému stolu na krájanie. Vstupom procesu je
@@ -77,16 +77,16 @@
         \item \textbf{Pečenie chleba} -- Po fermentácii sa bochníky na vozíkoch uložia do pece, kde sa pečú.
         Jedna pec má kapacitu \textbf{1 vozíku}, teda \textbf{70 bochníkov}. Proces trvá \textbf{30 minút} \textpm \textbf{ 2 minúty}.
 
-        \item \textbf{Balenie chleba} -- Po upečení pracovníci roztrieda chleba do bedien. Balenie jedného chleba
-        praconíkom trvá \textbf{10 sekúnd} \textpm \textbf{ 3 sekundy}.
+        \item \textbf{Balenie chleba} -- Po upečení pracovníci roztriedia chleba do bedien. Balenie jedného chleba
+        pracovníkom trvá \textbf{10 sekúnd} \textpm \textbf{ 3 sekundy}.
     \end{itemize}
 
     \subsection{Použité metódy, postupy a technológie}
     Na implementáciu modelu bol použitý programovací jazyk \texttt{C++} za podpory simulačnej knižnice \texttt{SimLib}.
     Hlavným dôvodom použitia jazyka \texttt{C++} je využitie naimplementovanej
     knižnice \texttt{SimLib}. Knižnicu sme si vybrali z dôvodu modelovania procesov výroby na základe petriho siete, ktorá
-    toto modelovanie podporuje. Príklady a správne použitie knižnice sme čerpali z pradnášok predmetu \texttt{IMS}\cite{IMS_slides}.
-    Na kompiláciu sme využili nástroj \texttt{CMake}. Na vývoj bol zvolený operačný sýstém
+    toto modelovanie podporuje. Príklady a správne použitie knižnice sme čerpali z prednášok predmetu \texttt{IMS}\cite{IMS_slides}.
+    Na kompiláciu sme využili nástroj \texttt{CMake}. Na vývoj bol zvolený operačný systém
     \texttt{Linux Ubuntu}, ktorý bežal vo virtualizovanom prostredí nástroja \texttt{Docker}.
 
     \subsection{Pôvod metód a technológií}
@@ -105,7 +105,7 @@
     Konceptuálny model pekárne je zobrazený pomocou petriho siete %\ref{fig:conceptual_model}.
     V modeli je zobrazený zjednodušený proces výroby chleba. Napriek zjednodušeniu modelu je zachovaná korektnosť simulácie.
     \begin{itemize}
-        \item \textbf{Výroba cesta} -- Pri prvom procese je zanedbateľná dostupnosť a naskladnovaie surovín,
+        \item \textbf{Výroba cesta} -- Pri prvom procese je zanedbateľná dostupnosť a naskladnovanie surovín,
         pretože to zaobstaráva externá firma. Výstup a čas procesu je totožný s realitou.
 
         \item \textbf{Krájanie cesta na bochníky} -- Pri druhom procese sme reálne dáta dekomponovali. Získané
@@ -116,7 +116,7 @@
 
         \item \textbf{Pečenie chleba} -- Pri procese pečenia sme zachovali vstupy, výstupy a časy na základe reálnych dát.
 
-        \item \textbf{Balenie chleba} -- Proces balanie chleba reprezentuje viacero podprocesov ako napríklad príprava a čistenie bedien.
+        \item \textbf{Balenie chleba} -- Proces balenie chleba reprezentuje viacero podprocesov ako napríklad príprava a čistenie bedien.
         Balenie spočíva v roztriedení chleba do bedien a ich následne uloženie do skladu. Reálny proces bol meraný na
         zabalenie jedného vozíku 70 chlebov do bedien za čas \textbf{10 min} \textpm \textbf{ 2 minúty}. Jedna bedna môže obsahovať 3 až 4 chleby. Proces v modeli sme dekomponovali
         na zabalenie jedného chleba jedným pracovníkom za čas \textbf{10 sekúnd} \textpm \textbf{ 3 sekundy}.
@@ -125,7 +125,7 @@
     \section{Architektúra simulačného modelu}
     Simulačný model\cite[slide 44]{IMS_slides} je možné spustiť v 3 režimoch. Nastavenie týchto
     režimov je určené konštantami v súbore \texttt{src/macros.h}.
-    Každý proces ma nasledujúcu implementáciu funkcie \texttt{Behavior()}:
+    Každý proces má nasledujúcu implementáciu funkcie \texttt{Behavior()}:
     Na začiatku sa spustia všetky \texttt{mixer process}, poprípade se vytvori fronta na \texttt{mixer process}.
 
     \begin{algorithm}[ht]
@@ -145,7 +145,7 @@
 
     \begin{algorithm}[ht]
         \SetKw{Break}{break}
-        Čakaj pokiaľ nieje daný proces hotový\;
+        Čakaj pokiaľ nie je daný proces hotový\;
         Spusť nasledujúci proces\;
         \caption{Proces výroby chleba}
         \label{algorithm:otherprocess}
@@ -162,28 +162,28 @@
         \item packers -- počet pracovníkov na balenie
     \end{itemize}
 
-    Dalšie atribúty triedy \texttt{Args} sú pre ovládanie simulácie a výstupného súboru:
+    Ďalšie atribúty triedy \texttt{Args} sú pre ovládanie simulácie a výstupného súboru:
     \begin{itemize}
         \item outfile -- názov výstupného súboru
-        \item simulations -- počet simulácií, ktoré se majú spustiť
+        \item simulations -- počet simulácií, ktoré sa majú spustiť
     \end{itemize}
 
-    Tieto vstupy sú zadávané pri spustení programu, viz.\ref{subsec:spousteni-simulacniho-model}
+    Tieto vstupy sú zadané pri spustení programu, viz.\ref{subsec:spousteni-simulacniho-model}
 
     \subsection{Výstup simulácie}
-    Výstupom simulácie je možné riadit cez konštanty v súbore \texttt{src/macros.h}:
+    Výstupom simulácie je možné riadiť cez konštanty v súbore \texttt{src/macros.h}:
     \begin{itemize}
         \item SIMULAČNÝ REŽIM (DEBUG=0 a TEST=0) -- v tomto režimu je možné spustiť simuláciu a sledovať výsledky, model se spustí 3x.
         \item DEBUG REŽIM (DEBUG=1) -- v tomto režimu je možné sledovať podrobnejšie informácie o prebiehajúcich simuláciách
         v jednotlivých krokoch (doba vybavenia jednotlivých procesov, vstupy a výstupy jednotlivých procesov, \ldots)
         \item EXPERIMENT REŽIM (TEST=1) -- v tomto režimu je spustené experimentovanie pre zistenie,
-        ktorá konfigurácia modelu (vstupu), je najvhôdnejšia pre pečenie
-        chleba z hladiska nejmenšieho času vybavenia tzv. optimalnej konfigurácie.
+        ktorá konfigurácia modelu (vstupu), je najvhodnejšia pre pečenie
+        chleba z hľadiska najmenšieho času vybavenia tzv. optimalnej konfigurácie.
     \end{itemize}
 
-    Výstupom simulácie sú dáta o čase výroby chleba, zataženie jednotlivých strojov a pracovníkov.
+    Výstupom simulácie sú dáta o čase výroby chleba, zaťaženie jednotlivých strojov a pracovníkov.
     Výstup môže byť uložený do súboru, ktorý je zadaný príkazom \texttt{--outfile}, keď nie je zadaný
-    výstup je vytlačený na štandratný výstup.
+    výstup je vytlačený na štandardný výstup.
 
     \subsection{Spúšťanie simulačného modelu}\label{subsec:spousteni-simulacniho-model}
     Simulačný model se musí pred spustením skompilovať pomocou \texttt{Makefile}.
@@ -240,10 +240,10 @@
             150        & 140         & 2       & 2                        & 8                                 & 2              & 2                      \\ \hline
         \end{tabular}
     \end{center}
-    Ako môžme vidieť reálny čas so simulovaným časom výroby chleba je totožný. Vďaka tomuto experimentu
-    môžme pokračovať v experimentovaní s inými konfiguráciami, ktoré nám ukážu efektivitu pekárne.
+    Ako môžeme vidieť reálny čas so simulovaným časom výroby chleba je totožný. Vďaka tomuto experimentu
+    môžeme pokračovať v experimentovaní s inými konfiguráciami, ktoré nám ukážu efektivitu pekárne.
 
-    \subsubsection{Najlepšia konfigurácia experimenov (simulácia)}
+    \subsubsection{Najlepšia konfigurácia experimentov (simulácia)}
     \begin{center}
         \begin{tabular}{ |p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}| }
             \hline
@@ -256,7 +256,7 @@
     \end{center}
 
 
-    \subsubsection{Najhoršia konfigurácia experimenov (simulácia):}
+    \subsubsection{Najhoršia konfigurácia experimentov (simulácia):}
     \begin{center}
         \begin{tabular}{ |p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}| }
             \hline
@@ -270,18 +270,18 @@
 
     \subsection{Závery experimentov}
     Pri experimentovaní bolo spustených 177 147 konfigurácií, z ktorých sme zistili najlepšie a najhoršie nakonfigurovanie
-    pekárne pre výrobu 140, 280 a 420 chlebov. Týmito vysledkami vieme tvrdit že pekáreň nemá najefektívnejšie nakonfigurovanie.
+    pekárne pre výrobu 140, 280 a 420 chlebov. Týmito výsledkami vieme tvrdit že pekáreň nemá najefektívnejšie nakonfigurovanie.
     Najlepší výsledok pre 140 chlebov bol o \textbf{38 minút} rýchlejší ako pri reálnom čase. Z priložených tabuliek
     môžme vidieť aj konfigurácie pre prípad výroby 280 a 420 chlebov. Do výsledkov sme taktiež zahrnuli najhoršie nakonfigurovanie
     pre prípad vyvarovania sa týchto konfigurácií.
 
     \section{Záver}
     Ako bolo uvedené v predchádzajúcej kapitole, bolo spustených 177 147 konfigurácií. Týmito výsledkami vieme tvrdiť
-    že pekáreň nieje najefektívnejšia.
+    že pekáreň nie je najefektívnejšia.
     Tieto dáta poskytneme pekárni, ktorá môže tieto výsledky využiť pre zefektívnenie procesu výroby.
-    Musíme taktiež ale povedať, že táto konfigurácia nemusí byt najvhodnejšia vzhľadom na cenu energií, prostriedkov a
+    Musíme taktiež ale povedať, že táto konfigurácia nemusí byť najvhodnejšia vzhľadom na cenu energií, prostriedkov a
     platov za pracovníkov. Týmto chceme upozorniť čitateľa, že model bol navrhnutý pre dosiahnutie najrýchlejšieho času
-    procesu výroby a nebol zohľadnený faktor financovania. Pre daľší rozvoj práce by bolo vhodné zohladniť aj tento
+    procesu výroby a nebol zohľadnený faktor financovania. Pre ďalší rozvoj práce by bolo vhodné zohľadniť aj tento
     dôležitý faktor.
 
 
