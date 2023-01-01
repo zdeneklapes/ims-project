@@ -3,7 +3,7 @@
 ## Authors:
 
 * Zdeněk Lapeš <lapes.zdenek@gmail.com> (xlapes02)
-* Andrej Binovsky <todo> (xbinov00)
+* Andrej Binovsky <binovsky.andrej@gmail.com> (xbinov00)
 
 ## QUESTION
 
